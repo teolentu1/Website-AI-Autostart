@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI-Autostart – Requirements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="requirements.html">Requirements</a>
+    <a href="research.html">Research</a>
+    <a href="algorithms.html">Algorithms</a>
+    <a href="ui-design.html">UI Design</a>
+    <a href="system-design.html">System Design</a>
+    <a href="implementation.html">Implementation</a>
+    <a href="testing.html">Testing</a>
+    <a href="evaluation.html">Evaluation</a>
+    <a href="appendices.html">Appendices</a>
+</nav>
+
+<header>
+    <h1>Project Specification & Requirements</h1>
+</header>
+
+<main>
+
+    <section id="overview">
+        <div class="section-title">Project Overview</div>
+
+        <h3>Summary</h3>
+        <p>
+            AI-Autostart is a Windows-based system tray application designed to improve accessibility across
+            digital interactive systems by enabling hands-free, adaptive interaction. The project focuses on
+            users whose accessibility needs are not adequately addressed by current interfaces, including
+            blind and visually impaired users, wheelchair users, neurodivergent individuals, and users with
+            limited motor mobility.
+        </p>
+
+        <p>
+            The system operates as a lightweight background application that continuously monitors the
+            environment using a combination of Computer Vision and Intel Wi-Fi Proximity Sensing. Based on
+            detected user presence and interaction intent, AI-Autostart automatically initiates interaction
+            without requiring physical contact.
+        </p>
+
+        <p>
+            To demonstrate the applicability of the platform, AI-Autostart connects to two prototypes:
+        </p>
+        <ul>
+            <li>An adaptive self-service kiosk UI prototype</li>
+            <li>A fully playable no-UI game for blind and visually impaired users</li>
+        </ul>
+    </section>
+
+    <section id="objectives">
+        <div class="section-title">Project Objectives</div>
+
+        <ul>
+            <li>Design and implement a Windows system tray accessibility platform</li>
+            <li>Enable reliable touch-free interaction initiation</li>
+            <li>Develop an adaptive self-service kiosk UI prototype</li>
+            <li>Implement a fully playable no-UI game for blind users</li>
+            <li>Integrate a fully local Large Language Model for narration</li>
+            <li>Deliver a single standalone Windows executable</li>
+        </ul>
+    </section>
+
+    <section id="scope">
+        <div class="section-title">Project Scope</div>
+
+        <h3>In Scope</h3>
+        <p>
+            AI-Autostart focuses on the design and implementation of a general accessibility platform using
+            Computer Vision and Intel Wi-Fi Proximity Sensing™. The project includes a system tray application,
+            an adaptive kiosk UI prototype, and a no-UI game for blind and visually impaired users.
+        </p>
+
+        <h3>Out of Scope</h3>
+        <p>
+            Mobile platforms, macOS, and Linux are out of scope. The system does not store or transmit user data,
+            and large-scale commercial deployment is not addressed.
+        </p>
+    </section>
+
+    <section id="background">
+        <div class="section-title">Background and Motivation</div>
+
+        <h3>Context of the Problem</h3>
+        <p>
+            Despite increasing awareness of digital accessibility, many interactive systems deployed in public
+            environments fail to adequately support users with diverse accessibility needs. Accessibility is
+            often implemented as an optional feature rather than a core design principle.
+        </p>
+
+        <h3>Motivation</h3>
+        <p>
+            AI-Autostart aims to move beyond add-on accessibility solutions by enabling proactive, touch-free
+            interaction initiation. The system detects user presence and intent automatically, reducing
+            cognitive load and increasing independence.
+        </p>
+    </section>
+
+    <section id="related-work">
+        <div class="section-title">Related Work</div>
+    </section>
+
+    <section id="functional-requirements">
+        <div class="section-title">Functional Requirements</div>
+
+        <ul>
+            <li><strong>FR1:</strong> Background system tray operation</li>
+            <li><strong>FR2:</strong> Automatic user presence detection</li>
+            <li><strong>FR3:</strong> Touch-free interaction initiation</li>
+            <li><strong>FR4:</strong> False positive mitigation</li>
+            <li><strong>FR5:</strong> Adaptive kiosk interface activation</li>
+            <li><strong>FR6:</strong> No-UI game activation</li>
+            <li><strong>FR7:</strong> Local AI narration and content generation</li>
+            <li><strong>FR8:</strong> Wi-Fi sensing integration</li>
+        </ul>
+    </section>
+
+    <section id="non-functional-requirements">
+        <div class="section-title">Non-Functional Requirements</div>
+
+        <ul>
+            <li>Touch-free operation</li>
+            <li>Low latency</li>
+            <li>Resource efficiency</li>
+            <li>Offline operation</li>
+            <li>Privacy preservation</li>
+            <li>Usability without training</li>
+        </ul>
+    </section>
+
+    <section id="constraints">
+        <div class="section-title">Constraints and Assumptions</div>
+
+        <ul>
+            <li>Windows-only platform</li>
+            <li>Camera and Intel Wi-Fi hardware availability</li>
+            <li>Indoor, semi-controlled deployment environments</li>
+            <li>Prototype-based demonstration scope</li>
+        </ul>
+    </section>
+
+    <section id="moscow">
+        <div class="section-title">MoSCoW Requirements</div>
+
+        <h3>Must Have</h3>
+        <!-- Empty -->
+
+        <h3>Should Have</h3>
+        <!-- Empty -->
+
+        <h3>Could Have</h3>
+        <!-- Empty -->
+
+        <h3>Won’t Have</h3>
+        <!-- Empty -->
+    </section>
+
+    <!-- ================= USE CASES ================= -->
+    <section id="use-cases">
+        <div class="section-title">Use Cases</div>
+        <!-- Empty -->
+    </section>
+
+</main>
+
+<footer style="text-align:center; padding:2rem; color:#6b7280;">
+    COMP0016 Systems Engineering Project<br>
+    © 2024 AI-Autostart Project Team
+</footer>
+
+</body>
+</html>
