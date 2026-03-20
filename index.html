@@ -1,125 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AI-Autostart Project Report</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
-</head>
-<body>
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="requirements.html">Requirements</a>
-        <a href="research.html">Research</a>
-        <a href="algorithms.html">Algorithms</a>
-        <a href="ui-design.html">UI Design</a>
-        <a href="system-design.html">System Design</a>
-        <a href="implementation.html">Implementation</a>
-        <a href="testing.html">Testing</a>
-        <a href="evaluation.html">Evaluation</a>
-        <a href="appendices.html">Appendices</a>
-    </nav>
-    
-    <header>
-        <h1>AI-Autostart</h1>
-        <h2>Enabling Inclusive Interaction Across Kiosks and Games Through Adaptive Sensing</h2>
-    </header>
-    
-    <!-- Main Content -->
-    <main>
-        <!-- Abstract Section -->
-        <section id="abstract">
-            <div class="section-title">Project Abstract</div>
-            
-            <div class="abstract-sub">
-                <h4>Problem Statement</h4>
-                <p>
-                    Many everyday interactive systems, such as self-service kiosks and digital games, are not designed with accessibility as a default. Users with visual impairments, limited mobility, or neurodivergent needs are often required to manually enable accessibility settings or rely on external assistive devices, creating barriers to independent and comfortable interaction. In busy public environments, these limitations can lead to exclusion, frustration, and reduced usability for disabled users.
-                </p>
-            </div>
-            
-            <div class="abstract-sub">
-                <h4>Your Solution</h4>
-                <p>
-                    AI-Autostart addresses this problem by introducing a hands-free, adaptive accessibility platform that automatically initiates and configures interactions based on user presence and intent. Running as a lightweight system tray application, the system combines computer vision and Wi-Fi proximity sensing to detect when a user approaches and signals interaction readiness, such as through sustained hand-raising gestures. Based on this detection, AI-Autostart seamlessly activates either an adaptive self-service kiosk interface or a fully audio-based, no-UI game for blind and visually impaired users, without requiring physical contact or manual setup.
-                </p>
-            </div>
-            
-            <div class="abstract-sub">
-                <h4>Achievement and Impact</h4>
-                <p>
-                    The project demonstrates how accessibility can be embedded as an automatic system behaviour rather than an optional feature. By operating entirely locally and prioritising low resource usage, AI-Autostart preserves user privacy while remaining deployable on standard hardware. The resulting prototypes highlight the potential for more inclusive public and personal digital systems, promoting independence, reducing social discomfort, and contributing to a more equitable interaction experience for users with diverse accessibility needs.
-                </p>
-            </div>
-        </section>
-        
-        <!-- Video Demo Section -->
-        <section id="video">
-            <div class="section-title">Project Demo</div>
-            <div class="video-placeholder">
-                <p>📹 Demo video coming soon</p>
-            </div>
-        </section>
-        
-        <!-- Team Section -->
-        <section id="team">
-            <div class="section-title">The Development Team</div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <img src="image.png" alt="Teodora Lentu">
-                    <h5>Teodora Lentu</h5>
-                    <div class="role">Team Lead</div>
-                    <a href="mailto:teodora.lentu.24@ucl.ac.uk">teodora.lentu.24@ucl.ac.uk</a>
-                    <a href="https://www.linkedin.com/in/teodoralentu/" target="_blank">LinkedIn Profile</a>
+    <head>
+        <meta charset="UTF-8">
+        <title>AI-Autostart Project Report</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="Requirements/requirements.html">Requirements</a>
+            <a href="Research/research.html">Research</a>
+            <a href="UI Design/ui-design.html">UI Design</a>
+            <a href="System Design/system-design.html">System Design</a>
+            <a href="Implementation/implementation.html">Implementation</a>
+            <a href="Testing/testing.html">Testing</a>
+            <a href="Evaluation/evaluation.html">Evaluation</a>
+            <a href="Appendices/appendices.html">Appendices</a>
+        </nav>
+        <header>
+            <h1>AI-Autostart</h1>
+            <h2>Enabling Inclusive Interaction Across Kiosks and Games Through Adaptive Sensing</h2>
+        </header>
+        <!-- Main Content -->
+        <main>
+            <!-- Abstract Section -->
+            <section id="abstract">
+                <div class="section-title">Project Abstract</div>
+                <div class="abstract-sub">
+                    <h4>Problem Statement</h4>
+                    <p> Many everyday interactive systems, such as self-service kiosks and digital games, are not designed with accessibility as a default. Users with visual impairments, limited mobility, or neurodivergent needs are often required to manually enable accessibility settings or rely on external assistive devices, creating barriers to independent and comfortable interaction. In busy public environments, these limitations can lead to exclusion, frustration, and reduced usability for disabled users. </p>
                 </div>
-                
-                <div class="team-card">
-                    <img src="image.png" alt="Alex Pison">
-                    <h5>Alex Pison</h5>
-                    <div class="role">Programmer</div>
-                    <a href="mailto:alex.pison.24@ucl.ac.uk">alex.pison.24@ucl.ac.uk</a>
-                    <a href="https://www.linkedin.com/in/alex-pison-b5055932b/" target="_blank">LinkedIn Profile</a>
+                <div class="abstract-sub">
+                    <h4>Your Solution</h4>
+                    <p> AI-Autostart addresses this problem by introducing a hands-free, adaptive accessibility platform that automatically initiates and configures interactions based on user presence and intent. Running as a lightweight system tray application, the system combines computer vision and Wi-Fi proximity sensing to detect when a user approaches and signals interaction readiness, such as through sustained hand-raising gestures. Based on this detection, AI-Autostart seamlessly activates either an adaptive self-service kiosk interface or a fully audio-based, no-UI game for blind and visually impaired users, without requiring physical contact or manual setup. </p>
                 </div>
-                
-                <div class="team-card">
-                    <img src="image.png" alt="Damla Bortucen">
-                    <h5>Damla Bortucen</h5>
-                    <div class="role">Programmer</div>
-                    <a href="mailto:damla.bortucen.24@ucl.ac.uk">damla.bortucen.24@ucl.ac.uk</a>
-                    <a href="https://www.linkedin.com/in/damlabortucen/" target="_blank">LinkedIn Profile</a>
+                <div class="abstract-sub">
+                    <h4>Achievement and Impact</h4>
+                    <p> The project demonstrates how accessibility can be embedded as an automatic system behaviour rather than an optional feature. By operating entirely locally and prioritising low resource usage, AI-Autostart preserves user privacy while remaining deployable on standard hardware. The resulting prototypes highlight the potential for more inclusive public and personal digital systems, promoting independence, reducing social discomfort, and contributing to a more equitable interaction experience for users with diverse accessibility needs. </p>
                 </div>
-                
-                <div class="team-card">
-                    <img src="image.png" alt="James Glover">
-                    <h5>James Glover</h5>
-                    <div class="role">Programmer</div>
-                    <a href="mailto:james.glover.24@ucl.ac.uk">james.glover.24@ucl.ac.uk</a>
-                    <a href="https://www.linkedin.com/in/james-glover-a82805248/" target="_blank">LinkedIn Profile</a>
+            </section>
+            <!-- Video Demo Section -->
+            <section id="video">
+                <div class="section-title">Project Demo</div>
+                <div class="video-placeholder">
+                    <p>📹 Demo video coming soon</p>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Partners Section -->
-        <section id="partners">
-            <div class="section-title">Our Partners</div>
-            <div class="partners-list">
-                <div class="partner-card">
-                    <img src="motioninput.png" alt="MotionInput Games logo" class="partner-logo">
+            </section>
+            <!-- Team Section -->
+            <section id="team">
+                <div class="section-title">The Development Team</div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="image.png" alt="Teodora Lentu">
+                        <h5>Teodora Lentu</h5>
+                        <div class="role">Team Lead</div>
+                        <a href="mailto:teodora.lentu.24@ucl.ac.uk">teodora.lentu.24@ucl.ac.uk</a>
+                        <a href="https://www.linkedin.com/in/teodoralentu/" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="team-card">
+                        <img src="image.png" alt="Alex Pison">
+                        <h5>Alex Pison</h5>
+                        <div class="role">Programmer</div>
+                        <a href="mailto:alex.pison.24@ucl.ac.uk">alex.pison.24@ucl.ac.uk</a>
+                        <a href="https://www.linkedin.com/in/alex-pison-b5055932b/" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="team-card">
+                        <img src="image.png" alt="Damla Bortucen">
+                        <h5>Damla Bortucen</h5>
+                        <div class="role">Programmer</div>
+                        <a href="mailto:damla.bortucen.24@ucl.ac.uk">damla.bortucen.24@ucl.ac.uk</a>
+                        <a href="https://www.linkedin.com/in/damlabortucen/" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="team-card">
+                        <img src="image.png" alt="James Glover">
+                        <h5>James Glover</h5>
+                        <div class="role">Programmer</div>
+                        <a href="mailto:james.glover.24@ucl.ac.uk">james.glover.24@ucl.ac.uk</a>
+                        <a href="https://www.linkedin.com/in/james-glover-a82805248/" target="_blank">LinkedIn Profile</a>
+                    </div>
                 </div>
-                <div class="partner-card">
-                    <img src="nas.png" alt="NAS logo" class="partner-logo">
+            </section>
+            <!-- Partners Section -->
+            <section id="partners">
+                <div class="section-title">Our Partners</div>
+                <div class="partners-list">
+                    <div class="partner-card">
+                        <img src="motioninput.png" alt="MotionInput Games logo" class="partner-logo">
+                    </div>
+                    <div class="partner-card">
+                        <img src="nas.png" alt="NAS logo" class="partner-logo">
+                    </div>
+                    <div class="partner-card">
+                        <img src="rnib.png" alt="RNIB logo" class="partner-logo">
+                    </div>
+                    <div class="partner-card">
+                        <img src="intel.png" alt="Intel logo" class="partner-logo">
+                    </div>
                 </div>
-                <div class="partner-card">
-                    <img src="rnib.png" alt="RNIB logo" class="partner-logo">
-                </div>
-                <div class="partner-card">
-                    <img src="intel.png" alt="Intel logo" class="partner-logo">
-                </div>
-            </div>
-        </section>
-    </main>
-</body>
+            </section>
+        </main>
+    </body>
 </html>
