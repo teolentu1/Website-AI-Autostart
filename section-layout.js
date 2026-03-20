@@ -11,8 +11,8 @@
     <a href="../index.html">Home</a>
     <a href="../Requirements/requirements.html">Requirements</a>
     <a href="../Research/research.html">Research</a>
-    <a href="../UI Design/ui-design.html">UI Design</a>
-    <a href="../System Design/system-design.html">System Design</a>
+    <a href="../UIDesign/ui-design.html">UI Design</a>
+    <a href="../SystemDesign/system-design.html">System Design</a>
     <a href="../Implementation/implementation.html">Implementation</a>
     <a href="../Testing/testing.html">Testing</a>
     <a href="../Evaluation/evaluation.html">Evaluation</a>
@@ -42,8 +42,8 @@
             <a href="../Research/technology-review.html">Technology Review</a>
         </div>
     </details>
-    <a class="nav-item" href="../UI Design/ui-design.html">UI Design</a>
-    <a class="nav-item" href="../System Design/system-design.html">System Design</a>
+    <a class="nav-item" href="../UIDesign/ui-design.html">UI Design</a>
+    <a class="nav-item" href="../SystemDesign/system-design.html">System Design</a>
     <details class="nav-group">
         <summary><a class="group-link" href="../Implementation/implementation.html">Implementation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
