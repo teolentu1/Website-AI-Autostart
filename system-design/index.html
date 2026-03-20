@@ -370,12 +370,68 @@
 
                 <!-- Data Storage -->
                 <div class="content-card" id="data-storage">
-                    <div class="section-title">Data Storage - ER Diagram</div>
-                    <p style="color: var(--secondary); font-weight: 600;">No-UI Game</p>
-                    <p>placeholder text</p>
+                    <div class="section-title">Data Storage</div>
+                    <p style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">No-UI Game</p>
+                    <p>There is no database. All persistent data are stored in three places on the file system.</p>
+
+                    <ul class="principles-list" style="margin-top: 1.25rem;">
+                        <li>
+                            <div><strong><code>.noui</code></strong> files are the core data format. Each game is a zip file containing everything needed to play it: the graph structure and all audio. 
+                                When the player loads a game, the archive is extracted to <code>storageManager/temporary/</code> for the duration of the session.
+                            </div>
+                        </li>
+                        <li>
+                            <div><strong><code>settings.json</code></strong> lives at the project root and stores all player configuration: 
+                                <br><span style="padding-left: 1.5rem;"></span>· input device (webcam or keyboard) 
+                                <br><span style="padding-left: 1.5rem;"></span>· gesture bindings per action 
+                                <br><span style="padding-left: 1.5rem;"></span>· keyboard key bindings 
+                                <br><span style="padding-left: 1.5rem;"></span>· gesture recogniser timeout.
+                                <br>It is created with defaults on first run and merged with defaults on every load so new fields are always present.
+                            </div>
+                        </li>
+                        <li>
+                            <div><strong><code>voiceSamples/</code></strong> at the project root holds pre-generated <code>.wav</code> files for each of the 8 British Kokoro voices, used only for preview playback in the editor.
+                    </ul>
+
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 1rem 0;">
+
+                    <p>Inside a <code>.noui</code> archive the structure is:</p>
+                    <pre style="background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem; font-size: 0.85rem; overflow-x: auto; line-height: 1.6;">GameName/
+  graph.json
+  audio/
+    node_0_main.wav
+    node_0_options.wav
+    node_1_main.wav
+    node_1_options.wav
+    ...
+    win.wav
+    lose.wav
+    quit.wav
+    resume.wav
+    start_new.wav
+    progress_saved.wav
+    main_menu_welcome.wav
+    main_menu_new_game.wav
+    main_menu_progress.wav
+    inactivity.wav
+  progress.json          ← only present if player quit mid-game</pre>
+
+                    <p style="margin-top: 1.25rem;">
+                        <strong><code>graph.json</code></strong> is a serialised <code>SerialGraph</code> - a flat dictionary of node 
+                        IDs to <code>SerialNode</code> objects. Each <code>SerialNode</code> stores the scene text, left and right option 
+                        labels, an adjacency list mapping option side codes (<code>"0"</code> = right, <code>"1"</code> = left) to target node IDs, and win/lose flags. 
+                        Terminal nodes loop back to themselves in the adjacency list.
+                    </p>
+                    <p style="margin-top: 0.75rem;">
+                        <strong><code>progress.json</code></strong> contains a single field of the node ID where the player last quit. It is written
+                         on quit, read on next load to offer resume/restart, and deleted when the player reaches a win or lose ending.
+                    </p>
+
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 1.75rem 0;">
+
                     <div class="diagram-placeholder">
                         <span>⬡</span>
-                        No-UI Game ER Diagram — coming soon
+                        Archive structure diagram — coming soon
                     </div>
                 </div>
 
