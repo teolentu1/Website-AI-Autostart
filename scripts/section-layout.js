@@ -14,14 +14,14 @@
     </a>
     <div class="nav-links">
         <a href="../index.html">Home</a>
-        <a href="../requirements/">Requirements</a>
-        <a href="../research/">Research</a>
-        <a href="../ui-design/">UI Design</a>
-        <a href="../system-design/">System Design</a>
-        <a href="../implementation/">Implementation</a>
-        <a href="../testing/">Testing</a>
-        <a href="../evaluation/">Evaluation</a>
-        <a href="../appendices/">Appendices</a>
+        <a href="../requirements/index.html">Requirements</a>
+        <a href="../research/index.html">Research</a>
+        <a href="../ui-design/index.html">UI Design</a>
+        <a href="../system-design/index.html">System Design</a>
+        <a href="../implementation/index.html">Implementation</a>
+        <a href="../testing/index.html">Testing</a>
+        <a href="../evaluation/index.html">Evaluation</a>
+        <a href="../appendices/index.html">Appendices</a>
     </div>
 </nav>`;
 
@@ -30,7 +30,7 @@
     <a class="home-link" href="../index.html">Home</a>
     <h2>Navigation</h2>
     <details class="nav-group">
-        <summary><a class="group-link" href="../requirements/">Requirements</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
+        <summary><a class="group-link" href="../requirements/index.html">Requirements</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../requirements/partner-introduction.html">Partner Introduction</a>
             <a href="../requirements/project-background.html">Project Background</a>
@@ -41,17 +41,17 @@
         </div>
     </details>
     <details class="nav-group">
-        <summary><a class="group-link" href="../research/">Research</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
+        <summary><a class="group-link" href="../research/index.html">Research</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../research/field-research.html">Field Research</a>
             <a href="../research/related-projects-review.html">Related Projects Review</a>
             <a href="../research/technology-review.html">Technology Review</a>
         </div>
     </details>
-    <a class="nav-item" href="../ui-design/">UI Design</a>
-    <a class="nav-item" href="../system-design/">System Design</a>
+    <a class="nav-item" href="../ui-design/index.html">UI Design</a>
+    <a class="nav-item" href="../system-design/index.html">System Design</a>
     <details class="nav-group">
-        <summary><a class="group-link" href="../implementation/">Implementation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
+        <summary><a class="group-link" href="../implementation/index.html">Implementation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../implementation/gesture-recognition.html">Gesture Recognition</a>
             <a href="../implementation/person-recognition.html">Person Recognition</a>
@@ -62,9 +62,9 @@
             <a href="../implementation/application-packaging.html">Application Packaging</a>
         </div>
     </details>
-    <a class="nav-item" href="../testing/">Testing</a>
+    <a class="nav-item" href="../testing/index.html">Testing</a>
     <details class="nav-group">
-        <summary><a class="group-link" href="../evaluation/">Evaluation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
+        <summary><a class="group-link" href="../evaluation/index.html">Evaluation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../evaluation/summary-of-achievements.html">Summary of Achievements</a>
             <a href="../evaluation/critical-evaluation-of-project.html">Critical Evaluation of Project</a>
@@ -72,7 +72,7 @@
         </div>
     </details>
     <details class="nav-group">
-        <summary><a class="group-link" href="../appendices/">Appendices</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
+        <summary><a class="group-link" href="../appendices/index.html">Appendices</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../appendices/user-manual.html">User Manual</a>
             <a href="../appendices/ai-autostart-readme.html">AI Autostart README</a>
