@@ -9,7 +9,7 @@
     topNavHost.innerHTML = `
 <nav class="top-nav">
     <a class="nav-brand" href="../index.html">
-        <img src="../icon.png" alt="AI-Autostart logo" class="nav-brand-icon">
+        <img src="../assets/images/icon.png" alt="AI-Autostart logo" class="nav-brand-icon">
         <span class="nav-brand-text">AI-Autostart</span>
     </a>
     <div class="nav-links">
@@ -76,7 +76,7 @@
         <div class="sub-links">
             <a href="../Appendices/user-manual.html">User Manual</a>
             <a href="../Appendices/ai-autostart-readme.html">AI Autostart README</a>
-            <a href="../Appendices/no-gui-game-readme.html">No GUI Game README</a>
+            <a href="../Appendices/no-ui-game-readme.html">No GUI Game README</a>
             <a href="../Appendices/gdpr.html">GDPR</a>
             <a href="../Appendices/dependencies.html">Dependencies</a>
             <a href="../Appendices/contributions.html">Contributions</a>
