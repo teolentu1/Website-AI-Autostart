@@ -31,11 +31,40 @@ body {
     border-bottom: 1px solid var(--border);
     padding: 1rem 1.5rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
+    flex-wrap: nowrap;
+    gap: 1rem;
     box-shadow: var(--shadow-sm);
+}
+
+.nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nav-brand-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.nav-brand-text {
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    letter-spacing: -0.01em;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: nowrap;
+    margin-left: auto;
 }
 
 .top-nav a {

@@ -8,15 +8,21 @@
 
     topNavHost.innerHTML = `
 <nav class="top-nav">
-    <a href="../index.html">Home</a>
-    <a href="../Requirements/requirements.html">Requirements</a>
-    <a href="../Research/research.html">Research</a>
-    <a href="../UIDesign/ui-design.html">UI Design</a>
-    <a href="../SystemDesign/system-design.html">System Design</a>
-    <a href="../Implementation/implementation.html">Implementation</a>
-    <a href="../Testing/testing.html">Testing</a>
-    <a href="../Evaluation/evaluation.html">Evaluation</a>
-    <a href="../Appendices/appendices.html">Appendices</a>
+    <a class="nav-brand" href="../index.html">
+        <img src="../icon.png" alt="AI-Autostart logo" class="nav-brand-icon">
+        <span class="nav-brand-text">AI-Autostart</span>
+    </a>
+    <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../Requirements/requirements.html">Requirements</a>
+        <a href="../Research/research.html">Research</a>
+        <a href="../UIDesign/ui-design.html">UI Design</a>
+        <a href="../SystemDesign/system-design.html">System Design</a>
+        <a href="../Implementation/implementation.html">Implementation</a>
+        <a href="../Testing/testing.html">Testing</a>
+        <a href="../Evaluation/evaluation.html">Evaluation</a>
+        <a href="../Appendices/appendices.html">Appendices</a>
+    </div>
 </nav>`;
 
     sidebarHost.innerHTML = `
