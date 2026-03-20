@@ -472,10 +472,13 @@ a:hover {
 }
 
 /* Section Pages Navigation/Layout */
-.top-nav {
+#shared-top-nav {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.top-nav {
     background: var(--bg-white);
     border-bottom: 1px solid var(--border);
     padding: 1rem 1.5rem;
