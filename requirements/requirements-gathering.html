@@ -6,6 +6,213 @@
         <title>Requirements Gathering</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                width: 100%;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tabs {
+                margin-top: 1rem;
+                margin-bottom: 0;
+            }
+
+            .tab-btn {
+                flex: 1;
+                padding: 0.6rem 1.4rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+                text-align: center;
+            }
+
+            .tab-btn:hover {
+                color: var(--text-primary);
+            }
+
+            .tab-btn[data-product="kiosk"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            .tab-panel {
+                display: none;
+            }
+
+            .tab-panel.active {
+                display: block;
+            }
+
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            .section-intro,
+            .section-closing,
+            .persona-story,
+            .iterative-note {
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+
+            .section-intro {
+                margin-bottom: 1rem;
+            }
+
+            .example-label {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.75rem;
+            }
+
+            .example-card {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .example-question {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-top: 0.75rem;
+                margin-bottom: 0.35rem;
+                line-height: 1.5;
+            }
+
+            .example-answer {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin: 0;
+            }
+
+            .example-options {
+                list-style: none;
+                padding: 0;
+                margin: 0.25rem 0 0;
+                color: var(--text-secondary);
+            }
+
+            .example-options li {
+                margin: 0.2rem 0;
+            }
+
+            .findings-title {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1rem 0 0.5rem;
+            }
+
+            .findings-list {
+                margin: 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .findings-list li {
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+
+            .persona-card {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-left: 4px solid var(--primary);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+            }
+
+            .persona-title {
+                font-weight: 700;
+                color: var(--primary);
+                margin-bottom: 0.5rem;
+            }
+
+            .heuristic-block {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+            }
+
+            .heuristic-system {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.6rem;
+            }
+
+            .heuristic-list {
+                margin: 0;
+                padding-left: 1.1rem;
+                color: var(--text-secondary);
+            }
+
+            .heuristic-list li {
+                margin-bottom: 0.7rem;
+                line-height: 1.6;
+            }
+
+            .heuristic-principle {
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+
+            .heuristic-issue,
+            .heuristic-fix {
+                display: block;
+                margin-top: 0.15rem;
+            }
+
+            .heuristic-fix {
+                color: var(--primary);
+                font-weight: 600;
+            }
+
+            .iterative-note {
+                background: var(--bg-light);
+                border: 1px dashed var(--border);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+                margin-top: 0.5rem;
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -16,11 +223,191 @@
             <main class="content">
                 <div class="content-card">
                     <h1>Requirements Gathering</h1>
-                    <p>This page is reserved for Requirements Gathering content.</p>
+                    <h3>This section outlines our process for defining requirements for AI-Autostart and the No-GUI Game through user-centred methods tailored to each group's accessibility needs.</h3>
+                    <p class="section-intro">These methods helped us understand the practical, emotional, and social challenges faced by users and guided the development of our design ideas, personas, and prototype evaluations.</p>
+                    <div class="tab-bar hero-tabs">
+                        <button class="tab-btn" data-product="kiosk">Accessibility Kiosk</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                    </div>
+                </div>
+
+                <div class="tab-panel" data-product="kiosk">
+                    <div class="content-card" id="kiosk-quick-links">
+                        <div class="section-title">On This Page</div>
+                        <div class="quick-links">
+                            <a href="#kiosk-requirements-gathering">Requirements Gathering</a>
+                            <a href="#kiosk-personas">Personas</a>
+                            <a href="#kiosk-heuristic-evaluation">Heuristic Evaluation of Prototypes</a>
+                            <a href="#kiosk-iterative-evaluation">Iterative Evaluation with Partners</a>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="kiosk-requirements-gathering">
+                        <div class="section-title">Requirements Gathering</div>
+                        <p class="section-intro">To better understand the challenges faced by wheelchair users when interacting with kiosks, we conducted an online survey with a wheelchair user (age 18–22, female). This approach was chosen because online surveys provide a comfortable and accessible way for users to share their experiences and reflect on real-world kiosk interactions.</p>
+
+                        <div class="example-label">Example answer</div>
+                        <div class="example-card">
+                            <p class="example-question">What difficulties have you experienced when using kiosks?</p>
+                            <p class="example-answer">Before accessibility buttons, it was really hard to reach things on the screen, so I always had to seek help. Most kiosks still don’t have them, but even when they do, it’s a hassle. Either I have to waste time looking for the button, or ask for assistance, who aren’t always the nicest.</p>
+
+                            <p class="example-question">Have you ever noticed an accessibility button that makes the interface more reachable?</p>
+                            <p class="example-answer">I usually notice them after a few visits to the same place. They’re never that visible, and I only realize they exist once I’ve already struggled a few times.</p>
+
+                            <p class="example-question">How does needing to press an accessibility button make you feel?</p>
+                            <ul class="example-options">
+                                <li>☐ I don’t mind it</li>
+                                <li>☐ It’s inconvenient but manageable</li>
+                                <li>☑ It makes me feel singled out</li>
+                            </ul>
+
+                            <p class="example-question">If kiosks could automatically adjust when you approached, how would that change your experience?</p>
+                            <p class="example-answer">That would make a huge difference. It would feel like the system actually sees and respects me without me having to do anything special.</p>
+                        </div>
+
+                        <div class="findings-title">The survey revealed several key accessibility and usability concerns:</div>
+                        <ul class="findings-list">
+                            <li>Kiosk screens are often difficult to reach, requiring users to seek assistance, highlighting the need for more inclusive and accessible interaction.</li>
+                            <li>Accessibility buttons are not clearly visible and are usually noticed only after repeated use, emphasising the importance of visibility in interface design.</li>
+                            <li>Manual activation of accessibility features can make users feel singled out and uncomfortable, showing the need for more seamless and inclusive solutions.</li>
+                            <li>Automatic kiosk adjustment would improve independence and create a more respectful and error-preventive user experience.</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card" id="kiosk-personas">
+                        <div class="section-title">Personas</div>
+                        <p class="section-intro">After conducting the survey, we developed personas and scenarios to better understand our target users and their everyday experiences. Personas helped us translate raw user feedback into realistic user stories that guided our design decisions.</p>
+                        <div class="persona-card">
+                            <div class="persona-title">Persona – Wheelchair User (Sasha)</div>
+                            <p class="persona-story">Sasha is a university student and a wheelchair user who has a very active social life and deeply values independence. After lectures, she often goes out with friends to grab food, but she finds self-service kiosks frustrating. Her friends like testing out new food places, so each time Sasha is left having to search for an accessibility button that may or may not exist.</p>
+                            <p class="persona-story">Most times, Sasha ends up asking her friends or staff for help, feeling embarrassed about holding up the line and depending on the people around her. Moreover, she is frustrated by being singled out for needing an adjustment.</p>
+                            <p class="persona-story">When Sasha approaches a redesigned kiosk, the system automatically detects her height and presence, smoothly lowering the screen to a comfortable level without any special action required. She completes her order quickly and independently, without drawing unwanted attention or having to ask for assistance.</p>
+                            <p class="persona-story">She is no longer left feeling singled out and overlooked in these situations.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="kiosk-heuristic-evaluation">
+                        <div class="section-title">Heuristic Evaluation of Prototypes</div>
+                        <p class="section-intro">After defining user requirements and personas, we evaluated the kiosk prototype using heuristic evaluation principles to identify potential usability and reliability issues. This allowed us to assess how well the system aligns with usability principles such as error prevention and user control.</p>
+                        <div class="heuristic-block">
+                            <div class="heuristic-system">Accessibility Kiosk</div>
+                            <ul class="heuristic-list">
+                                <li>
+                                    <span class="heuristic-principle">Help users recognise, diagnose and recover from errors</span>
+                                    <span class="heuristic-issue">False positives – accessibility mode activation when non-wheelchair users approach the kiosk.</span>
+                                    <span class="heuristic-fix">→ A clear button to turn off the accessibility mode</span>
+                                </li>
+                                <li>
+                                    <span class="heuristic-principle">Error prevention</span>
+                                    <span class="heuristic-issue">Reliability of detection of wheelchair users using Wi-Fi sensing.</span>
+                                    <span class="heuristic-fix">→ Intensive user testing</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="section-closing">This evaluation helped identify critical technical and usability challenges, ensuring that the final design remains both accessible and reliable.</p>
+                    </div>
+
+                    <div class="content-card" id="kiosk-iterative-evaluation">
+                        <div class="section-title">Iterative Evaluation with Partners</div>
+                        <div class="iterative-note">To be added later.</div>
+                    </div>
+                </div>
+
+                <div class="tab-panel active" data-product="game">
+                    <div class="content-card" id="game-quick-links">
+                        <div class="section-title">On This Page</div>
+                        <div class="quick-links">
+                            <a href="#game-requirements-gathering">Requirements Gathering</a>
+                            <a href="#game-personas">Personas</a>
+                            <a href="#game-heuristic-evaluation">Heuristic Evaluation of Prototypes</a>
+                            <a href="#game-iterative-evaluation">Iterative Evaluation with Partners</a>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-requirements-gathering">
+                        <div class="section-title">Requirements Gathering</div>
+                        <p class="section-intro">To understand the challenges faced by blind users in gaming environments, we conducted a semi-structured interview with a blind high-school student (age 14–17, male). Semi-structured interviews were chosen because they allow users to openly describe their experiences while still guiding the discussion toward key usability and accessibility topics.</p>
+
+                        <div class="example-label">Example interview</div>
+                        <div class="example-card">
+                            <p class="example-question">What parts of the setup process are most frustrating or time-consuming for you?</p>
+                            <p class="example-answer">Honestly, it’s that I have to be the one to initiate the interaction with the computer. I can’t just start the game on my own, so I have to wait until there’s someone around who can help, and that’s not always the case.</p>
+
+                            <p class="example-question">Do you use any accessibility tools or shortcuts right now to help with setup? Have you experienced any frustrations with these systems?</p>
+                            <p class="example-answer">Yes, I use accessibility tools every day, mainly a screen-reader - VoiceOver on my phone and NVDA on my computer. They read screen content aloud so I can navigate apps and websites, but with games are often inconsistent. Many icons aren’t labeled properly, so the screen reader just says “button” or “image” without telling me what it does, and in fast-paced games it can’t keep up, so my shortcuts stop working.</p>
+
+                            <p class="example-question">Do you think this affects your social life or how connected you feel to others?</p>
+                            <p class="example-answer">Yeah. My friends play games together all the time, both online and in person, and I can’t really join unless someone sets everything up for me. So I end up missing out, not because I don’t want to play, but because it’s not accessible. It makes me feel left out and a bit isolated.</p>
+                        </div>
+
+                        <div class="findings-title">The interview provided valuable insights into the difficulties blind users experience during game setup and interaction:</div>
+                        <ul class="findings-list">
+                            <li>Blind users often need assistance to initiate interaction with the computer and start games, highlighting the need for automated and independent setup.</li>
+                            <li>Accessibility tools such as VoiceOver and NVDA are used daily but are inconsistent in gaming environments, showing the importance of better accessibility integration.</li>
+                            <li>Poorly labeled icons lead to unclear screen reader outputs such as “button” or “image,” emphasising the need for clearer interface feedback.</li>
+                            <li>Fast-paced games reduce the effectiveness of screen readers and shortcuts, reinforcing the need for simplified and accessible interaction methods.</li>
+                            <li>Limited accessibility negatively impacts social participation in gaming, highlighting the importance of inclusive and independent gaming experiences.</li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card" id="game-personas">
+                        <div class="section-title">Personas</div>
+                        <p class="section-intro">Following the interview, we created personas to represent blind users and better understand their motivations, frustrations, and goals. These personas helped us design a system that promotes independence and social inclusion.</p>
+                        <div class="persona-card">
+                            <div class="persona-title">Persona – Blind High-School Student (Kyle)</div>
+                            <p class="persona-story">Kyle is a 17-year-old high school student who loved PC games before an accident left him completely blind. Since then, he misses the excitement he felt whilst gaming and feels underwhelmed by the options available to blind users.</p>
+                            <p class="persona-story">His passion has become a source of frustration as every session requires assistance with setup, and relying on his family members makes him feel dependent and unmotivated.</p>
+                            <p class="persona-story">Now, when Kyle approaches his computer, the redesigned no-UI game automatically detects his presence through Wi-Fi sensing and starts setup on its own. He can begin gaming within seconds, all without needing any external assistance.</p>
+                            <p class="persona-story">For the first time since his accident, Kyle can launch and play independently without waiting for help. The ease of access and independence has reignited his passion for gaming and he feels genuinely excited.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-heuristic-evaluation">
+                        <div class="section-title">Heuristic Evaluation of Prototypes</div>
+                        <p class="section-intro">After defining the user requirements and personas, we evaluated the no-GUI game prototype using heuristic principles to identify potential usability and technical issues. This evaluation focused on ensuring that the system is easy to set up and reliable for blind users.</p>
+                        <div class="heuristic-block">
+                            <div class="heuristic-system">Start-up of No-GUI Game</div>
+                            <ul class="heuristic-list">
+                                <li>
+                                    <span class="heuristic-principle">Help and documentation</span>
+                                    <span class="heuristic-issue">Hard to configure and set up the trigger.</span>
+                                    <span class="heuristic-fix">→ Audio guide on setup instructions</span>
+                                </li>
+                                <li>
+                                    <span class="heuristic-principle">Error prevention</span>
+                                    <span class="heuristic-issue">Reliability of Wi-Fi sensing and hand gesture recognition.</span>
+                                    <span class="heuristic-fix">→ Intensive user testing</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="section-closing">This evaluation ensured that the no-GUI game remains accessible, reliable, and easy to use while supporting independent gaming for blind users.</p>
+                    </div>
+
+                    <div class="content-card" id="game-iterative-evaluation">
+                        <div class="section-title">Iterative Evaluation with Partners</div>
+                        <div class="iterative-note">To be added later.</div>
+                    </div>
                 </div>
             </main>
         </div>
         <script src="../scripts/section-layout.js">
+        </script>
+        <script>
+            const productTabButtons = document.querySelectorAll('.tab-btn');
+            const productTabPanels = document.querySelectorAll('.tab-panel');
+
+            productTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const product = button.dataset.product;
+
+                    productTabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    productTabPanels.forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
