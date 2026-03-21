@@ -6,6 +6,102 @@
         <title>UI Design</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                width: 100%;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tabs {
+                margin-top: 1rem;
+                margin-bottom: 0;
+            }
+
+            .tab-btn {
+                flex: 1;
+                padding: 0.6rem 1.4rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+                text-align: center;
+            }
+
+            .tab-btn:last-child {
+                border-right: none;
+            }
+
+            .tab-btn:hover {
+                color: var(--text-primary);
+            }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            .tab-panel {
+                display: none;
+            }
+
+            .tab-panel.active {
+                display: block;
+            }
+
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            .placeholder-block {
+                background: var(--bg-light);
+                border: 2px dashed var(--border);
+                border-radius: var(--radius);
+                padding: 1.5rem;
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+
+            .placeholder-title {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.5rem;
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -16,11 +112,192 @@
             <main class="content">
                 <div class="content-card">
                     <h1>UI Design</h1>
-                    <p>This page is reserved for the UI Design section content.</p>
+                    <h3>Detailed overview of our UI design process for No-GUI Game and AI-Autostart</h3>
+                    <div class="tab-bar hero-tabs">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                    </div>
+                </div>
+
+                <div class="tab-panel" data-product="autostart">
+                    <div class="content-card" id="autostart-quick-links">
+                        <div class="section-title">On This Page</div>
+                        <div class="quick-links">
+                            <a href="#autostart-design-principles">Design Principles</a>
+                            <a href="#autostart-user-centric-requirements-gathering">User-centric requirements gathering</a>
+                            <a href="#autostart-initial-design-ideas">Initial Design Ideas</a>
+                            <a href="#autostart-user-experience">User Experience</a>
+                            <a href="#autostart-prototyping-and-iterations">Prototyping and Iterations</a>
+                            <a href="#autostart-heuristic-evaluations-and-improvements">Heuristic Evaluations and Improvements</a>
+                            <a href="#autostart-final-ui-design">Final UI Design</a>
+                            <a href="#autostart-references">References</a>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-design-principles">
+                        <div class="section-title">Design Principles</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for design principles.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-user-centric-requirements-gathering">
+                        <div class="section-title">User-centric requirements gathering</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for user-centric requirements gathering.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-initial-design-ideas">
+                        <div class="section-title">Initial Design Ideas</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for initial design ideas.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-user-experience">
+                        <div class="section-title">User Experience</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for user experience.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-prototyping-and-iterations">
+                        <div class="section-title">Prototyping and Iterations</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for prototyping and iterations.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-heuristic-evaluations-and-improvements">
+                        <div class="section-title">Heuristic Evaluations and Improvements</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for heuristic evaluations and improvements.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-final-ui-design">
+                        <div class="section-title">Final UI Design</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for final UI design.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="autostart-references">
+                        <div class="section-title">References</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">AI-Autostart</div>
+                            Placeholder content for references.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel active" data-product="game">
+                    <div class="content-card" id="game-quick-links">
+                        <div class="section-title">On This Page</div>
+                        <div class="quick-links">
+                            <a href="#game-design-principles">Design Principles</a>
+                            <a href="#game-user-centric-requirements-gathering">User-centric requirements gathering</a>
+                            <a href="#game-initial-design-ideas">Initial Design Ideas</a>
+                            <a href="#game-user-experience">User Experience</a>
+                            <a href="#game-prototyping-and-iterations">Prototyping and Iterations</a>
+                            <a href="#game-heuristic-evaluations-and-improvements">Heuristic Evaluations and Improvements</a>
+                            <a href="#game-final-ui-design">Final UI Design</a>
+                            <a href="#game-references">References</a>
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-design-principles">
+                        <div class="section-title">Design Principles</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for design principles.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-user-centric-requirements-gathering">
+                        <div class="section-title">User-centric requirements gathering</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for user-centric requirements gathering.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-initial-design-ideas">
+                        <div class="section-title">Initial Design Ideas</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for initial design ideas.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-user-experience">
+                        <div class="section-title">User Experience</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for user experience.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-prototyping-and-iterations">
+                        <div class="section-title">Prototyping and Iterations</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for prototyping and iterations.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-heuristic-evaluations-and-improvements">
+                        <div class="section-title">Heuristic Evaluations and Improvements</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for heuristic evaluations and improvements.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-final-ui-design">
+                        <div class="section-title">Final UI Design</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for final UI design.
+                        </div>
+                    </div>
+
+                    <div class="content-card" id="game-references">
+                        <div class="section-title">References</div>
+                        <div class="placeholder-block">
+                            <div class="placeholder-title">No-GUI Game</div>
+                            Placeholder content for references.
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
         <script src="../scripts/section-layout.js">
+        </script>
+        <script>
+            const productTabButtons = document.querySelectorAll('.tab-btn');
+            const productTabPanels = document.querySelectorAll('.tab-panel');
+
+            productTabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const product = button.dataset.product;
+
+                    productTabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    productTabPanels.forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
