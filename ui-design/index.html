@@ -101,6 +101,43 @@
                 color: var(--text-primary);
                 margin-bottom: 0.5rem;
             }
+
+            .principles-intro {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin-bottom: 1.25rem;
+            }
+
+            .principles-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .principle-item {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-left: 4px solid var(--primary);
+                border-radius: var(--radius);
+                padding: 1rem;
+            }
+
+            .principle-name {
+                font-weight: 700;
+                color: var(--primary);
+            }
+
+            .principle-desc {
+                color: var(--text-secondary);
+                line-height: 1.6;
+                font-size: 0.95rem;
+            }
+
+            @media (max-width: 860px) {
+                .principle-item {
+                    padding: 0.9rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -136,9 +173,28 @@
 
                     <div class="content-card" id="autostart-design-principles">
                         <div class="section-title">Design Principles</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for design principles.
+                        <p class="principles-intro">
+                            In designing AI-Autostart, we prioritised several core Human-Computer Interaction (HCI)
+                            principles to create an intuitive system for both primary user groups: blind and visually
+                            impaired users.
+                        </p>
+                        <div class="principles-grid">
+                            <div class="principle-item">
+                                <span class="principle-name">Simplicity &amp; Consistency:</span>
+                                <span class="principle-desc"> Design interfaces that are easy to understand and use by keeping them simple and maintaining a uniform user experience.</span>
+                            </div>
+                            <div class="principle-item">
+                                <span class="principle-name">Tolerance:</span>
+                                <span class="principle-desc"> Systems that reduce the impact of user errors and allow easy recovery through undo, error prevention, and flexible input handling.</span>
+                            </div>
+                            <div class="principle-item">
+                                <span class="principle-name">Feedback:</span>
+                                <span class="principle-desc"> Provide clear and immediate responses to user actions so users know what the system is doing and what has happened.</span>
+                            </div>
+                            <div class="principle-item">
+                                <span class="principle-name">Visibility:</span>
+                                <span class="principle-desc"> Make important functions, controls, and system status clearly visible so users can easily see what actions are possible and what is happening.</span>
+                            </div>
                         </div>
                     </div>
 
