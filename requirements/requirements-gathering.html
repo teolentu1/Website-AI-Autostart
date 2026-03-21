@@ -159,6 +159,30 @@
                 padding: 1rem 1.1rem;
             }
 
+            .persona-layout {
+                display: grid;
+                grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+                gap: 1rem;
+                align-items: start;
+            }
+
+            .persona-preview {
+                background: var(--bg-white);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                overflow: hidden;
+            }
+
+            .persona-preview embed {
+                width: 100%;
+                height: 480px;
+                display: block;
+            }
+
+            .persona-details p:first-child {
+                margin-top: 0;
+            }
+
             .persona-title {
                 font-weight: 700;
                 color: var(--primary);
@@ -211,6 +235,16 @@
                 border-radius: var(--radius);
                 padding: 1rem 1.1rem;
                 margin-top: 0.5rem;
+            }
+
+            @media (max-width: 980px) {
+                .persona-layout {
+                    grid-template-columns: 1fr;
+                }
+
+                .persona-preview embed {
+                    height: 520px;
+                }
             }
         </style>
     </head>
@@ -279,10 +313,17 @@
                         <p class="section-intro">After conducting the survey, we developed personas and scenarios to better understand our target users and their everyday experiences. Personas helped us translate raw user feedback into realistic user stories that guided our design decisions.</p>
                         <div class="persona-card">
                             <div class="persona-title">Persona – Wheelchair User (Sasha)</div>
-                            <p class="persona-story">Sasha is a university student and a wheelchair user who has a very active social life and deeply values independence. After lectures, she often goes out with friends to grab food, but she finds self-service kiosks frustrating. Her friends like testing out new food places, so each time Sasha is left having to search for an accessibility button that may or may not exist.</p>
-                            <p class="persona-story">Most times, Sasha ends up asking her friends or staff for help, feeling embarrassed about holding up the line and depending on the people around her. Moreover, she is frustrated by being singled out for needing an adjustment.</p>
-                            <p class="persona-story">When Sasha approaches a redesigned kiosk, the system automatically detects her height and presence, smoothly lowering the screen to a comfortable level without any special action required. She completes her order quickly and independently, without drawing unwanted attention or having to ask for assistance.</p>
-                            <p class="persona-story">She is no longer left feeling singled out and overlooked in these situations.</p>
+                            <div class="persona-layout">
+                                <div class="persona-preview">
+                                    <embed src="../assets/images/sasha.pdf" type="application/pdf">
+                                </div>
+                                <div class="persona-details">
+                                    <p class="persona-story">Sasha is a university student and a wheelchair user who has a very active social life and deeply values independence. After lectures, she often goes out with friends to grab food, but she finds self-service kiosks frustrating. Her friends like testing out new food places, so each time Sasha is left having to search for an accessibility button that may or may not exist.</p>
+                                    <p class="persona-story">Most times, Sasha ends up asking her friends or staff for help, feeling embarrassed about holding up the line and depending on the people around her. Moreover, she is frustrated by being singled out for needing an adjustment.</p>
+                                    <p class="persona-story">When Sasha approaches a redesigned kiosk, the system automatically detects her height and presence, smoothly lowering the screen to a comfortable level without any special action required. She completes her order quickly and independently, without drawing unwanted attention or having to ask for assistance.</p>
+                                    <p class="persona-story">She is no longer left feeling singled out and overlooked in these situations.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -355,10 +396,17 @@
                         <p class="section-intro">Following the interview, we created personas to represent blind users and better understand their motivations, frustrations, and goals. These personas helped us design a system that promotes independence and social inclusion.</p>
                         <div class="persona-card">
                             <div class="persona-title">Persona – Blind High-School Student (Kyle)</div>
-                            <p class="persona-story">Kyle is a 17-year-old high school student who loved PC games before an accident left him completely blind. Since then, he misses the excitement he felt whilst gaming and feels underwhelmed by the options available to blind users.</p>
-                            <p class="persona-story">His passion has become a source of frustration as every session requires assistance with setup, and relying on his family members makes him feel dependent and unmotivated.</p>
-                            <p class="persona-story">Now, when Kyle approaches his computer, the redesigned no-UI game automatically detects his presence through Wi-Fi sensing and starts setup on its own. He can begin gaming within seconds, all without needing any external assistance.</p>
-                            <p class="persona-story">For the first time since his accident, Kyle can launch and play independently without waiting for help. The ease of access and independence has reignited his passion for gaming and he feels genuinely excited.</p>
+                            <div class="persona-layout">
+                                <div class="persona-preview">
+                                    <embed src="../assets/images/kyle.pdf" type="application/pdf">
+                                </div>
+                                <div class="persona-details">
+                                    <p class="persona-story">Kyle is a 17-year-old high school student who loved PC games before an accident left him completely blind. Since then, he misses the excitement he felt whilst gaming and feels underwhelmed by the options available to blind users.</p>
+                                    <p class="persona-story">His passion has become a source of frustration as every session requires assistance with setup, and relying on his family members makes him feel dependent and unmotivated.</p>
+                                    <p class="persona-story">Now, when Kyle approaches his computer, the redesigned no-UI game automatically detects his presence through Wi-Fi sensing and starts setup on its own. He can begin gaming within seconds, all without needing any external assistance.</p>
+                                    <p class="persona-story">For the first time since his accident, Kyle can launch and play independently without waiting for help. The ease of access and independence has reignited his passion for gaming and he feels genuinely excited.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
