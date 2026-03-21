@@ -133,6 +133,76 @@
                 font-size: 0.95rem;
             }
 
+            .survey-intro,
+            .survey-closing {
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+
+            .survey-intro {
+                margin-bottom: 1rem;
+            }
+
+            .survey-card {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 1rem 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .survey-label {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 0.75rem;
+            }
+
+            .survey-question {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-top: 0.75rem;
+                margin-bottom: 0.35rem;
+                line-height: 1.5;
+            }
+
+            .survey-answer {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin: 0;
+            }
+
+            .survey-options {
+                list-style: none;
+                padding: 0;
+                margin: 0.25rem 0 0;
+                color: var(--text-secondary);
+            }
+
+            .survey-options li {
+                margin: 0.2rem 0;
+            }
+
+            .findings-title {
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1rem 0 0.5rem;
+            }
+
+            .findings-list {
+                margin: 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .findings-list li {
+                margin-bottom: 0.5rem;
+                line-height: 1.6;
+            }
+
+            .survey-closing {
+                margin-top: 0.9rem;
+            }
+
             @media (max-width: 860px) {
                 .principle-item {
                     padding: 0.9rem;
@@ -200,10 +270,41 @@
 
                     <div class="content-card" id="autostart-user-centric-requirements-gathering">
                         <div class="section-title">User-centric requirements gathering</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for user-centric requirements gathering.
+                        <p class="survey-intro">
+                            Our design process began with a user-centric approach by conducting an online survey with wheelchair users. We wanted to gain information about what difficulties users with accessibility needs face when approaching digital systems. The survey focused on their experiences with kiosk interfaces in high traffic environments.
+                        </p>
+
+                        <div class="survey-label"><br>Example response</div>
+                        <div class="survey-card">
+
+                            <p class="survey-question">What difficulties have you experienced when using kiosks?</p>
+                            <p class="survey-answer">Before accessibility buttons, it was really hard to reach things on the screen, so I always had to seek help. Most kiosks still don’t have them, but even when they do, it’s a hassle. Either I have to waste time looking for the button, or ask for assistance, who aren’t always the nicest.</p>
+
+                            <p class="survey-question">Have you ever noticed an accessibility button that makes the interface more reachable?</p>
+                            <p class="survey-answer">I usually notice them after a few visits to the same place. They’re never that visible, and I only realize they exist once I’ve already struggled a few times.</p>
+
+                            <p class="survey-question">How does needing to press an accessibility button make you feel?</p>
+                            <ul class="survey-options">
+                                <li>☐ I don’t mind it</li>
+                                <li>☐ It’s inconvenient but manageable</li>
+                                <li>☑ It makes me feel singled out</li>
+                            </ul>
+
+                            <p class="survey-question">If kiosks could automatically adjust when you approached, how would that change your experience?</p>
+                            <p class="survey-answer">That would make a huge difference. It would feel like the system actually sees and respects me without me having to do anything special.</p>
                         </div>
+
+                        <div class="findings-title">Wheelchair users reported:</div>
+                        <ul class="findings-list">
+                            <li>Difficulty reaching elements on kiosk screens, often requiring assistance.</li>
+                            <li>Accessibility buttons are usually hard to find and require time and effort to locate, leading to frustration and delays.</li>
+                            <li>Many users only notice accessibility features after multiple visits, as they are not clearly visible in the interface.</li>
+                            <li>The need to manually activate accessibility features can make users feel singled out and uncomfortable in public spaces.</li>
+                        </ul>
+
+                        <p class="survey-closing">
+                            This feedback highlighted the importance of visibility, simplicity, and inclusive design, leading us to explore different solutions for improving accessibility in interactions with digital interfaces.
+                        </p>
                     </div>
 
                     <div class="content-card" id="autostart-initial-design-ideas">
