@@ -232,7 +232,7 @@
             <main class="content">
                 <div class="content-card">
                     <h1>System Design</h1>
-                    <p>Some text here</p>
+                    <h3>Detailed overview of our system design for No-GUI Game and AI Autostart</h3>
                 </div>
 
                 <!-- Quick Links -->
@@ -250,21 +250,25 @@
                 <!-- System Architecture -->
                 <div class="content-card" id="system-architecture">
                     <div class="section-title">System Architecture</div>
-                    <p>placeholder text</p>
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart" data-section="architecture">AI-Autostart</button>
-                        <button class="tab-btn active" data-product="game" data-section="architecture">No-UI Game</button>
+                        <button class="tab-btn active" data-product="game" data-section="architecture">No-GUI Game</button>
                     </div>
                     <div class="tab-panel" data-product="autostart" data-section="architecture">
+                        <p>placeholder text</p>
                         <div class="diagram-placeholder">
                             <span>⬡</span>
                             AI-Autostart Architecture Diagram — coming soon
                         </div>
                     </div>
                     <div class="tab-panel active" data-product="game" data-section="architecture">
+                        <p>The architecture is split into two independent applications sharing a common data layer.</p>
+                        <p>The <strong>game creation engine</strong> is a PySide6 desktop application where a developer builds a branching story graph node by node. It optionally uses a local LLM to generate a full game from a text prompt, then saves the result as a <code>.noui</code> zip archive containing the serialised graph and all pre-generated TTS audio.</p>
+                        <p>The <strong>game player</strong> is a separate PySide6 window that loads a <code>.noui</code> file and runs the game entirely through audio narration and hand gesture input.</p>
+                        <p>LLM generation, TTS audio synthesis, and saving run on background <code>QThread</code>s to keep the UI responsive.</p>
                         <div class="diagram-placeholder">
                             <span>⬡</span>
-                            No-UI Game Architecture Diagram — coming soon
+                            No-GUI Game Architecture Diagram — coming soon
                         </div>
                     </div>
                 </div>
@@ -274,7 +278,7 @@
                     <div class="section-title">Class Diagrams</div>
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart" data-section="class">AI-Autostart</button>
-                        <button class="tab-btn active" data-product="game" data-section="class">No-UI Game</button>
+                        <button class="tab-btn active" data-product="game" data-section="class">No-GUI Game</button>
                     </div>
                     <div class="tab-panel" data-product="autostart" data-section="class">
                         <iframe style="border:none; width:100%; height:450px;" src="https://whimsical.com/embed/DXtwh25HhCTzMeFc5mYVKV"></iframe>
@@ -298,7 +302,7 @@
                     <div class="section-title">Sequence Diagrams</div>
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart" data-section="sequence">AI-Autostart</button>
-                        <button class="tab-btn active" data-product="game" data-section="sequence">No-UI Game</button>
+                        <button class="tab-btn active" data-product="game" data-section="sequence">No-GUI Game</button>
                     </div>
                     <div class="tab-panel" data-product="autostart" data-section="sequence">
                         <iframe style="border:none; width:100%; height:700px;" src="https://whimsical.com/embed/XvZA42wbjamBistwZG1mVe"></iframe>
@@ -317,7 +321,7 @@
                     <p>placeholder text</p>
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart" data-section="patterns">AI-Autostart</button>
-                        <button class="tab-btn active" data-product="game" data-section="patterns">No-UI Game</button>
+                        <button class="tab-btn active" data-product="game" data-section="patterns">No-GUI Game</button>
                     </div>
 
                     <div class="tab-panel" data-product="autostart" data-section="patterns">
@@ -398,10 +402,10 @@
                 <!-- Data Storage -->
                 <div class="content-card" id="data-storage">
                     <div class="section-title">Data Storage</div>
-                    <p style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">No-UI Game</p>
+                    <p style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">No-GUI Game</p>
                     <p>There is no database. All persistent data are stored in three places on the file system.</p>
 
-                    <ul class="principles-list" style="margin-top: 1.25rem;">
+                    <ul class="principles-list" style="margin-top: 0.5rem;">
                         <li>
                             <div><strong><code>.noui</code></strong> files are the core data format. Each game is a zip file containing everything needed to play it: the graph structure and all audio. 
                                 When the player loads a game, the archive is extracted to <code>storageManager/temporary/</code> for the duration of the session.
