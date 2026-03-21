@@ -8,7 +8,7 @@
     --secondary-dark: #9e1f1f;
     --accent: #1f4d9d;
     --text-primary: #0f172a;
-    --text-secondary: #334155;
+    --text-secondary: #1e293b;
     --muted: #64748b;
     --bg: #f4f6fa;
     --bg-white: #ffffff;
@@ -472,10 +472,13 @@ a:hover {
 }
 
 /* Section Pages Navigation/Layout */
-.top-nav {
+#shared-top-nav {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.top-nav {
     background: var(--bg-white);
     border-bottom: 1px solid var(--border);
     padding: 1rem 1.5rem;
@@ -502,7 +505,7 @@ a:hover {
 
 .page-layout {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 260px 1fr;
     min-height: 100vh;
 }
 
@@ -608,12 +611,12 @@ a:hover {
 }
 
 .content {
-    padding: 2rem;
+    padding: 1.25rem;
 }
 
 .content-card {
     background: var(--bg-white);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(214, 222, 234, 0.5);
     border-radius: var(--radius);
     padding: 1.6rem;
     box-shadow: var(--shadow-sm);

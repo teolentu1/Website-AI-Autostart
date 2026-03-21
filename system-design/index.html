@@ -6,21 +6,499 @@
         <title>System Design</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            /* Quick links */
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            /* Tab bar */
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.5rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 1.4rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+
+            .tab-btn:hover {
+                color: var(--text-primary);
+            }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            /* Tab panels */
+            .tab-panel {
+                display: none;
+            }
+
+            .tab-panel.active {
+                display: block;
+            }
+
+            /* Diagram placeholder */
+            .diagram-placeholder {
+                background: var(--bg-light);
+                border: 2px dashed var(--border);
+                border-radius: var(--radius);
+                padding: 4rem 2rem;
+                text-align: center;
+                color: var(--muted);
+                font-size: 0.95rem;
+                margin-top: 1rem;
+            }
+
+            .diagram-placeholder span {
+                display: block;
+                font-size: 2.5rem;
+                margin-bottom: 0.75rem;
+                opacity: 0.35;
+            }
+
+            /* Design patterns table */
+            .patterns-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .patterns-table th {
+                background: var(--bg-light);
+                color: var(--text-primary);
+                font-weight: 700;
+                padding: 0.85rem 1rem;
+                text-align: left;
+                border-bottom: 2px solid var(--border);
+            }
+
+            .patterns-table td {
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+            }
+
+            .patterns-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .patterns-table tr:hover td {
+                background: var(--bg-light);
+            }
+
+            .pattern-name {
+                font-weight: 600;
+                color: var(--primary);
+                white-space: nowrap;
+            }
+
+            /* Principles list */
+            .principles-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .principles-list li {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.75rem;
+                padding: 0.9rem 0;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+            }
+
+            .principles-list li:last-child {
+                border-bottom: none;
+            }
+
+            .principles-list li::before {
+                content: '✦';
+                color: var(--primary);
+                font-size: 0.8rem;
+                margin-top: 0.25rem;
+                flex-shrink: 0;
+            }
+
+            /* Prev / Next nav */
+            .page-nav {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-top: 2.5rem;
+            }
+
+            .page-nav a {
+                flex: 1;
+                display: block;
+                padding: 1rem 1.5rem;
+                background: var(--bg-white);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+                text-decoration: none;
+                transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+            }
+
+            .page-nav a:hover {
+                border-color: var(--primary);
+                color: var(--primary);
+                box-shadow: var(--shadow-sm);
+            }
+
+            .page-nav a.prev::before { content: '← '; }
+            .page-nav a.next::after  { content: ' →'; }
+            .page-nav a.next { text-align: right; }
+
+            /* Diagram scroll fix */
+            .diagram-wrapper {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .diagram-wrapper iframe {
+                pointer-events: none;
+                display: block;
+            }
+
+            .diagram-wrapper.active iframe {
+                pointer-events: auto;
+                cursor: auto;
+            }
+
+            .diagram-wrapper:not(.active)::after {
+                content: 'Click to interact';
+                position: absolute;
+                bottom: 0.75rem;
+                right: 0.75rem;
+                background: rgba(0, 0, 0, 0.45);
+                color: #fff;
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+                border-radius: 4px;
+                pointer-events: none;
+            }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
                 <div class="content-card">
                     <h1>System Design</h1>
-                    <p>This page is reserved for the System Design section content.</p>
+                    <h3>Detailed overview of our system design for No-GUI Game and AI Autostart</h3>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="content-card" id="quick-links">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#system-architecture">System Architecture</a>
+                        <a href="#class-diagrams">Class Diagrams</a>
+                        <a href="#sequence-diagrams">Sequence Diagrams</a>
+                        <a href="#design-patterns">Design Patterns</a>
+                        <a href="#data-storage">Data Storage</a>
+                    </div>
+                </div>
+
+                <!-- System Architecture -->
+                <div class="content-card" id="system-architecture">
+                    <div class="section-title">System Architecture</div>
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart" data-section="architecture">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game" data-section="architecture">No-GUI Game</button>
+                    </div>
+                    <div class="tab-panel" data-product="autostart" data-section="architecture">
+                        <p>placeholder text</p>
+                        <div class="diagram-placeholder">
+                            <span>⬡</span>
+                            AI-Autostart Architecture Diagram — coming soon
+                        </div>
+                    </div>
+                    <div class="tab-panel active" data-product="game" data-section="architecture">
+                        <p>The architecture is split into two independent applications sharing a common data layer.</p>
+                        <p>The <strong>game creation engine</strong> is a PySide6 desktop application where a developer builds a branching story graph node by node. It optionally uses a local LLM to generate a full game from a text prompt, then saves the result as a <code>.noui</code> zip archive containing the serialised graph and all pre-generated TTS audio.</p>
+                        <p>The <strong>game player</strong> is a separate PySide6 window that loads a <code>.noui</code> file and runs the game entirely through audio narration and hand gesture input.</p>
+                        <p>LLM generation, TTS audio synthesis, and saving run on background <code>QThread</code>s to keep the UI responsive.</p>
+                        <iframe style="border:none; width:100%; height:450px; margin-top: 1.5rem;" src="https://whimsical.com/embed/HqXnGbxWaZQsSd3cbSxe9c"></iframe>
+                    </div>
+                </div>
+
+                <!-- Class Diagrams -->
+                <div class="content-card" id="class-diagrams">
+                    <div class="section-title">Class Diagrams</div>
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart" data-section="class">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game" data-section="class">No-GUI Game</button>
+                    </div>
+                    <div class="tab-panel" data-product="autostart" data-section="class">
+                        <iframe style="border:none; width:100%; height:450px;" src="https://whimsical.com/embed/DXtwh25HhCTzMeFc5mYVKV"></iframe>
+                    </div>
+                    <div class="tab-panel active" data-product="game" data-section="class">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div>
+                                <h4>Game Player</h4>
+                                <iframe style="border:none; width:100%; height:450px;" src="https://whimsical.com/embed/GfPLPcja41Qwkae7pj3YgM"></iframe>
+                            </div>
+                            <div>
+                                <h4>Game Engine</h4>
+                                <iframe style="border:none; width:100%; height:450px;" src="https://whimsical.com/embed/FTQoZrJwuvhk4gjXACpk9d"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sequence Diagrams -->
+                <div class="content-card" id="sequence-diagrams">
+                    <div class="section-title">Sequence Diagrams</div>
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart" data-section="sequence">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game" data-section="sequence">No-GUI Game</button>
+                    </div>
+                    <div class="tab-panel" data-product="autostart" data-section="sequence">
+                        <iframe style="border:none; width:100%; height:700px;" src="https://whimsical.com/embed/XvZA42wbjamBistwZG1mVe"></iframe>
+                    </div>
+                    <div class="tab-panel active" data-product="game" data-section="sequence">
+                        <h4>Game Engine</h4>
+                        <iframe style="border:none; width:100%; height:700px;" src="https://whimsical.com/embed/HrmWPueTyxcPjuEndU2sMQ"></iframe>
+                        <h4>Game Player</h4>
+                        <iframe style="border:none; width:100%; height:700px;" src="https://whimsical.com/embed/JFsP6A9uB1XG9qUWuDS3vD"></iframe>
+                    </div>
+                </div>
+
+                <!-- Design Patterns -->
+                <div class="content-card" id="design-patterns">
+                    <div class="section-title">Design Patterns</div>
+                    <p>placeholder text</p>
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart" data-section="patterns">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game" data-section="patterns">No-GUI Game</button>
+                    </div>
+
+                    <div class="tab-panel" data-product="autostart" data-section="patterns">
+                        <table class="patterns-table">
+                            <thead>
+                                <tr>
+                                    <th>Design Pattern</th>
+                                    <th>Usage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pattern-name">Singleton</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Observer</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Strategy</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Factory</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Command</td>
+                                    <td>placeholder</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3 style="margin-top: 1.75rem;">Design Principles</h3>
+                        <ul class="principles-list">
+                            <li><strong>Single Responsibility (SRP)</strong> placeholder</li>
+                            <li><strong>Open/Closed (OCP)</strong> placeholder</li>
+                            <li><strong>Don't Repeat Yourself (DRY)</strong> placeholder</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel active" data-product="game" data-section="patterns">
+                        <table class="patterns-table">
+                            <thead>
+                                <tr>
+                                    <th>Design Pattern</th>
+                                    <th>Usage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="pattern-name">Template Method</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Chain of Responsibility</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">State</td>
+                                    <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Observer</td>
+                                    <td>placeholder</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3 style="margin-top: 1.75rem;">Design Principles</h3>
+                        <ul class="principles-list">
+                            <li><strong>Single Responsibility (SRP)</strong> placeholder</li>
+                            <li><strong>Open/Closed (OCP)</strong> placeholder</li>
+                            <li><strong>Don't Repeat Yourself (DRY)</strong> placeholder</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Data Storage -->
+                <div class="content-card" id="data-storage">
+                    <div class="section-title">Data Storage</div>
+                    <p style="color: var(--secondary); font-weight: 600; margin-bottom: 1rem;">No-GUI Game</p>
+                    <p>There is no database. All persistent data are stored in three places on the file system.</p>
+
+                    <ul class="principles-list" style="margin-top: 0.5rem;">
+                        <li>
+                            <div><strong><code>.noui</code></strong> files are the core data format. Each game is a zip file containing everything needed to play it: the graph structure and all audio. 
+                                When the player loads a game, the archive is extracted to <code>storageManager/temporary/</code> for the duration of the session.
+                            </div>
+                        </li>
+                        <li>
+                            <div><strong><code>settings.json</code></strong> lives at the project root and stores all player configuration: 
+                                <br><span style="padding-left: 1.5rem;"></span>· input device (webcam or keyboard) 
+                                <br><span style="padding-left: 1.5rem;"></span>· gesture bindings per action 
+                                <br><span style="padding-left: 1.5rem;"></span>· keyboard key bindings 
+                                <br><span style="padding-left: 1.5rem;"></span>· gesture recogniser timeout.
+                                <br>It is created with defaults on first run and merged with defaults on every load so new fields are always present.
+                            </div>
+                        </li>
+                        <li>
+                            <div><strong><code>voiceSamples/</code></strong> at the project root holds pre-generated <code>.wav</code> files for each of the 8 British Kokoro voices, used only for preview playback in the editor.
+                    </ul>
+
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 1rem 0;">
+
+                    <p>Inside a <code>.noui</code> archive the structure is:</p>
+                    <pre style="background: var(--bg-light); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem; font-size: 0.85rem; overflow-x: auto; line-height: 1.6;">GameName/
+  graph.json
+  audio/
+    node_0_main.wav
+    node_0_options.wav
+    node_1_main.wav
+    node_1_options.wav
+    ...
+    win.wav
+    lose.wav
+    quit.wav
+    resume.wav
+    start_new.wav
+    progress_saved.wav
+    main_menu_welcome.wav
+    main_menu_new_game.wav
+    main_menu_progress.wav
+    inactivity.wav
+  progress.json          ← only present if player quit mid-game</pre>
+
+                    <p style="margin-top: 1.25rem;">
+                        <strong><code>graph.json</code></strong> is a serialised <code>SerialGraph</code> - a flat dictionary of node 
+                        IDs to <code>SerialNode</code> objects. Each <code>SerialNode</code> stores the scene text, left and right option 
+                        labels, an adjacency list mapping option side codes (<code>"0"</code> = right, <code>"1"</code> = left) to target node IDs, and win/lose flags. 
+                        Terminal nodes loop back to themselves in the adjacency list.
+                    </p>
+                    <p style="margin-top: 0.75rem;">
+                        <strong><code>progress.json</code></strong> contains a single field of the node ID where the player last quit. It is written
+                         on quit, read on next load to offer resume/restart, and deleted when the player reaches a win or lose ending.
+                    </p>
+
+                    <hr style="border: none; border-top: 1px solid var(--border); margin: 1rem 0;">
+                </div>
+
+                <!-- Prev / Next -->
+                <div class="page-nav">
+                    <a href="../ui-design/index.html" class="prev">UI Design</a>
+                    <a href="../implementation/index.html" class="next">Implementation</a>
                 </div>
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('iframe').forEach(iframe => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'diagram-wrapper';
+                iframe.parentNode.insertBefore(wrapper, iframe);
+                wrapper.appendChild(iframe);
+
+                wrapper.addEventListener('click', () => {
+                    wrapper.classList.add('active');
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.classList.remove('active');
+                });
+            });
+        </script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const parentSection = bar.closest('.content-card');
+                    parentSection.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
