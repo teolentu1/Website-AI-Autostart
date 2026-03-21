@@ -6,6 +6,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles/styles.css">
+        <style>
+            .diagram-wrapper {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .diagram-wrapper iframe {
+                pointer-events: none;
+                display: block;
+            }
+
+            .diagram-wrapper.active iframe {
+                pointer-events: auto;
+                cursor: auto;
+            }
+
+            .diagram-wrapper:not(.active)::after {
+                content: 'Click to interact';
+                position: absolute;
+                bottom: 0.75rem;
+                right: 0.75rem;
+                background: rgba(0, 0, 0, 0.45);
+                color: #fff;
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+                border-radius: 4px;
+                pointer-events: none;
+            }
+        </style>
     </head>
     <body>
         <!-- Navigation Bar -->
@@ -161,5 +190,21 @@
                 <p>&copy; 2026 AI-Autostart. UCL Computer Science.</p>
             </div>
         </footer>
+        <script>
+            document.querySelectorAll('iframe').forEach(iframe => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'diagram-wrapper';
+                iframe.parentNode.insertBefore(wrapper, iframe);
+                wrapper.appendChild(iframe);
+
+                wrapper.addEventListener('click', () => {
+                    wrapper.classList.add('active');
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.classList.remove('active');
+                });
+            });
+        </script>
     </body>
 </html>
