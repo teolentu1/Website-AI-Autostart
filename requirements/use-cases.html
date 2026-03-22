@@ -113,6 +113,35 @@
             .references-list a { color: var(--primary); word-break: break-all; }
 
             sup { font-size: 0.72em; color: var(--primary); font-weight: 600; }
+
+            /* Diagram wrapper */
+            .diagram-wrapper {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .diagram-wrapper iframe {
+                pointer-events: none;
+                display: block;
+            }
+
+            .diagram-wrapper.active iframe {
+                pointer-events: auto;
+                cursor: auto;
+            }
+
+            .diagram-wrapper:not(.active)::after {
+                content: 'Click to interact';
+                position: absolute;
+                bottom: 0.75rem;
+                right: 0.75rem;
+                background: rgba(0, 0, 0, 0.45);
+                color: #fff;
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+                border-radius: 4px;
+                pointer-events: none;
+            }
         </style>
     </head>
     <body>
@@ -173,7 +202,7 @@
                             <p>The No-GUI game player aims to provide the opportunity to the blind and visually impaired to play immersive online games - particularly ones that were designed with them in mind.</p>
                             <ul>
                                 <li>Users can build up their own game by writing scenes.</li>
-                                <li>Generate from the user’s ideas using our story building LLM.</li>
+                                <li>Generate from the user's ideas using our story building LLM.</li>
                                 <li>Generate from a published story, through giving a summary of it to our LLM.</li>
                             </ul>
                             <figure class="use-case-figure">
@@ -195,6 +224,11 @@
                             </figure>
                         </div>
 
+                        <div class="use-case">
+                            <h2>Use Case Diagram</h2>
+                            <iframe style="border:none; width:100%; height:450px; margin-top:0.5rem; display:block;" src="https://whimsical.com/embed/SZY2Ps5Cc8zfkwLiwC2pEM"></iframe>
+                        </div>
+
                         <ol class="references-list">
                             <li>"StoryTribe: Free Online Storyboard Maker for Professionals," StoryTribe, 2026. <a href="https://storytribeapp.com/" target="_blank">https://storytribeapp.com/</a> (accessed Mar. 22, 2026).</li>
                             <li>"Best Smart White Board for schools, Preschools &amp; Colleges / High Schools," Speechi.com, 2025. <a href="https://speechi.com/best-smart-board-schools/" target="_blank">https://speechi.com/best-smart-board-schools/</a> (accessed Mar. 22, 2026).</li>
@@ -207,6 +241,17 @@
             </main>
         </div>
         <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('iframe').forEach(iframe => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'diagram-wrapper';
+                iframe.parentNode.insertBefore(wrapper, iframe);
+                wrapper.appendChild(iframe);
+
+                wrapper.addEventListener('click', () => wrapper.classList.add('active'));
+                wrapper.addEventListener('mouseleave', () => wrapper.classList.remove('active'));
+            });
+        </script>
         <script>
             document.querySelectorAll('.tab-bar').forEach(bar => {
                 bar.addEventListener('click', e => {
