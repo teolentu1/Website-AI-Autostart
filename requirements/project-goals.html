@@ -6,6 +6,41 @@
         <title>Project Goals</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .content,
+            .content-card {
+                text-align: left;
+            }
+
+            .goals-block {
+                background: var(--bg-white);
+                border: none;
+                border-radius: 0;
+                padding: 0;
+            }
+
+            .goals-text {
+                margin: 0;
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+
+            .goals-list {
+                margin: 0.9rem 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .goals-list li {
+                margin-bottom: 0.6rem;
+                line-height: 1.6;
+            }
+
+            .goals-list strong {
+                color: var(--primary);
+                font-weight: 700;
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -16,7 +51,23 @@
             <main class="content">
                 <div class="content-card">
                     <h1>Project Goals</h1>
-                    <p>This page is reserved for Project Goals content.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="goals-block">
+                        <p class="goals-text">Our primary aim is to make digital systems more accessible and inclusive by developing AI-Autostart, a touch-free interaction platform that enables automatic system activation and adaptive interfaces for users with different accessibility needs. Specifically, our goals were as follows:</p>
+
+                        <ul class="goals-list">
+                            <li>Develop a <strong>Windows system tray application</strong> that runs in the background and manages sensing and activation logic while minimising CPU, memory, and power usage</li>
+                            <li>Enable <strong>touch-free system activation</strong> through reliable user presence detection and gesture recognition, including sustained hand-raising to reduce false positives in busy environments</li>
+                            <li>Design an <strong>adaptive self-service kiosk interface</strong> that automatically adjusts layout, size, contrast, and complexity for wheelchair users, visually impaired users, neurodivergent users, and users with limited motor mobility without requiring manual accessibility selection</li>
+                            <li>Implement a <strong>fully playable no-GUI game</strong> for blind and visually impaired users that launches automatically using computer vision for detection, gesture-based input for navigation, and audio-only output for interaction</li>
+                            <li>Integrate a <strong>local Large Language Model</strong> to dynamically generate and narrate game content, ensuring responsive and personalised interaction</li>
+                            <li>Deliver three <strong>Windows executables</strong> that demonstrate the complete AI-Autostart pipeline and allow the system to run independently on standard machines</li>
+                        </ul>
+
+                        <p class="goals-text">With AI-Autostart, we aim to transform traditional interaction with digital systems by removing the need for manual setup and interface navigation, creating a more inclusive, automated, and accessible computing experience for users with diverse needs.</p>
+                    </div>
                 </div>
             </main>
         </div>
