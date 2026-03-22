@@ -6,21 +6,216 @@
         <title>Use Cases</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            /* Tab bar */
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 0.45rem 1.1rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+
+            .tab-btn:hover { color: var(--text-primary); }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            .tab-panel { display: none; }
+            .tab-panel.active { display: block; }
+
+            /* Use case cards */
+            .use-case {
+                margin-top: 1.25rem;
+                padding-top: 1.25rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .use-case:first-of-type {
+                margin-top: 0.75rem;
+                padding-top: 0.75rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .use-case h3 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.05rem;
+                color: var(--text-primary);
+            }
+
+            .use-case p {
+                margin: 0 0 0.5rem 0;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.65;
+            }
+
+            .use-case ul {
+                margin: 0.3rem 0 0 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.75;
+            }
+
+            .use-case ul li {
+                margin-bottom: 0.2rem;
+            }
+
+            .use-case-figure {
+                margin-top: 1rem;
+                text-align: center;
+            }
+
+            .use-case-figure img {
+                max-width: 55%;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+            }
+
+            .use-case-figure figcaption {
+                margin-top: 0.4rem;
+                font-size: 0.85rem;
+                color: var(--muted);
+                font-style: italic;
+            }
+
+            .references-list {
+                margin: 1.25rem 0 0 0;
+                padding-left: 1.5rem;
+                color: var(--text-secondary);
+                font-size: 0.88rem;
+                line-height: 1.7;
+                border-top: 1px solid var(--border);
+                padding-top: 1rem;
+            }
+
+            .references-list li { margin-bottom: 0.4rem; }
+            .references-list a { color: var(--primary); word-break: break-all; }
+
+            sup { font-size: 0.72em; color: var(--primary); font-weight: 600; }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
+
                 <div class="content-card">
                     <h1>Use Cases</h1>
-                    <p>This page is reserved for Use Cases content.</p>
                 </div>
+
+                <!-- Use cases card -->
+                <div class="content-card">
+                    
+                    <!-- Tab switcher -->
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                    </div>
+
+                    <!-- AI-Autostart -->
+                    <div class="tab-panel" data-product="autostart">
+
+                        <div class="use-case">
+                            <h2>Home</h2>
+                            <p>AI-Autostart aims to make daily life more accessible for the blind, visually impaired, neurodivergent and those with motor limitations. It simplifies technology interactions by:</p>
+                            <ul>
+                                <li>Starting applications/programs without having to navigate operating system GUI</li>
+                                <li>Making touch-free interactions possible</li>
+                            </ul>
+                        </div>
+
+                        <div class="use-case">
+                            <h2>Public Spaces</h2>
+                            <p>In public spaces like hospitals, train stations or restaurants, AI-Autostart allows for touch-free interaction with self-service kiosks. Some examples of scenarios where it could make a difference are:</p>
+                            <ul>
+                                <li>Kiosk UI automatically lowers when wheelchair user approaches it</li>
+                                <li>Kiosk allows touch free interaction when user holds hand up for a set amount of time → users that could benefit from this include but are not limited to those with motor limitations, neurodivergent individuals and germophobes</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <!-- No-GUI Game -->
+                    <div class="tab-panel active" data-product="game">
+
+                        <div class="use-case">
+                            <h2>Home</h2>
+                            <p>The No-GUI game player aims to provide the opportunity to the blind and visually impaired to play immersive online games - particularly ones that were designed with them in mind.</p>
+                            <ul>
+                                <li>Users can build up their own game by writing scenes.</li>
+                                <li>Generate from the user’s ideas using our story building LLM.</li>
+                                <li>Generate from a published story, through giving a summary of it to our LLM.</li>
+                            </ul>
+                            <figure class="use-case-figure">
+                                <img src="../assets/images/blind-person-playing.png" alt="Blind person playing a game">
+                                <figcaption>Fig. 1 — A blind person playing a game <sup>[1]</sup></figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="use-case">
+                            <h2>Education</h2>
+                            <p>The No-GUI game engine empowers educators, creators and anyone else who would like to create their own story-based game to:</p>
+                            <ul>
+                                <li>Create games that mimic social scenarios or touch on important lessons to be used for educational purposes - particularly useful for autistic children.</li>
+                                <li>Recreate famous literary stories, making them more immersive for children who may otherwise not read them.</li>
+                            </ul>
+                            <figure class="use-case-figure">
+                                <img src="../assets/images/smart-board-school.jpg" alt="Smart whiteboard in a school classroom">
+                                <figcaption>Fig. 2 — Smart board used in a school setting <sup>[2]</sup></figcaption>
+                            </figure>
+                        </div>
+
+                        <ol class="references-list">
+                            <li>"StoryTribe: Free Online Storyboard Maker for Professionals," StoryTribe, 2026. <a href="https://storytribeapp.com/" target="_blank">https://storytribeapp.com/</a> (accessed Mar. 22, 2026).</li>
+                            <li>"Best Smart White Board for schools, Preschools &amp; Colleges / High Schools," Speechi.com, 2025. <a href="https://speechi.com/best-smart-board-schools/" target="_blank">https://speechi.com/best-smart-board-schools/</a> (accessed Mar. 22, 2026).</li>
+                        </ol>
+
+                    </div>
+
+                </div>
+
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    document.querySelectorAll('.tab-btn').forEach(tb => {
+                        tb.classList.toggle('active', tb.dataset.product === product);
+                    });
+
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
