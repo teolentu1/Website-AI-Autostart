@@ -6,21 +6,338 @@
         <title>MoSCoW Requirements List</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            /* Quick links */
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            /* Tab bar */
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 0.45rem 1.1rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+
+            .tab-btn:hover { color: var(--text-primary); }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            .tab-panel { display: none; }
+            .tab-panel.active { display: block; }
+
+            /* Page title */
+            .moscow-title {
+                font-size: 2rem;
+                font-weight: 800;
+                color: var(--secondary-dark);
+                margin: 0;
+            }
+
+            /* Section heading */
+            .moscow-section-heading {
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1.5rem 0 1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .moscow-section-heading:first-child {
+                margin-top: 0;
+            }
+
+
+            /* MoSCoW boxes */
+            .moscow-box {
+                border-radius: var(--radius);
+                padding: 1rem 1.2rem;
+                margin-bottom: 0.9rem;
+            }
+
+            .moscow-box-header {
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+                margin-bottom: 0.7rem;
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: var(--text-primary);
+            }
+
+            .moscow-box ul {
+                margin: 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.75;
+            }
+
+            .moscow-box ul li { margin-bottom: 0.15rem; }
+
+            .moscow-must  { background: #f0faf0; border-left: 4px solid #4caf50; }
+            .moscow-should{ background: #eef4ff; border-left: 4px solid #5b8dee; }
+            .moscow-could { background: #fffbea; border-left: 4px solid #f4b942; }
+            .moscow-wont  { background: #fff5f5; border-left: 4px solid var(--secondary); }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
+
                 <div class="content-card">
-                    <h1>MoSCoW Requirements List</h1>
-                    <p>This page is reserved for MoSCoW Requirements List content.</p>
+                    <h1 class="moscow-title">MoSCoW Requirement List</h1>
                 </div>
+
+                <!-- Quick links -->
+                <div class="content-card">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#functional">Functional Requirements</a>
+                        <a href="#non-functional">Non-Functional Requirements</a>
+                    </div>
+                </div>
+
+                <!-- Functional Requirements -->
+                <div class="content-card" id="functional">
+                    
+                    <!-- Tab switcher -->
+                    <div class="tab-bar" style="margin-bottom: 1.75rem;">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                    </div>
+
+                    <!-- AI-Autostart functional -->
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="moscow-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">💡 Must Have 🟢</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">ℹ️ Should Have 🔵</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">⚠️ Could Have 🟡</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🚫 Won't Have 🔴</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No-GUI Game functional -->
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="moscow-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🔴 Won't Have</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Non-Functional Requirements -->
+                <div class="content-card" id="non-functional">
+                    <!-- AI-Autostart non-functional -->
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="moscow-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">💡 Must Have 🟢</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">ℹ️ Should Have 🔵</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">⚠️ Could Have 🟡</div>
+                            <ul>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🚫 Won't Have 🔴</div>
+                            <ul>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No-GUI Game non-functional -->
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="moscow-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">💡 Must Have 🟢</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">ℹ️ Should Have 🔵</div>
+                            <ul>
+                                <li>placeholder</li>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">⚠️ Could Have 🟡</div>
+                            <ul>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🚫 Won't Have 🔴</div>
+                            <ul>
+                                <li>placeholder</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    // Sync all tab bars to the same product
+                    document.querySelectorAll('.tab-bar').forEach(b => {
+                        b.querySelectorAll('.tab-btn').forEach(tb => {
+                            tb.classList.toggle('active', tb.dataset.product === product);
+                        });
+                    });
+
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
