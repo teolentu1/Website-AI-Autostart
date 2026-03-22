@@ -113,6 +113,18 @@
         }
     });
 
+    // Highlight active sidebar link based on current page
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        const linkPath = new URL(link.href, window.location.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add('nav-active');
+            // If inside a dropdown, open it
+            const details = link.closest('details');
+            if (details) details.open = true;
+        }
+    });
+
     document.body.insertAdjacentHTML('beforeend', `
 <footer class="site-footer">
     <div class="footer-main">
