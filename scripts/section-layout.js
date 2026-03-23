@@ -74,8 +74,8 @@
     <details class="nav-group">
         <summary><a class="group-link" href="../appendices/index.html">Appendices</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
-            <a href="../appendices/user-manual.html">User Manual</a>
-            <a href="../appendices/ai-autostart-readme.html">AI Autostart README</a>
+            <a href="../appendices/AA-user-manual.html">AI-Autostart User Manual</a>
+            <a href="../appendices/ai-autostart-readme.html">AI-Autostart README</a>
             <a href="../appendices/no-ui-game-readme.html">No GUI Game README</a>
             <a href="../appendices/gdpr.html">GDPR</a>
             <a href="../appendices/dependencies.html">Dependencies</a>
