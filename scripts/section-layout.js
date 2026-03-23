@@ -43,7 +43,7 @@
     <details class="nav-group">
         <summary><a class="group-link" href="../research/index.html">Research</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
-            <a href="../research/field-research.html">Field Research</a>
+            <a href="../research/field-research.html">Accessibility Research</a>
             <a href="../research/related-projects-review.html">Related Projects Review</a>
             <a href="../research/technology-review.html">Technology Review</a>
         </div>
