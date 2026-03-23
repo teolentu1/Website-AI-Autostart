@@ -6,25 +6,339 @@
         <title>Research</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            /* Tab bar */
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 0.45rem 1.1rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+
+            .tab-btn:hover {
+                color: var(--text-primary);
+            }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            /* Tab panels */
+            .tab-panel {
+                display: none;
+            }
+
+            .tab-panel.active {
+                display: block;
+            }
+
+            /* Research section headings */
+            .research-section {
+                margin-top: 1.25rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .research-section:first-child {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+            }
+
+            .research-section h3 {
+                margin-bottom: 0.5rem;
+            }
+
+            .research-section p {
+                color: var(--text-secondary);
+            }
+
+            /* Individual entries within a section */
+            .research-entry {
+                margin-top: 1.1rem;
+                padding-top: 1rem;
+                border-top: 1px dashed var(--border);
+            }
+
+            .research-entry:first-of-type {
+                margin-top: 0.6rem;
+                padding-top: 0.6rem;
+            }
+
+            .research-entry h4 {
+                margin: 0 0 0.35rem 0;
+                font-size: 0.97rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+
+            .research-entry p {
+                margin: 0 0 0.5rem 0;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.65;
+            }
+
+            .research-entry p:last-child {
+                margin-bottom: 0;
+            }
+
+            /* References list */
+            .references-list {
+                margin: 0.5rem 0 0 0;
+                padding-left: 1.5rem;
+                color: var(--text-secondary);
+                font-size: 0.88rem;
+                line-height: 1.7;
+            }
+
+            .references-list li {
+                margin-bottom: 0.4rem;
+            }
+
+            .references-list a {
+                color: var(--primary);
+                word-break: break-all;
+            }
+
+            sup {
+                font-size: 0.72em;
+                color: var(--primary);
+                font-weight: 600;
+            }
+
+            /* Figure / image with caption */
+            .research-figure {
+                margin-top: 1rem;
+                text-align: center;
+            }
+
+            .research-figure img {
+                max-width: 70%;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+            }
+
+            .research-figure figcaption {
+                margin-top: 0.4rem;
+                font-size: 0.85rem;
+                color: var(--muted);
+                font-style: italic;
+            }
+
+            /* Prev / Next nav */
+            .page-nav {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .page-nav a {
+                flex: 1;
+                display: block;
+                padding: 0.75rem 1.2rem;
+                background: var(--bg-white);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--text-secondary);
+                text-decoration: none;
+                transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+            }
+
+            .page-nav a:hover {
+                border-color: var(--primary);
+                color: var(--primary);
+                box-shadow: var(--shadow-sm);
+            }
+
+            .page-nav a.prev::before { content: '← '; }
+            .page-nav a.next::after  { content: ' →'; }
+            .page-nav a.next { text-align: right; }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
                 <div class="content-card">
                     <h1>Research</h1>
-                    <div class="link-grid">
-                        <a class="grid-link" href="field-research.html">Field Research</a>
-                        <a class="grid-link" href="related-projects-review.html">Related Projects Review</a>
-                        <a class="grid-link" href="technology-review.html">Technology Review</a>
+                    <p>This page documents our research and decision-making while creating the AI-Autostart and No-UI Game projects.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="tab-bar">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
                     </div>
+
+                    <!-- AI-Autostart -->
+                    <div class="tab-panel" data-product="autostart">
+
+                        <div class="research-section">
+                            <h2>Related Projects</h2>
+
+                            <div class="research-entry">
+                                <h4>Intel Wi-Fi 7 Presence Detection <sup>[1]</sup></h4>
+                                <p>Our initial starting point for this project was Intel's Wi-Fi 7 sensing technology that detects when a person sits down in front of a computer using the wireless signal itself, triggering the machine to wake and begin interaction without any explicit user input.</p>
+                                <p>We were inspired by how the interaction was initiated without requiring the user to press a button or look at a screen directly, and asked ourselves how this could be used to make systems more accessible.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-section">
+                            <h2>Technologies</h2>
+                            <p>placeholder</p>
+                        </div>
+
+                        <div class="research-section">
+                            <h3>Field Research</h3>
+                            <p>placeholder</p>
+                        </div>
+
+                        <div class="research-section">
+                            <h2>References</h2>
+                            <ol class="references-list">
+                                <li>Intel Technology, "Intel Technology | Wi-Fi Proximity Sensing," Youtube.com, Nov. 15, 2022. <a href="https://www.youtube.com/watch?v=3WFx-8agAq4" target="_blank">https://www.youtube.com/watch?v=3WFx-8agAq4</a> (accessed Mar. 21, 2026).</li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <!-- No-GUI Game -->
+                    <div class="tab-panel active" data-product="game">
+
+                        <div class="research-section">
+                            <h2>Related Projects</h2>
+
+                            <div class="research-entry">
+                                <h4>Zork <sup>[1]</sup></h4>
+                                <p>After we began working on our No-GUI game for the blind, it wasn't long before Zork came up. Being one of the earliest and most influential interactive fiction games, played entirely through typed text commands with no graphics, it demonstrates that a game does not need fancy graphics to be compelling.</p>
+                                <p>Building on-top of what this example achieved, we removed the need for typing and reading and replaced it with gesture and audio only interactions (our settings do offer key bindings instead of hand gestures as well).</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>Choose Your Own Adventure Books</h4>
+                                <p>Another concept we kept referring to whilst coming up with the game structure were these books from our childhood. These books place the reader as the protagonist of a story, offering binary choices at the end of each passage and directing them to different pages based on their decision.</p>
+                                <p>Our No-GUI Game takes this exact structure: a tree of scenes with two choices at each node that lead you to different outcomes.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>"Game Science: Story Structure as Network Graphs" <sup>[2]</sup></h4>
+                                <p>This article was part of our research for designing the blueprints of the game. It talks about adventure games as graphs where each node represents an event which makes it very relevant to our game.</p>
+                                <p>The key insight we took from it was about graph shape. A simple branching story follows the structure of a binary tree but this grows exponentially — a game with just 5 decision points already has 32 possible leaf nodes, most of which the player will never see.</p>
+                                <p>Madsen's article introduced us to the idea that good story graphs are deliberately narrow: paths branch out only to later rejoin. This creates the illusion of meaningful choice without the exponential content of a true binary tree. Based on this, we designed our blueprint generator to explicitly instruct the LLM not to produce a binary tree. Instead the blueprint prompt asks for a graph where branches converge, with a small number of terminal win and lose nodes that multiple paths lead toward.</p>
+                                <figure class="research-figure">
+                                    <img src="../assets/images/story-structure.webp" alt="Graph structure types (Bus, Tree, Star, Ring, Ring-Mesh, Mesh) and radar charts comparing Ease of Navigation, Pace of Story, and Player Agency across structures">
+                                    <figcaption>Fig. 1 — Graph structure types and their narrative trade-offs, from Madsen (2019) <sup>[2]</sup></figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>VLC Player &amp; MP4 Files</h4>
+                                <p>While coming up with a way to store our games we took inspiration from how VLC and MP4 files work. VLC does not own or manage the video file; it simply opens it and plays it. The MP4 file is self-contained: it includes the video, audio tracks, and metadata all in one portable package. Any compatible player can open it.</p>
+                                <p>We wanted the same relationship between our game player and our game files. A <code>.noui</code> file is self-contained — it includes the graph structure, all audio, and save state — and any compatible runner can open and play it. The editor creates it, the runner plays it, and neither owns the other.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-section">
+                            <h2>Technologies</h2>
+
+                            <div class="research-entry">
+                                <h4>PySide6 (Qt for Python) <sup>[3]</sup></h4>
+                                <p>The GUI framework used for both the game editor and the player launcher. Before settling on PySide6, we evaluated two alternatives. tkinter was the first candidate but we moved on quickly as its widget set is limited and its layout system made building the zoomable and scrollable game creation page difficult <sup>[4]</sup>. Kivy was our second option as it works better with custom graphics and is more flexible than tkinter <sup>[5]</sup>, but in the end we chose PySide6 because Qt's <code>QGraphicsScene</code> and <code>QGraphicsView</code> provided exactly the zoomable, scrollable canvas needed for the node editor. Qt's <code>QThread</code> also enables responsive interfaces during long-running operations like LLM generation and TTS audio synthesis.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>Text-to-Speech: Kokoro TTS <sup>[6]</sup></h4>
+                                <p>The TTS engine went through several iterations before settling on Kokoro. ParlerTTS was the initial choice — it worked well but voice consistency was poor and generation speed was slow <sup>[7]</sup>. Bark (Suno AI) produced natural-sounding speech but suffered from the same problems. OpenVINO VibeVoice was also considered as an Intel-optimised option but its main use case is generating one long audio file, while we need many short ones <sup>[8]</sup>.</p>
+                                <p>We landed on Kokoro TTS (<code>hexgrad/Kokoro-82M</code>). It produces consistent and natural-sounding British English speech across 8 distinct voices (4 male, 4 female), runs fully offline, and has a high generation speed. Audio is synthesised once at save time and stored in the <code>.noui</code> archive, so the player never performs TTS at runtime.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>MediaPipe <sup>[9]</sup></h4>
+                                <p>The gesture recogniser uses MediaPipe's hand tracking solution to detect landmarks on a hand from webcam frames, which are then classified into gestures by a custom classifier. It has eight built-in gestures: None, Open Palm, Closed Fist, Pointing Up, Pointing Down, Thumb Up, Thumb Down, ILoveYou, and Victory.</p>
+                                <h4>OpenCV</h4>
+                                <p>Part of the MediaPipe pipeline. Used for webcam frame capture and preprocessing before passing frames to MediaPipe.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>OpenVINO GenAI <sup>[10]</sup></h4>
+                                <p>For the game generation engine's AI helper we use the OpenVINO local LLM (phi-4, quantised to int4). It allows us to run the local LLM more efficiently on GPU or CPU and produces structured output based on a Pydantic-derived JSON schema.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>Pydantic <sup>[11]</sup></h4>
+                                <p>Used for graph serialisation and validation. <code>SerialGraph</code> and <code>SerialNode</code> are Pydantic <code>BaseModel</code> subclasses, giving automatic JSON serialisation. This ensures any <code>.noui</code> file loaded from disk is well-formed and validated before the game attempts to play it.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-section">
+                            <h2>References</h2>
+                            <ol class="references-list">
+                                <li>D. Lebling and M. Blank, "Infocom Games - Zork I," Infocom-if.org, 1980. <a href="http://www.infocom-if.org/games/zork1/zork1.html" target="_blank">http://www.infocom-if.org/games/zork1/zork1.html</a> (accessed Mar. 21, 2026).</li>
+                                <li>C. T. Madsen, "Game Science: Story structure as network graphs," Geek Native, Apr. 07, 2019. <a href="https://www.geeknative.com/65131/game-science-story-structure-as-network-graphs/" target="_blank">https://www.geeknative.com/65131/game-science-story-structure-as-network-graphs/</a> (accessed Mar. 21, 2026).</li>
+                                <li>"PySide6.QtGui - Qt for Python," Doc.qt.io, 2026. <a href="https://doc.qt.io/qtforpython-6/PySide6/QtGui/" target="_blank">https://doc.qt.io/qtforpython-6/PySide6/QtGui/</a> (accessed Mar. 21, 2026).</li>
+                                <li>"tkinter — Python interface to Tcl/Tk," Python 3.12.13 Documentation, 2025. <a href="https://docs.python.org/3.12/library/tkinter.html" target="_blank">https://docs.python.org/3.12/library/tkinter.html</a> (accessed Mar. 21, 2026).</li>
+                                <li>"Welcome to Kivy — Kivy 2.3.1 documentation," Kivy.org, 2024. <a href="https://kivy.org/doc/stable/" target="_blank">https://kivy.org/doc/stable/</a> (accessed Mar. 21, 2026).</li>
+                                <li>"hexgrad/Kokoro-82M · Hugging Face," Huggingface.co. <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank">https://huggingface.co/hexgrad/Kokoro-82M</a> (accessed Mar. 21, 2026).</li>
+                                <li>Y. Lacombe, V. Srivastav, and S. Gandhi, "Parler-TTS," GitHub, 2024. <a href="https://github.com/huggingface/parler-tts" target="_blank">https://github.com/huggingface/parler-tts</a> (accessed Mar. 21, 2026).</li>
+                                <li>"VibeVoice," Github.io, 2025. <a href="https://microsoft.github.io/VibeVoice/" target="_blank">https://microsoft.github.io/VibeVoice/</a> (accessed Mar. 21, 2026).</li>
+                                <li>Google AI Edge, "Gesture recognition task guide," Google AI for Developers, 2025. <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer" target="_blank">https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer</a> (accessed Mar. 21, 2026).</li>
+                                <li>"OpenVINO 2026.0 — OpenVINO™ documentation," Openvino.ai, 2026. <a href="https://docs.openvino.ai/2026/index.html" target="_blank">https://docs.openvino.ai/2026/index.html</a> (accessed Mar. 21, 2026).</li>
+                                <li>"Welcome to Pydantic - Pydantic Validation," Pydantic.dev. <a href="https://docs.pydantic.dev/latest/" target="_blank">https://docs.pydantic.dev/latest/</a> (accessed Mar. 21, 2026).</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Prev / Next -->
+                <div class="page-nav">
+                    <a href="../requirements/index.html" class="prev">Requirements</a>
+                    <a href="../ui-design/index.html" class="next">UI Design</a>
                 </div>
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    bar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const parentSection = bar.closest('.content-card');
+                    parentSection.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
