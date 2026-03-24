@@ -43,7 +43,7 @@
     <details class="nav-group">
         <summary><a class="group-link" href="../research/index.html">Research</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
-            <a href="../research/field-research.html">Field Research</a>
+            <a href="../research/field-research.html">Accessibility Research</a>
             <a href="../research/related-projects-review.html">Related Projects Review</a>
             <a href="../research/technology-review.html">Technology Review</a>
         </div>
@@ -74,8 +74,9 @@
     <details class="nav-group">
         <summary><a class="group-link" href="../appendices/index.html">Appendices</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
-            <a href="../appendices/user-manual.html">User Manual</a>
-            <a href="../appendices/ai-autostart-readme.html">AI Autostart README</a>
+            <a href="../appendices/AA-user-manual.html">AI-Autostart User Manual</a>
+            <a href="../appendices/nogui-user-manual.html">No-GUI User Manual</a>
+            <a href="../appendices/ai-autostart-readme.html">AI-Autostart README</a>
             <a href="../appendices/no-ui-game-readme.html">No GUI Game README</a>
             <a href="../appendices/gdpr.html">GDPR</a>
             <a href="../appendices/dependencies.html">Dependencies</a>
