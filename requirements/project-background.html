@@ -6,6 +6,76 @@
         <title>Project Background</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .content,
+            .content-card {
+                text-align: left;
+            }
+
+            .intro-text,
+            .section-text {
+                color: var(--text-secondary);
+                line-height: 1.7;
+                margin: 0;
+            }
+
+            .section-text + .section-text {
+                margin-top: 0.9rem;
+            }
+
+            .highlight-list {
+                list-style: none;
+                margin: 0.9rem 0;
+                padding: 0;
+                color: var(--text-secondary);
+                display: grid;
+                gap: 0.65rem;
+            }
+
+            .highlight-list li {
+                margin: 0;
+                line-height: 1.6;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.75rem 0.9rem 0.75rem 2.1rem;
+                position: relative;
+            }
+
+            .highlight-list li::before {
+                content: '•';
+                position: absolute;
+                left: 0.85rem;
+                top: 0.73rem;
+                color: var(--primary);
+                font-size: 1.05rem;
+                font-weight: 700;
+            }
+
+            .highlight-box {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-left: 4px solid var(--primary);
+                border-radius: var(--radius);
+                padding: 0.9rem 1rem;
+                margin: 0.9rem 0;
+            }
+
+            .highlight-box .section-text {
+                margin: 0;
+            }
+
+            .compact-list {
+                margin: 0.5rem 0 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .compact-list li {
+                margin-bottom: 0.35rem;
+                line-height: 1.6;
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -16,7 +86,37 @@
             <main class="content">
                 <div class="content-card">
                     <h1>Project Background</h1>
-                    <p>This page is reserved for Project Background content.</p>
+                </div>
+
+                <div class="content-card" id="context-of-problem">
+                    <div class="section-title">Context of the Problem</div>
+                    <p class="section-text">Despite increasing awareness of digital accessibility, many interactive systems deployed in public and everyday environments still fail to adequately support users with diverse accessibility needs. Self-service kiosks, hospital check-in systems, and digital entertainment platforms are often designed with assumptions of full vision, fine motor control, and confidence with complex user interfaces.</p>
+                    <p class="section-text">As a result, wheelchair users, blind and visually impaired individuals, neurodivergent users, and people with limited hand mobility frequently experience frustration, exclusion, or reliance on external assistance. These limitations highlight a broader issue: accessibility is implemented as an optional feature rather than a core design principle.</p>
+                </div>
+
+                <div class="content-card" id="motivation">
+                    <div class="section-title">Motivation</div>
+                    <p class="section-text">The motivation behind AI-Autostart is to move beyond add-on accessibility solutions and instead explore proactive, touch-free interaction initiation. Rather than requiring users to press buttons, select accessibility modes, or attach external hardware, the system aims to detect user presence and interaction intent automatically.</p>
+                    <div class="highlight-box">
+                        <p class="section-text">By using computer vision, AI-Autostart enables systems to:</p>
+                        <ul class="compact-list">
+                            <li>Detect when a user is approaching or intending to interact</li>
+                            <li>Initiate interaction without physical contact</li>
+                        </ul>
+                    </div>
+                    <p class="section-text">This approach is particularly relevant in busy or public environments, where users may feel uncomfortable drawing attention to their accessibility needs or may physically struggle to interact with traditional interfaces. Automatic activation reduces cognitive load, increases independence, and creates a more inclusive user experience.</p>
+                </div>
+
+                <div class="content-card" id="relevance-usefulness">
+                    <div class="section-title">Relevance and Usefulness</div>
+                    <p class="section-text">AI-Autostart is relevant across multiple real-world contexts, including:</p>
+                    <ul class="highlight-list">
+                        <li>Self-service kiosks, where adaptive interfaces can improve usability for wheelchair users and visually impaired customers</li>
+                        <li>Gaming and entertainment, particularly for blind and visually impaired users who are often excluded from mainstream interactive experiences</li>
+                        <li>Education in the classroom, providing teachers with easy, low stimulus ways to deliver content</li>
+                    </ul>
+                    <p class="section-text">By demonstrating the system through the examples of an adaptive kiosk UI and a fully playable no-UI game, the project showcases the versatility of the underlying platform. The same background sensing and activation logic can be reused across many domains.</p>
+                    <p class="section-text">Furthermore, the system’s focus on offline, low-resource operation makes it suitable for deployment on existing infrastructure without any costly hardware upgrades or persistent data collection.</p>
                 </div>
             </main>
         </div>
