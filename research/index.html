@@ -42,6 +42,11 @@
                 border-bottom-color: var(--secondary);
             }
 
+            .tab-btn[data-product="accessibility"].active {
+                color: var(--accent);
+                border-bottom-color: var(--accent);
+            }
+
             /* Tab panels */
             .tab-panel {
                 display: none;
@@ -145,6 +150,23 @@
                 font-style: italic;
             }
 
+            .manual-viewer {
+                width: 100%;
+                height: 980px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                background: var(--bg-white);
+                margin-top: 0.8rem;
+            }
+
+            .manual-viewer iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: var(--radius);
+                display: block;
+            }
+
             /* Prev / Next nav */
             .page-nav {
                 display: flex;
@@ -176,6 +198,12 @@
             .page-nav a.prev::before { content: '← '; }
             .page-nav a.next::after  { content: ' →'; }
             .page-nav a.next { text-align: right; }
+
+            @media (max-width: 980px) {
+                .manual-viewer {
+                    height: 760px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -192,6 +220,7 @@
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart">AI-Autostart</button>
                         <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                        <button class="tab-btn" data-product="accessibility">Accessibility Research</button>
                     </div>
 
                     <!-- AI-Autostart -->
@@ -309,6 +338,22 @@
                                 <li>"OpenVINO 2026.0 — OpenVINO™ documentation," Openvino.ai, 2026. <a href="https://docs.openvino.ai/2026/index.html" target="_blank">https://docs.openvino.ai/2026/index.html</a> (accessed Mar. 21, 2026).</li>
                                 <li>"Welcome to Pydantic - Pydantic Validation," Pydantic.dev. <a href="https://docs.pydantic.dev/latest/" target="_blank">https://docs.pydantic.dev/latest/</a> (accessed Mar. 21, 2026).</li>
                             </ol>
+                        </div>
+
+                    </div>
+
+                    <!-- Accessibility Research -->
+                    <div class="tab-panel" data-product="accessibility">
+
+                        <div class="research-section">
+                            <h2>Accessibility Research</h2>
+                            <p>Research we conducted on accessibility options for kiosk design.</p>
+                        </div>
+
+                        <div class="research-section">
+                            <div class="manual-viewer">
+                                <iframe src="../assets/files/mc-report.pdf" title="Accessibility Research Report"></iframe>
+                            </div>
                         </div>
 
                     </div>
