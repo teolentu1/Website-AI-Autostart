@@ -78,7 +78,8 @@
             <a href="../appendices/nogui-user-manual.html">No-GUI User Manual</a>
             <a href="../appendices/ai-autostart-readme.html">AI-Autostart README</a>
             <a href="../appendices/no-ui-game-readme.html">No GUI Game README</a>
-            <a href="../appendices/gdpr.html">GDPR</a>
+            <a href="../appendices/gdpr.html">GDPR and Legal Compliance</a>
+            <a href="../appendices/privacy-policy.html">Privacy Policy</a>
             <a href="../appendices/dependencies.html">Dependencies</a>
             <a href="../appendices/contributions.html">Contributions</a>
         </div>
