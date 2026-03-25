@@ -163,38 +163,6 @@
                 flex-shrink: 0;
             }
 
-            /* Prev / Next nav */
-            .page-nav {
-                display: flex;
-                justify-content: space-between;
-                gap: 1rem;
-                margin-top: 2.5rem;
-            }
-
-            .page-nav a {
-                flex: 1;
-                display: block;
-                padding: 1rem 1.5rem;
-                background: var(--bg-white);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                font-weight: 600;
-                font-size: 0.95rem;
-                color: var(--text-secondary);
-                text-decoration: none;
-                transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
-            }
-
-            .page-nav a:hover {
-                border-color: var(--primary);
-                color: var(--primary);
-                box-shadow: var(--shadow-sm);
-            }
-
-            .page-nav a.prev::before { content: '← '; }
-            .page-nav a.next::after  { content: ' →'; }
-            .page-nav a.next { text-align: right; }
-
             /* Diagram scroll fix */
             .diagram-wrapper {
                 position: relative;
@@ -458,11 +426,6 @@
                     <hr style="border: none; border-top: 1px solid var(--border); margin: 1rem 0;">
                 </div>
 
-                <!-- Prev / Next -->
-                <div class="page-nav">
-                    <a href="../ui-design/index.html" class="prev">UI Design</a>
-                    <a href="../implementation/index.html" class="next">Implementation</a>
-                </div>
             </main>
         </div>
         <script src="../scripts/section-layout.js"></script>

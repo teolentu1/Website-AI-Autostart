@@ -127,6 +127,57 @@
         }
     });
 
+    // Inject prev/next page navigation
+    const PAGES = [
+        { path: 'requirements/index.html',                          label: 'Requirements' },
+        { path: 'requirements/partner-introduction.html',           label: 'Partner Introduction' },
+        { path: 'requirements/project-background.html',             label: 'Project Background' },
+        { path: 'requirements/project-goals.html',                  label: 'Project Goals' },
+        { path: 'requirements/requirements-gathering.html',         label: 'Requirements Gathering' },
+        { path: 'requirements/use-cases.html',                      label: 'Use Cases' },
+        { path: 'requirements/moscow-requirements-list.html',       label: 'MoSCoW Requirements List' },
+        { path: 'research/index.html',                              label: 'Research' },
+        { path: 'research/field-research.html',                     label: 'Accessibility Research' },
+        { path: 'research/related-projects-review.html',            label: 'Related Projects Review' },
+        { path: 'research/technology-review.html',                  label: 'Technology Review' },
+        { path: 'ui-design/index.html',                             label: 'UI Design' },
+        { path: 'system-design/index.html',                         label: 'System Design' },
+        { path: 'implementation/index.html',                        label: 'Implementation' },
+        { path: 'implementation/gesture-recognition.html',          label: 'Gesture Recognition' },
+        { path: 'implementation/person-recognition.html',           label: 'Person Recognition' },
+        { path: 'implementation/game-graph-design.html',            label: 'Game Graph Design' },
+        { path: 'implementation/audio-generation.html',             label: 'Audio Generation' },
+        { path: 'implementation/ai-generation.html',                label: 'AI Generation' },
+        { path: 'implementation/user-interface.html',               label: 'User Interface' },
+        { path: 'implementation/application-packaging.html',        label: 'Application Packaging' },
+        { path: 'testing/index.html',                               label: 'Testing' },
+        { path: 'evaluation/index.html',                            label: 'Evaluation' },
+        { path: 'evaluation/summary-of-achievements.html',          label: 'Summary of Achievements' },
+        { path: 'evaluation/critical-evaluation-of-project.html',   label: 'Critical Evaluation of Project' },
+        { path: 'evaluation/future-work.html',                      label: 'Future Work' },
+        { path: 'appendices/index.html',                            label: 'Appendices' },
+        { path: 'appendices/AA-user-manual.html',                   label: 'AI-Autostart User Manual' },
+        { path: 'appendices/nogui-user-manual.html',                label: 'No-GUI User Manual' },
+        { path: 'appendices/ai-autostart-readme.html',              label: 'AI-Autostart README' },
+        { path: 'appendices/no-ui-game-readme.html',                label: 'No GUI Game README' },
+        { path: 'appendices/gdpr.html',                             label: 'GDPR and Legal Compliance' },
+        { path: 'appendices/dependencies.html',                     label: 'Dependencies' },
+        { path: 'appendices/contributions.html',                    label: 'Contributions' },
+    ];
+
+    const pagePath = window.location.pathname;
+    const idx = PAGES.findIndex(p => pagePath.endsWith('/' + p.path));
+    if (idx !== -1) {
+        const prev = PAGES[idx - 1];
+        const next = PAGES[idx + 1];
+        const navEl = document.createElement('div');
+        navEl.className = 'page-nav';
+        if (prev) navEl.innerHTML += `<a href="../${prev.path}" class="prev">${prev.label}</a>`;
+        if (next) navEl.innerHTML += `<a href="../${next.path}" class="next">${next.label}</a>`;
+        const main = document.querySelector('main.content');
+        if (main) main.appendChild(navEl);
+    }
+
     document.body.insertAdjacentHTML('beforeend', `
 <footer class="site-footer">
     <div class="footer-main">
