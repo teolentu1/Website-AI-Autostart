@@ -610,6 +610,16 @@ a:hover {
     color: var(--primary);
 }
 
+.sub-links a.nav-active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nav-item.nav-active,
+.nav-group > summary .group-link.nav-active {
+    color: var(--primary);
+}
+
 .content {
     padding: 1.25rem;
     width: 100%;
