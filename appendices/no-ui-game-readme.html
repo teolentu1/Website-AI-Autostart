@@ -16,7 +16,182 @@
             <main class="content">
                 <div class="content-card">
                     <h1>No GUI Game README</h1>
-                    <p>This page is reserved for No GUI Game README content.</p>
+                    <p>A gesture-driven, no-GUI interactive story game engine.</p>
+
+                    <h2>Project Overview</h2>
+                    <p>The app is built around a graph-based story model:</p>
+                    <ul>
+                        <li>Each node is a story scene with narrative text and two player options (left and right).</li>
+                        <li>Edges represent choices mapped to gestures.</li>
+                        <li>A game is saved as a zip archive with extension <code>.noui</code>.</li>
+                        <li>Each game archive includes <code>graph.json</code> and a set of generated <code>.wav</code> audio files.</li>
+                    </ul>
+
+                    <p>There are two main parts to this project: the <strong>game player</strong> and the <strong>game editor</strong>.</p>
+                    <p>The <strong>game editor</strong> lets you create games node by node, wire them into a branching graph, and save them as a <code>.noui</code> archive. It also includes an AI sidebar that lets you generate a full game graph from a text prompt or an attached story file using a local LLM.</p>
+                    <p>The <strong>game player</strong> loads a <code>.noui</code> file and starts a no-GUI game, playable entirely through audio prompts and hand gesture input. The player hears each scene narrated aloud, then raises their left or right hand to make a choice. Progress is saved automatically if the player quits mid-game, and the player is offered the option to resume or restart on the next run.</p>
+
+                    <h2>Main Components</h2>
+                    <ul>
+                        <li><code>gui/</code>: Game creation UI using PySide6 (home page, node editor canvas, AI generation panel).</li>
+                        <li><code>graph/</code>: Core graph and serialization models.</li>
+                        <li><code>game_generation_local_llm/</code>: Local LLM game and blueprint generation.</li>
+                        <li><code>text2speech/</code>: Text-to-speech generation via Kokoro.</li>
+                        <li><code>gamePlayer/</code>: Runtime player (audio playback and gesture loop).</li>
+                        <li><code>myGestureRecognizer/</code>: Camera gesture recognition integration.</li>
+                        <li><code>storageManager/</code>: Save and load zipped <code>.noui</code> games with progress tracking.</li>
+                    </ul>
+
+                    <h2>Saved Game Format</h2>
+                    <p>A <code>.noui</code> file is a zip archive containing:</p>
+                    <ul>
+                        <li><code>graph.json</code>: Serialized game graph.</li>
+                        <li><code>audio/</code>: Node narration and helper prompts (<code>win.wav</code>, <code>lose.wav</code>, and more).</li>
+                        <li><code>progress.json</code>: Contains the node ID where the player left off.</li>
+                    </ul>
+                    <p>Temporary extraction occurs under <code>storageManager/temporary/</code> during load.</p>
+
+                    <h2>Player Settings</h2>
+                    <p>The game player has a configurable settings page accessible from <code>playerPage.py</code> via the Settings button. Settings are persisted to <code>settings.json</code> in the project root.</p>
+
+                    <h3>Input Device</h3>
+                    <p>Toggle between <strong>Webcam (gesture)</strong> and <strong>Keyboard</strong> input. When keyboard mode is selected, the camera is never opened.</p>
+
+                    <h3>Gesture Bindings</h3>
+                    <p>Each game action can be mapped to any gesture via a dropdown. Available actions:</p>
+                    <ul>
+                        <li>Option Left</li>
+                        <li>Option Right</li>
+                        <li>Replay Main Text</li>
+                        <li>Replay Options Text</li>
+                        <li>Quit and Save Progress</li>
+                    </ul>
+
+                    <h3>Keyboard Bindings</h3>
+                    <p>Each action can be mapped to a single key (type a character in the field). Default bindings:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Default Key</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Option Left</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>Option Right</td>
+                                <td>D</td>
+                            </tr>
+                            <tr>
+                                <td>Replay Main Text</td>
+                                <td>R</td>
+                            </tr>
+                            <tr>
+                                <td>Replay Options Text</td>
+                                <td>F</td>
+                            </tr>
+                            <tr>
+                                <td>Quit and Save Progress</td>
+                                <td>Q</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Requirements</h2>
+                    <ul>
+                        <li>Python 3.10+ (recommended for compatibility with scientific and ML dependencies)</li>
+                        <li>macOS (current environment), Linux, or Windows</li>
+                        <li>Webcam access (for gesture controls)</li>
+                        <li>Speaker</li>
+                    </ul>
+
+                    <h2>Python Dependencies</h2>
+                    <p>See requirements.txt. Key packages include:</p>
+                    <ul>
+                        <li>PySide6 - GUI framework</li>
+                        <li>mediapipe - gesture recognition</li>
+                        <li>openvino-genai - local LLM inference</li>
+                        <li>kokoro - text-to-speech</li>
+                        <li>soundfile, playsound3 - audio I/O</li>
+                        <li>pydantic - graph serialization</li>
+                    </ul>
+
+                    <h3>AI Model</h3>
+                    <p>The local LLM generation pipeline uses OpenVINO and a local model folder:</p>
+                    <ul>
+                        <li><code>game_generation_local_llm/model_path/</code></li>
+                    </ul>
+                    <p>Ensure that this folder remains present if you use AI generation.</p>
+                    <p>To install the LocalLLM, use this command:</p>
+                    <pre><code>huggingface-cli download "OpenVINO/phi-4-int4-ov" --local-dir game_generation_local_llm/model_path</code></pre>
+
+                    <p>The main contribution is the package <code>game_generation_local_llm</code>. There you can find two components:</p>
+                    <ol>
+                        <li><code>graph_blueprint</code> - responsible for blueprint generation. A blueprint is the general structure of the game graph. Based on the user prompt, the LLM is prompted to create a structural blueprint.</li>
+                        <li><code>story_generator</code> - after a blueprint is generated, it is passed to StoryGenerator, which generates the actual contents of each node.</li>
+                    </ol>
+                    <p>To connect these two packages together, a class <code>GameGenerator</code> is created, which takes both classes and uses them together, exposing a public method <code>generate_game</code> that takes an optional <code>blueprint</code>. If <code>blueprint</code> is not provided, it is generated.</p>
+
+                    <h2>Installation</h2>
+                    <ol>
+                        <li>Create and activate a virtual environment:</li>
+                    </ol>
+                    <pre><code>python -m venv .venv
+source .venv/bin/activate</code></pre>
+
+                    <ol start="2">
+                        <li>Install dependencies:</li>
+                    </ol>
+                    <p>a. For No-GUI game engine:</p>
+                    <pre><code>pip install -r ./requirements/game_engine_requirements.txt</code></pre>
+                    <p>b. For No-GUI game player:</p>
+                    <pre><code>pip install -r ./requirements/game_player_requirements.txt</code></pre>
+
+                    <ol start="3">
+                        <li>(Optional) Download the LLM model for AI generation, as instructed above.</li>
+                    </ol>
+
+                    <h2>Running the Project</h2>
+                    <p>Default entrypoint:</p>
+                    <pre><code>python main.py</code></pre>
+                    <p>Current <code>main.py</code> launches the GUI creator (<code>gui.homePage</code>).</p>
+
+                    <h3>Create or Edit a Game</h3>
+                    <ol>
+                        <li>Run <code>python NO_GUI_engine.py</code>.</li>
+                        <li>Choose:</li>
+                    </ol>
+                    <ul>
+                        <li><code>Create a New Game</code> to start from scratch.</li>
+                        <li><code>Edit Game</code> to load an existing <code>.noui</code> file.</li>
+                    </ul>
+                    <ol start="3">
+                        <li>Add or edit nodes and links.</li>
+                        <li>Save as a <code>.noui</code> game archive.</li>
+                    </ol>
+
+                    <h3>Play a Saved Game</h3>
+                    <p>You can run the player flow by launching <code>playerPage.py</code>:</p>
+                    <pre><code>python NO_GUI_player.py</code></pre>
+
+                    <p>Then:</p>
+                    <ol>
+                        <li>Browse for a <code>.noui</code> file.</li>
+                        <li>Run and play using gestures.</li>
+                    </ol>
+
+                    <p>Or you can run the game directly from the terminal:</p>
+                    <pre><code>python NO_GUI_player.py path/to/your_game.noui</code></pre>
+
+                    <h2>Development Notes</h2>
+                    <ul>
+                        <li>Entry script: <code>NO_GUI_engine.py</code> or <code>NO_GUI_player.py</code></li>
+                        <li>Sample games: <code>saved_games/</code></li>
+                        <li>LLM test outputs: <code>game_generation_local_llm/generated_games/</code></li>
+                    </ul>
                 </div>
             </main>
         </div>
