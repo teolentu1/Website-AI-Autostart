@@ -3,9 +3,62 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GDPR</title>
+        <title>GDPR and Legal Compliance</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .content,
+            .content-card {
+                text-align: left;
+            }
+
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            .section-text {
+                margin: 0;
+                color: var(--text-secondary);
+                line-height: 1.7;
+            }
+
+            .section-text + .section-text {
+                margin-top: 0.9rem;
+            }
+
+            .policy-list {
+                margin: 0.9rem 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .policy-list li {
+                margin-bottom: 0.45rem;
+                line-height: 1.6;
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -15,8 +68,77 @@
             </div>
             <main class="content">
                 <div class="content-card">
-                    <h1>GDPR</h1>
-                    <p>This page is reserved for GDPR content.</p>
+                    <h1>GDPR and Legal Compliance</h1>
+                    <p class="section-text">This section outlines the legal considerations for the MotionInput Games project, including GDPR compliance, intellectual property, software licensing, and data governance. The project consists of AI-AutoStart, a gesture-based desktop automation system, and No GUI Game Engine, a local-first interactive game using gesture and keyboard input. Both systems are designed as proof-of-concept solutions that may later be deployed in schools, companies, or public environments.</p>
+                    <p class="section-text">The project follows legal and ethical guidelines related to data protection, software ownership, and responsible system deployment. A separate Privacy Policy document provides detailed information about data collection, storage, and user rights, while this section focuses on governance, legal responsibilities, and compliance.</p>
+                </div>
+
+                <div class="content-card" id="quick-links">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#gdpr-data-privacy">GDPR and Data Privacy</a>
+                        <a href="#data-governance">Data Governance</a>
+                        <a href="#source-code-license">Source Code License</a>
+                        <a href="#intellectual-property">Intellectual Property</a>
+                        <a href="#accessibility-legal-compliance">Accessibility and Legal Compliance</a>
+                    </div>
+                </div>
+
+                <div class="content-card" id="gdpr-data-privacy">
+                    <div class="section-title">GDPR and Data Privacy</div>
+                    <p class="section-text">The MotionInput Games project follows GDPR principles of data protection by design and by default. The system architecture is designed to minimize legal and privacy risks through local-first processing and transparent user control over system functionality.</p>
+                    <p class="section-text">Rather than storing or transmitting user data externally, the project ensures that processing is limited to what is necessary for system operation. Users remain in control of their data and system usage, and transparency is maintained through the dedicated Privacy Policy, which explains how data is processed and managed.</p>
+                    <p class="section-text">The project aligns with key GDPR principles:</p>
+                    <ul class="policy-list">
+                        <li>lawfulness, fairness, and transparency</li>
+                        <li>data minimization</li>
+                        <li>user consent and control</li>
+                        <li>secure local processing</li>
+                        <li>accountability and governance</li>
+                    </ul>
+                    <p class="section-text">This approach ensures that the system remains compliant with GDPR requirements and suitable for future deployment in regulated environments such as schools or companies.</p>
+                </div>
+
+                <div class="content-card" id="data-governance">
+                    <div class="section-title">Data Governance</div>
+                    <p class="section-text">The MotionInput Games project team acts as the data controller and is responsible for ensuring that the system complies with legal and ethical standards. This includes maintaining privacy documentation, ensuring transparency, and managing any future deployment requirements.</p>
+                    <p class="section-text">The lawful basis for processing is user consent, as users voluntarily choose to enable system features and interact with the application. Since the system operates locally and does not involve third-party processors or cloud services, governance responsibilities remain within the project team.</p>
+                    <p class="section-text">This structure ensures clear accountability and supports GDPR compliance through responsible system management and documentation.</p>
+                </div>
+
+                <div class="content-card" id="source-code-license">
+                    <div class="section-title">Source Code License</div>
+                    <p class="section-text">The project is released under the MIT License (Copyright 2026 – MotionInput Games).</p>
+                    <p class="section-text">This license allows users to freely use, modify, and distribute the software, provided that the copyright notice and license are included in all copies. The software is provided “as is,” without warranty, and the developers are not liable for damages resulting from its use.</p>
+                    <p class="section-text">Using the MIT License promotes openness and collaboration while ensuring that intellectual property ownership remains with MotionInput Games.</p>
+                </div>
+
+                <div class="content-card" id="intellectual-property">
+                    <div class="section-title">Intellectual Property</div>
+                    <p class="section-text">The intellectual property of the project includes:</p>
+                    <ul class="policy-list">
+                        <li>AI-AutoStart system</li>
+                        <li>No GUI Game Engine</li>
+                        <li>source code and architecture</li>
+                        <li>gesture recognition logic</li>
+                        <li>documentation and design</li>
+                    </ul>
+                    <p class="section-text">These components are owned by MotionInput Games, while third-party libraries such as OpenCV and MediaPipe remain under their respective licenses.</p>
+                    <p class="section-text">All external components are properly licensed and used in accordance with open-source regulations, ensuring compliance with intellectual property law and software licensing requirements.</p>
+                </div>
+
+                <div class="content-card" id="accessibility-legal-compliance">
+                    <div class="section-title">Accessibility and Legal Compliance</div>
+                    <p class="section-text">The project promotes responsible and inclusive software development by supporting gesture-based interaction and alternative input methods, making the system suitable for different user environments such as schools and public institutions.</p>
+                    <p class="section-text">Legal risks are minimized through:</p>
+                    <ul class="policy-list">
+                        <li>clear privacy policy and documentation</li>
+                        <li>defined data governance structure</li>
+                        <li>open-source licensing</li>
+                        <li>responsible use of third-party libraries</li>
+                        <li>ethical and transparent system design</li>
+                    </ul>
+                    <p class="section-text">This ensures that the system can be deployed in a legally compliant and responsible manner.</p>
                 </div>
             </main>
         </div>
