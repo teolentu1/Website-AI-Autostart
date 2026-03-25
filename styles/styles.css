@@ -636,6 +636,27 @@ a:hover {
     color: var(--text-secondary);
 }
 
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.85rem 0 1rem;
+    border: 1px solid #8ea1bd;
+}
+
+.content th,
+.content td {
+    border: 1px solid #8ea1bd;
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.content th {
+    background: var(--bg-light);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
 .link-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
