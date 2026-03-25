@@ -272,7 +272,7 @@
 
                             <div class="research-entry">
                                 <h4>Text-to-Speech: Kokoro TTS <sup>[6]</sup></h4>
-                                <p>The TTS engine went through several iterations before settling on Kokoro. ParlerTTS was the initial choice — it worked well but voice consistency was poor and generation speed was slow <sup>[7]</sup>. Bark (Suno AI) produced natural-sounding speech but suffered from the same problems. OpenVINO VibeVoice was also considered as an Intel-optimised option but its main use case is generating one long audio file, while we need many short ones <sup>[8]</sup>.</p>
+                                <p>The TTS engine went through several iterations before settling on Kokoro. ParlerTTS was the initial choice — it worked well but voice consistency was poor and generation speed was slow <sup>[7]</sup>. Bark (Suno AI) produced natural-sounding speech but suffered from the same problems. Microsoft VibeVoice was also considered as an Intel-optimised option but its main use case is generating one long audio file, while we need many short ones <sup>[8]</sup>.</p>
                                 <p>We landed on Kokoro TTS (<code>hexgrad/Kokoro-82M</code>). It produces consistent and natural-sounding British English speech across 8 distinct voices (4 male, 4 female), runs fully offline, and has a high generation speed. Audio is synthesised once at save time and stored in the <code>.noui</code> archive, so the player never performs TTS at runtime.</p>
                             </div>
 
