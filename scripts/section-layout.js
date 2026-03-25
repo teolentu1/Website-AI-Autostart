@@ -40,14 +40,7 @@
             <a href="../requirements/moscow-requirements-list.html">MoSCoW Requirements List</a>
         </div>
     </details>
-    <details class="nav-group">
-        <summary><a class="group-link" href="../research/index.html">Research</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
-        <div class="sub-links">
-            <a href="../research/field-research.html">Accessibility Research</a>
-            <a href="../research/related-projects-review.html">Related Projects Review</a>
-            <a href="../research/technology-review.html">Technology Review</a>
-        </div>
-    </details>
+    <a class="nav-item" href="../research/index.html">Research</a>
     <a class="nav-item" href="../ui-design/index.html">UI Design</a>
     <a class="nav-item" href="../system-design/index.html">System Design</a>
     <details class="nav-group">
@@ -137,9 +130,6 @@
         { path: 'requirements/use-cases.html',                      label: 'Use Cases' },
         { path: 'requirements/moscow-requirements-list.html',       label: 'MoSCoW Requirements List' },
         { path: 'research/index.html',                              label: 'Research' },
-        { path: 'research/field-research.html',                     label: 'Accessibility Research' },
-        { path: 'research/related-projects-review.html',            label: 'Related Projects Review' },
-        { path: 'research/technology-review.html',                  label: 'Technology Review' },
         { path: 'ui-design/index.html',                             label: 'UI Design' },
         { path: 'system-design/index.html',                         label: 'System Design' },
         { path: 'implementation/index.html',                        label: 'Implementation' },
