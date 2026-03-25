@@ -6,21 +6,367 @@
         <title>MoSCoW Requirements List</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            /* Quick links */
+            .quick-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .quick-links a {
+                display: inline-block;
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 0.4rem 0.9rem;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--primary);
+                text-decoration: none;
+                transition: background 0.15s, color 0.15s, border-color 0.15s;
+            }
+
+            .quick-links a:hover {
+                background: var(--primary);
+                color: #fff;
+                border-color: var(--primary);
+            }
+
+            /* Tab bar */
+            .tab-bar {
+                display: flex;
+                gap: 0;
+                border-bottom: 2px solid var(--border);
+                margin-bottom: 1.2rem;
+            }
+
+            .tab-btn {
+                padding: 0.45rem 1.1rem;
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: var(--muted);
+                border: none;
+                border-bottom: 3px solid transparent;
+                margin-bottom: -2px;
+                background: none;
+                cursor: pointer;
+                transition: color 0.15s ease, border-color 0.15s ease;
+            }
+
+            .tab-btn:hover { color: var(--text-primary); }
+
+            .tab-btn[data-product="autostart"].active {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .tab-btn[data-product="game"].active {
+                color: var(--secondary);
+                border-bottom-color: var(--secondary);
+            }
+
+            .tab-panel { display: none; }
+            .tab-panel.active { display: block; }
+
+            /* Page title */
+            .moscow-title {
+                font-size: 2rem;
+                font-weight: 800;
+                color: var(--secondary-dark);
+                margin: 0;
+            }
+
+            /* Section heading */
+            .moscow-section-heading {
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1.5rem 0 1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .moscow-section-heading:first-child {
+                margin-top: 0;
+            }
+
+
+            /* MoSCoW boxes */
+            .moscow-box {
+                border-radius: var(--radius);
+                padding: 1rem 1.2rem;
+                margin-bottom: 0.9rem;
+            }
+
+            .moscow-box-header {
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+                margin-bottom: 0.7rem;
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                color: var(--text-primary);
+            }
+
+            .moscow-box ul {
+                margin: 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.75;
+            }
+
+            .moscow-box ul li { margin-bottom: 0.15rem; }
+
+            .moscow-must  { background: #f0faf0; border-left: 4px solid #4caf50; }
+            .moscow-should{ background: #eef4ff; border-left: 4px solid #5b8dee; }
+            .moscow-could { background: #fffbea; border-left: 4px solid #f4b942; }
+            .moscow-wont  { background: #fff5f5; border-left: 4px solid var(--secondary); }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
+
                 <div class="content-card">
-                    <h1>MoSCoW Requirements List</h1>
-                    <p>This page is reserved for MoSCoW Requirements List content.</p>
+                    <h1 class="moscow-title">MoSCoW Requirement List</h1>
                 </div>
+
+                <!-- Quick links -->
+                <div class="content-card">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#functional">Functional Requirements</a>
+                        <a href="#non-functional">Non-Functional Requirements</a>
+                    </div>
+                </div>
+
+                <!-- Functional Requirements -->
+                <div class="content-card" id="functional">
+                    
+                    <!-- Tab switcher -->
+                    <div class="tab-bar" style="margin-bottom: 1.75rem;">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">No-GUI Game</button>
+                    </div>
+
+                    <!-- AI-Autostart functional -->
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="moscow-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul>
+                                <li>The app should be running in background as a system tray application.</li>
+                                <li>The app should monitor surroundings using the web cam while in use.</li>
+                                <li>The app should recognise hand gestures done by the interacting user when in frame of the webcam.</li>
+                                <li>The app should allow users to map hand gestures to applications of their choice.</li>
+                                <li>The app should open applications on the user's Windows computer.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul>
+                                <li>The app should have a gesture reference page, showing the user what gestures it can recognise.</li>
+                                <li>The app should allow users to remove entries of gesture mappings.</li>
+                                <li>The app should open files (like .mp4) on the user's Windows computer.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul>
+                                <li>The app could work with the custom .noui file type to open NO-GUI games.</li>
+                                <li>The app could have an option ‘requires webcam’ for applications that need access to webcam.</li>
+                                <li>The app could hand off camera access to other applications if they are marked so.</li>
+                                <li>The app could use a body model to isolate interacting users from the background.</li>
+                                <li>The app could go to low power mode, upon user inactivity.</li>
+                                <li>The app could provide a settings page to turn off/on the body model, and to define length of inactivity to turn on low power mode.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🔴 Won't Have</div>
+                            <ul>
+                                <li>The app won't use Wifi Sensing to detect user presence.</li>
+                                <li>The app won't allow use of different input devices other than a webcam (ie microphone).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No-GUI Game functional -->
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="moscow-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul>
+                                <li>The game engine should have a 'Create new game' button, for creating a new NO-GUI game.</li>
+                                <li>The game engine should provide a graph-like GUI for the game creation.</li>
+                                <li>The GUI for the game graph should provide widgets for each node of the graph.</li>
+                                <li>The GUI node widgets of the graph should each have a textbox for the main text, for the left option, and for the right option.</li>
+                                <li>The GUI should allow a user to create new nodes for 'left' and 'right' options respectively.</li>
+                                <li>The GUI should provide a textbox for the name of the game.</li>
+                                <li>The GUI should have a save button that allows the user to save the game to a selected location.</li>
+                                <li>The game engine should generate text-to-speech audio from the text provided by the user in the node widgets.</li>
+                                <li>The game player should allow users to hear the audio of the game.</li>
+                                <li>The game player should recognise hand gestures done by the user and use this as gameplay decisions.</li>
+                                <li>The game generated by the game engine should be in the '.noui' filetype.</li>
+                                <li>The '.noui' filetype should contain all the audio + graph structure, so that the game player can run the game.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul>
+                                <li>The game engine should have a button 'Edit game', for editing an already existing game.</li>
+                                <li>The game engine GUI should allow a user to link already existing node widgets as left/right options of other nodes.</li>
+                                <li>The game player should have a settings page, where the user can configure which hand gestures are used for which interaction.</li>
+                                <li>The gameplay should start with a 'main menu' audio, saying the name of the game aloud.</li>
+                                <li>The 'Welcome menu' of the gameplayer should have an option to start a new game, or load the previous game.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul>
+                                <li>The game engine could offer a variety of text-to-speech voices the user can choose from.</li>
+                                <li>The game engine could use a LocalLLM to generate new graphs of games from story summaries.</li>
+                                <li>The game engine could use a LocalLLM to edit already existing games.</li>
+                                <li>The game player could have an option to use keyboard bindings instead of hand gestures to navigate the menu.</li>
+                                <li>The game player could quit after user inactivity.</li>
+                                <li>The game player settings page could allow the user to set the inactivity timeout.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🔴 Won't Have</div>
+                            <ul>
+                                <li>The game engine should take in a pdf of a book and create a game from it.</li>
+                                <li>The game player could have captions for transcription of the audio output.</li>
+                                <li>The game engine could take in the user's custom audio, and base the text-to-speech audio output on that audio sample.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Non-Functional Requirements -->
+                <div class="content-card" id="non-functional">
+                    <!-- AI-Autostart non-functional -->
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="moscow-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul>
+                                <li>The app must function on <strong>Windows 11.</strong></li>
+                                <li>The app must provide a touch-free interaction.</li>
+                                <li>The app must be compiled to an executable file or directory.</li>
+                                <li>The app must run on Intel hardware.</li>
+                                <li>The app must run all machine learning recognition offline.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul>
+                                <li>The app should be robust against random background gestures.</li>
+                                <li>The app should respond to gestures within a reasonable time.</li>
+                                <li>Gesture-to-application mappings should be stored locally and persist between sessions without data loss.</li>
+                                <li>The app should be installable by a non-technical user without requiring manual configuration of dependencies.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul>
+                                <li>The app could run over long periods of time.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🔴 Won't Have</div>
+                            <ul>
+                                <li>The app won't have multilingual support.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- No-GUI Game non-functional -->
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="moscow-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul>
+                                <li>The NO-GUI engine should allow users to create NO-GUI games.</li>
+                                <li>The NO-GUI player should allow the user to play NO-GUI games.</li>
+                                <li>The NO-GUI player and engine should be compiled to an executable file or directory.</li>
+                                <li>The NO-GUI player and engine should be 2 self-contained separate applications.</li>
+                                <li>The applications must run on Windows 11.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul>
+                                <li>Low latency of gesture recognition while playing a NO-GUI game.</li>
+                                <li>NO-GUI games should be easily distributable to users.</li>
+                                <li>A NO-GUI game should be playable on any computer that has a NO-GUI game player installed.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul>
+                                <li>The NO-GUI player could start up within a reasonable time (e.g. under 5 seconds) on average consumer hardware.</li>
+                                <li>The .noui file format could be versioned, so that older game files remain compatible with newer versions of the player.</li>
+                            </ul>
+                        </div>
+
+                        <div class="moscow-box moscow-wont">
+                            <div class="moscow-box-header">🔴 Won't Have</div>
+                            <ul>
+                                <li>The NO-GUI player won't enforce any digital rights management (DRM) on .noui game files.</li>
+                                <li>The NO-GUI player won't support multiplayer or networked gameplay.</li>
+                                <li>The NO-GUI engine won't support collaborative workspace.</li>
+                                <li>The NO-GUI engine won't support partial saving.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    // Sync all tab bars to the same product
+                    document.querySelectorAll('.tab-bar').forEach(b => {
+                        b.querySelectorAll('.tab-btn').forEach(tb => {
+                            tb.classList.toggle('active', tb.dataset.product === product);
+                        });
+                    });
+
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
         </script>
     </body>
 </html>
