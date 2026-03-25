@@ -16,7 +16,75 @@
             <main class="content">
                 <div class="content-card">
                     <h1>AI Autostart README</h1>
-                    <p>This page is reserved for AI Autostart README content.</p>
+                    <p>Gesture-controlled desktop automation for Windows.</p>
+
+                    <h2>What It Does</h2>
+                    <ul>
+                        <li>Detects supported hand gestures in real time</li>
+                        <li>Maps gestures to actions via a GUI settings window</li>
+                        <li>Runs from a system tray menu</li>
+                        <li>Supports launching files and games with optional camera handoff</li>
+                        <li>Refreshes installed app list dynamically (<code>app_data.json</code>)</li>
+                        <li>Supports camera preview toggle (default: OFF)</li>
+                    </ul>
+
+                    <h2>Project Structure</h2>
+                    <ul>
+                        <li><code>runSystemTray.py</code> - starts the tray application</li>
+                        <li><code>systemTrayDesktopApp/systemTrayApp.py</code> - tray icon and menu logic</li>
+                        <li><code>src/controller/controller.py</code> - action orchestration and gesture handling</li>
+                        <li><code>src/controller/powerManager.py</code> - power mode management</li>
+                        <li><code>src/gui/gestureMappingWindow.py</code> - settings UI</li>
+                        <li><code>src/gui/actions.py</code> - mapping and app-data persistence helpers</li>
+                        <li><code>src/video_recogniser/myGestureRecognizer/</code> - MediaPipe and OpenCV recognition pipeline</li>
+                    </ul>
+
+                    <h2>Requirements</h2>
+                    <ul>
+                        <li>Windows</li>
+                        <li>Python 3.12</li>
+                        <li>Webcam</li>
+                    </ul>
+
+                    <p>Install dependencies in a fresh virtual environment:</p>
+                    <pre><code>pip install -r requirements.txt</code></pre>
+
+                    <h2>Run</h2>
+                    <h3>1) Start system tray app</h3>
+                    <pre><code>python runSystemTray.py</code></pre>
+
+                    <p>Tray menu options:</p>
+                    <ul>
+                        <li><strong>Start gesture monitoring</strong></li>
+                        <li><strong>Open settings</strong></li>
+                        <li><strong>Exit</strong></li>
+                    </ul>
+
+                    <h2>Settings Workflow</h2>
+                    <p>In the settings UI, configure mappings in pages:</p>
+                    <ul>
+                        <li><strong>App Actions</strong> - map gestures to open and close app names</li>
+                        <li><strong>Game Actions</strong> - map gestures to game and no-UI launch targets</li>
+                        <li><strong>File Opening</strong> - map gestures to arbitrary file targets</li>
+                        <li><strong>Gesture Reference</strong> - fixed gesture info and camera view toggle</li>
+                    </ul>
+                    <p>Then click <strong>Save</strong> to persist changes.</p>
+
+                    <h2>Data Files</h2>
+                    <ul>
+                        <li><code>gesture_mapping.json</code> - gesture and action config with metadata</li>
+                        <li><code>app_data.json</code> - app lookup list for <code>AppOpener</code></li>
+                    </ul>
+                    <p>On tray startup, AI-Autostart refreshes <code>app_data.json</code> automatically.</p>
+
+                    <h2>Tech Stack</h2>
+                    <ul>
+                        <li>MediaPipe</li>
+                        <li>OpenCV</li>
+                        <li>OpenVINO (person detection)</li>
+                        <li>PySide6</li>
+                        <li>AppOpener</li>
+                    </ul>
                 </div>
             </main>
         </div>
