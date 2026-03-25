@@ -206,6 +206,8 @@
                 <img src="../assets/images/nas.png" alt="NAS">
                 <img src="../assets/images/rnib.png" alt="RNIB">
                 <img src="../assets/images/intel.png" alt="Intel">
+                <img src="../assets/images/ibm.png" alt="IBM">
+                <img src="../assets/images/microsoft.png" alt="Microsoft">
             </div>
         </div>
     </div>
