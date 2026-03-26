@@ -29,33 +29,6 @@
                 width: 22px;
                 height: 22px;
             }
-            .diagram-wrapper {
-                position: relative;
-                cursor: pointer;
-            }
-
-            .diagram-wrapper iframe {
-                pointer-events: none;
-                display: block;
-            }
-
-            .diagram-wrapper.active iframe {
-                pointer-events: auto;
-                cursor: auto;
-            }
-
-            .diagram-wrapper:not(.active)::after {
-                content: 'Click to interact';
-                position: absolute;
-                bottom: 0.75rem;
-                right: 0.75rem;
-                background: rgba(0, 0, 0, 0.45);
-                color: #fff;
-                font-size: 0.75rem;
-                padding: 0.25rem 0.6rem;
-                border-radius: 4px;
-                pointer-events: none;
-            }
         </style>
     </head>
     <body>

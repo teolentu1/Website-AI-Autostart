@@ -7,67 +7,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
         <style>
-            .quick-links {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .quick-links a {
-                display: inline-block;
-                background: var(--bg-light);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 0.4rem 0.9rem;
-                font-size: 0.9rem;
-                font-weight: 600;
-                color: var(--primary);
-                text-decoration: none;
-                transition: background 0.15s, color 0.15s, border-color 0.15s;
-            }
-
-            .quick-links a:hover {
-                background: var(--primary);
-                color: #fff;
-                border-color: var(--primary);
-            }
-
-            .tab-bar {
-                display: flex;
-                gap: 0;
-                border-bottom: 2px solid var(--border);
-                margin-bottom: 1.2rem;
-            }
-
-            .tab-btn {
-                padding: 0.45rem 1.1rem;
-                font-weight: 600;
-                font-size: 0.95rem;
-                color: var(--muted);
-                border: none;
-                border-bottom: 3px solid transparent;
-                margin-bottom: -2px;
-                background: none;
-                cursor: pointer;
-                transition: color 0.15s ease, border-color 0.15s ease;
-            }
-
-            .tab-btn:hover { color: var(--text-primary); }
-
-            .tab-btn[data-product="autostart"].active {
-                color: var(--primary);
-                border-bottom-color: var(--primary);
-            }
-
-            .tab-btn[data-product="game"].active {
-                color: var(--secondary);
-                border-bottom-color: var(--secondary);
-            }
-
-            .tab-panel { display: none; }
-            .tab-panel.active { display: block; }
-
             .evaluation-section-heading {
                 font-size: 1.35rem;
                 font-weight: 700;
@@ -80,24 +19,6 @@
 
             .evaluation-section-heading:first-child {
                 margin-top: 0;
-            }
-
-            .moscow-box {
-                border-radius: var(--radius);
-                padding: 1rem 1.2rem;
-                margin-bottom: 0.9rem;
-            }
-
-            .moscow-box-header {
-                display: flex;
-                align-items: center;
-                gap: 0.45rem;
-                margin-bottom: 0.7rem;
-                font-size: 0.82rem;
-                font-weight: 700;
-                letter-spacing: 0.04em;
-                text-transform: uppercase;
-                color: var(--text-primary);
             }
 
             .requirement-list {

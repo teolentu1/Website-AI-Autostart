@@ -7,55 +7,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
         <style>
-            /* Tab bar */
-            .tab-bar {
-                display: flex;
-                gap: 0;
-                border-bottom: 2px solid var(--border);
-                margin-bottom: 1.2rem;
-            }
-
-            .tab-btn {
-                padding: 0.45rem 1.1rem;
-                font-weight: 600;
-                font-size: 0.95rem;
-                color: var(--muted);
-                border: none;
-                border-bottom: 3px solid transparent;
-                margin-bottom: -2px;
-                background: none;
-                cursor: pointer;
-                transition: color 0.15s ease, border-color 0.15s ease;
-            }
-
-            .tab-btn:hover {
-                color: var(--text-primary);
-            }
-
-            .tab-btn[data-product="autostart"].active {
-                color: var(--primary);
-                border-bottom-color: var(--primary);
-            }
-
-            .tab-btn[data-product="game"].active {
-                color: var(--secondary);
-                border-bottom-color: var(--secondary);
-            }
-
-            .tab-btn[data-product="accessibility"].active {
-                color: var(--accent);
-                border-bottom-color: var(--accent);
-            }
-
-            /* Tab panels */
-            .tab-panel {
-                display: none;
-            }
-
-            .tab-panel.active {
-                display: block;
-            }
-
             /* Research section headings */
             .research-section {
                 margin-top: 1.25rem;
@@ -105,30 +56,6 @@
 
             .research-entry p:last-child {
                 margin-bottom: 0;
-            }
-
-            /* References list */
-            .references-list {
-                margin: 0.5rem 0 0 0;
-                padding-left: 1.5rem;
-                color: var(--text-secondary);
-                font-size: 0.88rem;
-                line-height: 1.7;
-            }
-
-            .references-list li {
-                margin-bottom: 0.4rem;
-            }
-
-            .references-list a {
-                color: var(--primary);
-                word-break: break-all;
-            }
-
-            sup {
-                font-size: 0.72em;
-                color: var(--primary);
-                font-weight: 600;
             }
 
             /* Figure / image with caption */
