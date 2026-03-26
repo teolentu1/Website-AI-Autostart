@@ -16,10 +16,112 @@
             <main class="content">
                 <div class="content-card">
                     <h1>AI-Autostart - Controller</h1>
-                    <p>This page is reserved for the AI-Autostart Controller implementation content.</p>
+                    <h2 class="section-title">Gesture Controller</h2>
+                    <p>The controller layer for AI-Autostart is responsible for executing user actions.</p>
+                    <p>At initialisation, the controller creates the gesture recognizer and subscribes to it. Therefore, each gesture update is sent to the controller for action execution.</p>
+                    <pre><code>class GestureController:
+    def __init__(self):
+        self.camera_view_enabled = load_camera_view_enabled()
+        self.person_recognition_enabled = load_person_recognition_enabled()
+        self.videoGestureRecogniser: VideoGestureRecogniser = VideoGestureRecogniser(
+            self,
+            show_camera_view=self.camera_view_enabled,
+            use_person_recognition=self.person_recognition_enabled,
+        )</code></pre>
+                    <p>The controller then loads runtime configuration from the mapping JSON file, including camera usage for file opening and settings configurations.</p>
+                    <pre><code>self.gesture_mapping = load_mapping()
+self.run_uses_camera = load_run_uses_camera()</code></pre>
+                    <p>The way that the controller receives each gesture recognizer update is through its update function.</p>
+                    <pre><code>def update(self, update: str | None):
+    now = time()
+
+    if update is None:
+        if (
+            self.prevUpdate is not None
+            and (now - self.last_gesture_detected_at) >= self.gesture_dropout_grace_seconds
+        ):
+            self.prevUpdate = None
+        return
+
+    self.last_gesture_detected_at = now
+
+    if update == EnumGesture.OPEN_PALM.value:
+        self.prevUpdate = update
+        return
+
+    if update == self.prevUpdate:
+        return
+
+    self.prevUpdate = update
+    action = self.gesture_mapping.get(update)
+    self.execute_action(action)</code></pre>
+                    <p>In order to tolerate a brief dropout in gesture detection when no gesture is detected the controller doesn't immediately clear the previous update. It waits for a short grace period before it sets the update to None.</p>
+                    <p>When a gesture is detected, the controller first checks if that gesture is the Low Power Mode gesture (OPEN_PALM), and ignores for action triggering. It then checks if the gesture was performed previously, in order to avoid multiple triggers from one continuous hand pose.</p>
+                    <p>If the gesture passes these checks, the controller reads the action mapped to that gesture and executes the action.</p>
+                    <p>The execution of mapped actions is performed in execute_action. Actions are stored as strings in the following format:</p>
+                    <ul class="findings-list">
+                        <li><code>stop</code> stops recognition</li>
+                        <li><code>open:&lt;app&gt;</code> opens the selected application</li>
+                        <li><code>close:&lt;app&gt;</code> closes the selected app</li>
+                        <li><code>run:&lt;path&gt;</code> runs a user-selected file</li>
+                    </ul>
+                    <pre><code>def execute_action(self, action: str) -> None:
+    if not action:
+        return
+
+    action = action.strip()
+    if action == "stop":
+        self.videoGestureRecogniser.stop()
+        return
+
+    if action.startswith("open:"):
+        app = action.split(":", 1)[1].strip()
+        if app:
+            AppOpener.open(app)
+        return
+
+    if action.startswith("close:"):
+        app = action.split(":", 1)[1].strip()
+        if app:
+            AppOpener.close(app)
+        return</code></pre>
+                    <p>For run actions, the controller extracts the executable path and either runs immediately or first stops recognition, depending on whether the launched program uses the camera. This allows for proper handoff of camera access when needed.</p>
+                    <pre><code>if is_run_action(action):
+    path = get_run_path(action)
+    if path:
+        self.path_to_run = path
+        if self.run_uses_camera:
+            self.videoGestureRecogniser.stop()
+        else:
+            self.run_file_and_wait()
+    return</code></pre>
+                    <p>The executable path is launched through a command, which blocks until the external process exits.</p>
+                    <pre><code>def run_file_and_wait(self) -> None:
+    if self.path_to_run is None:
+        return
+
+    try:
+        subprocess.run(
+            ["cmd", "/c", "start", "", "/wait", self.path_to_run],
+            creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+    finally:
+        self.path_to_run = None</code></pre>
+                    <p>The controller's main loop then coordinates the recognition restart. The recognizer runs continuously until stopped. If it is stopped because of camera handoff, the controller executes the file and then restarts recognition in the same thread. If the recognizer was stopped normally, the loop exits.</p>
+                    <pre><code>def run(self):
+    while True:
+        self.videoGestureRecogniser.run()
+
+        if self.path_to_run is not None:
+            self.run_file_and_wait()
+        else:
+            break</code></pre>
+                    <p>Integrated in the full application, the controller is used by the system tray process and is started from a separate thread. This allows the tray user interface to remain responsive while the controller processes run continuously in the background.</p>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>
