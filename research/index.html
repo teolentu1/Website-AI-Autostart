@@ -57,6 +57,27 @@
             .research-entry p:last-child {
                 margin-bottom: 0;
             }
+            .manual-viewer {
+                width: 100%;
+                height: 980px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                background: var(--bg-white);
+            }
+
+            .manual-viewer iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: var(--radius);
+                display: block;
+            }
+
+            @media (max-width: 980px) {
+                .manual-viewer {
+                    height: 760px;
+                }
+            }
         </style>
     </head>
     <body>
