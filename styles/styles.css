@@ -28,6 +28,14 @@
     box-sizing: border-box;
 }
 
+img {
+    transition: transform 0.2s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+
 html {
     scroll-behavior: smooth;
 }
