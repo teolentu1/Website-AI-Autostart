@@ -15,12 +15,139 @@
             </div>
             <main class="content">
                 <div class="content-card">
-                    <h1>No-GUI Game Player Implementation</h1>
-                    <p>This page is reserved for the No-GUI Game Player implementation content.</p>
+                    <h1>Game Player</h1>
+                    <p>GamePlayer is the class managing the whole game play experience. Its main purpose are the game play loops. The public method called is the play_game method. It is responsible for the controlling loop of the game, that is, the main menu loop. Here, the user is welcomed to the game, and offered with the options to start a new game, or resume previous progress (if there is any). The user can always choose to quit or have the audio replayed.</p>
+                    <pre><code>def play_game(self, game_path: str):
+   while True:
+       try:
+           root_node, self._game_folder, zip_path = self.game_loader.load_graph(game_path)
+       except Exception as e:
+           print(f"Failed to load graph from file: {e}")
+           return
+       # main menu
+       progress_node: Node = self.progress_tracker.get_progress_node(self._game_folder, root_node)
+       self.audio_player.play_main_menu_audio(self._game_folder, progress_node is not None)
+
+
+       decision: EnumGesture = self._get_main_menu_decision(progress_node)
+
+
+       # --- handling of quit and replay gestures ---
+       # quit
+       if decision == self.settings.get_quit_gesture():
+           self.audio_player.play_quit_audio(self._game_folder)
+           break
+
+
+       # replay options
+       if decision in self.settings.get_replay_gestures():
+           continue
+
+
+       start_node = self._start_from(root_node, progress_node, decision)
+
+
+       self._start_game_loop(start_node, zip_path)</code></pre>
+                    <p>This is a very conventional implementation of the main game loop, and has been inspired by games like the Witcher 3, where the user is always firstly presented with the main menu, and only then can resume the gameplay.</p>
+                    <p>The actual game starts to be played by function _start_game_loop.</p>
+                    <pre><code>def _start_game_loop(self, start_node: Node, zip_path: str):
+   """
+   Throws TimeoutError if no gesture is detected within TIMEOUT_TIME seconds.
+   """
+   cur_node: Node = start_node
+   while True:
+       # Play current scene audio
+       self.audio_player.play_audio(self._game_folder, cur_node.get_id())
+
+
+       # Ask recognizer for a decision
+       decision: EnumGesture = self.get_gesture(self._allowed_gestures_for_node(cur_node))
+
+
+       if decision == self.settings.get_quit_gesture():
+           self._handle_quit_from_game(cur_node, zip_path)
+           break
+
+
+       # handle replays
+       decision = self._handle_replay(decision, cur_node)
+
+
+       # handle quit again in case the player decided to quit while replaying
+       if decision == self.settings.get_quit_gesture():
+           self._handle_quit_from_game(cur_node, zip_path)
+           break
+
+
+       chosen_side: EnumLR | None = self._gesture_to_side(decision)
+       if chosen_side is None:
+           continue
+       cur_node = cur_node.getNode(chosen_side)
+
+
+       if cur_node.is_win:
+           self._handle_win(cur_node)
+           break
+       if cur_node.is_losing:
+           self._handle_lose(cur_node, zip_path)
+           break
+
+
+       time.sleep(1)</code></pre>
+                    <p>Each iteration of this while loop corresponds to an interaction with one node in the game graph. The user is always presented with the main scene audio, followed by the options audio. The user then has a choice to:</p>
+                    <ul>
+                        <li>Choose an option and move to the next node</li>
+                        <li>Quit the game</li>
+                        <li>Replay the main scene or the options audio</li>
+                    </ul>
+                    <p>Quitting the game does not quit the whole gamePlayer, but rather saves the user's progress, stops the game loop and goes back into the main menu loop, where the user can choose from the main menu options again.</p>
+                    <p>Replaying the main scene or the options audio can be done however many times the user wishes to. This is handled in yet another separate loop in the _handle_replay method.</p>
+                    <pre><code>def _handle_replay(self, decision: EnumGesture, cur_node: Node) -> EnumGesture:
+   while decision in self.settings.get_replay_gestures():
+       if decision == self.settings.get_replay_main_gesture():
+           self.audio_player.play_main_audio(self._game_folder, cur_node.get_id())
+       elif decision == self.settings.get_replay_options_gesture():
+           self.audio_player.play_options_audio(self._game_folder, cur_node.get_id())
+
+
+       decision: EnumGesture = self.get_gesture(self._allowed_gestures_for_node(cur_node))
+
+
+   return decision</code></pre>
+                    <p>The whole game experience is therefore split into three loops:</p>
+                    <ul>
+                        <li>Main menu loop</li>
+                        <li>Game play loop</li>
+                        <li>Replay loop</li>
+                    </ul>
+                    <p>Quitting one loop, places the user in the 'outer' loop.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Diagram</h2>
+                    <iframe style="border:none; width:100%; height:450px;" src="https://whimsical.com/embed/PSPbRyErhGfUauVM4CF7i6" title="Game Player loop diagram"></iframe>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
+        </script>
+        <script>
+            document.querySelectorAll('iframe').forEach(iframe => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'diagram-wrapper';
+                iframe.parentNode.insertBefore(wrapper, iframe);
+                wrapper.appendChild(iframe);
+
+                wrapper.addEventListener('click', () => {
+                    wrapper.classList.add('active');
+                });
+
+                wrapper.addEventListener('mouseleave', () => {
+                    wrapper.classList.remove('active');
+                });
+            });
         </script>
     </body>
 </html>
