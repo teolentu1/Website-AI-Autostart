@@ -75,6 +75,7 @@
             <a href="../appendices/privacy-policy.html">Privacy Policy</a>
             <a href="../appendices/dependencies.html">Dependencies</a>
             <a href="../appendices/contributions.html">Contributions</a>
+            <a href="../appendices/progress-videos.html">Monthly Progress Videos</a>
         </div>
     </details>
 </aside>`;
@@ -153,6 +154,7 @@
         { path: 'appendices/gdpr.html',                             label: 'GDPR and Legal Compliance' },
         { path: 'appendices/dependencies.html',                     label: 'Dependencies' },
         { path: 'appendices/contributions.html',                    label: 'Contributions' },
+        { path: 'appendices/progress-videos.html',                  label: 'Monthly Progress Videos' },
     ];
 
     const pagePath = window.location.pathname;
