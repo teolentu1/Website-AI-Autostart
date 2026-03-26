@@ -16,7 +16,47 @@
             <main class="content">
                 <div class="content-card">
                     <h1>Future Work</h1>
-                    <p>This page is reserved for Future Work content.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">New Functionalities</h2>
+
+                    <h3>1. Cross-platform support (both products)</h3>
+                    <p>Both AI-Autostart and No-UI Game are currently built and tested on Windows. A natural next step is to extend support to macOS.</p>
+
+                    <h3>2. Language support — No-GUI Game</h3>
+                    <p>The game engine currently generates and narrates games in British English only. Adding support for additional languages (Spanish, Chinese etc.) would significantly broaden the accessibility of the platform.</p>
+                    <p>As explained in the Text-to-speech implementation section, <code>hexgrad/kokoro</code> is used for speech generation — specifically an object of class <code>KPipeline</code>. The constructor of this class takes in a language code for the language it should generate speech in. In future work, this could be expanded by giving the method <code>_get_pipeline</code> a parameter <code>lang_code</code>, that would allow the frontend to choose what language code to use it with.</p>
+                    <pre><code>def _get_pipeline(self) -> KPipeline:
+   if self.pipeline is None:
+       self.pipeline = KPipeline(lang_code='b', repo_id="hexgrad/Kokoro-82M")
+   return self.pipeline</code></pre>
+                    <p>The names of the voices as well as the speakers would need to be changed correspondingly on the frontend side. See VOICES.md <sup><a href="#ref-1">[1]</a></sup> from the official Kokoro team for more detail about support of different voices.</p>
+                    <p>Regarding the frontend changes, currently in method <code>title_row</code>, there is a list <code>VOICES</code> containing all the names of the British English voices Kokoro offers. This list might become a dictionary, mapping language code to the list of voices. A dropdown similar to the one for choice of a voice would be implemented, allowing the user to choose a language — the voices dropdown would then show the voices available.</p>
+                    <p>The last thing needed would be the preview audios. There is no standardised method, but the main sample code from Talker gives a good example of how to use and generate speech using the <code>Talker</code> class.</p>
+
+                    <h3>3. On-Screen Text Display — No-GUI Game</h3>
+                    <p>Currently the game player is entirely audio-based with no text shown on screen. A planned extension is to make the narration text optionally visible on screen, with a toggle in the settings page to switch it on or off. When enabled, the current scene text and options would be displayed in the player window as they are narrated, improving the experience of sighted users.</p>
+
+                    <h3>4. ReadingStar Integration</h3>
+                    <p>A further extension targeted at autistic children and partially sighted users would be integrating with ReadingStar, a karaoke-style reading tool designed for autistic children, to provide karaoke-style word highlighting. As the TTS narration progresses through the scene text, the word or phrase currently being spoken is highlighted in real time.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Existing Bugs</h2>
+
+                    <h4>1. AI-Autostart — camera toggle on file action rows does not work</h4>
+                    <p>In the File Opening settings tab, each row has a <em>Uses Camera</em> toggle intended to keep camera handoff behaviour enabled after a file is launched, but it currently has no effect. As a result, AI-Autostart cannot be used to open applications that require the camera.</p>
+
+                    <h4>2. No-GUI Game Player — audio does not stop when GUI is turned off</h4>
+                    <p>When the GUI is manually turned off during playback, the audio does not stop.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">References</h2>
+                    <ol class="references-list">
+                        <li id="ref-1">hexgrad, "VOICES.md · hexgrad/Kokoro-82M at main," Huggingface.co, Jan. 29, 2025. <a href="https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md" target="_blank">https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md</a> (accessed Mar. 26, 2026).</li>
+                    </ol>
                 </div>
             </main>
         </div>
