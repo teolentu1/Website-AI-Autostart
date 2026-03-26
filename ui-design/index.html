@@ -203,6 +203,91 @@
                 margin-top: 0.9rem;
             }
 
+            .user-group-heading {
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1.25rem 0 0.6rem;
+            }
+
+            .user-group-heading:first-child {
+                margin-top: 0;
+            }
+
+            .iteration-group {
+                margin-bottom: 1.75rem;
+            }
+
+            .iteration-group:last-child {
+                margin-bottom: 0;
+            }
+
+            .iteration-group-title {
+                font-size: 1rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 0.6rem;
+                padding-bottom: 0.4rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .iteration-list {
+                margin: 0;
+                padding-left: 1.2rem;
+                color: var(--text-secondary);
+            }
+
+            .iteration-list li {
+                margin-bottom: 0.65rem;
+                line-height: 1.65;
+            }
+
+            .iteration-step-name {
+                font-weight: 700;
+                color: var(--text-primary);
+            }
+
+            .final-subsection-title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--primary-dark);
+                margin-bottom: 0.75rem;
+            }
+
+            .fig-row {
+                display: flex;
+                gap: 1rem;
+                margin-top: 0.75rem;
+            }
+
+            .fig-row .fig-block {
+                flex: 1;
+                margin-top: 0;
+            }
+
+            .fig-block {
+                margin-top: 0.75rem;
+                text-align: center;
+            }
+
+            .fig-block img {
+                max-width: 100%;
+                max-height: 420px;
+                width: auto;
+                height: auto;
+                border-radius: var(--radius);
+                border: 1px solid var(--border);
+                display: block;
+                margin: 0 auto;
+            }
+
+            .fig-block figcaption {
+                margin-top: 0.5rem;
+                font-size: 0.88rem;
+                color: var(--muted);
+                font-style: italic;
+            }
+
             @media (max-width: 860px) {
                 .principle-item {
                     padding: 0.9rem;
@@ -357,65 +442,199 @@
                 </div>
 
                 <div class="tab-panel active" data-product="game">
+
                     <div class="content-card" id="game-quick-links">
                         <div class="section-title">On This Page</div>
                         <div class="quick-links">
-                            <a href="#game-user-centric-requirements-gathering">User-centric requirements gathering</a>
-                            <a href="#game-initial-design">Initial Design Ideas</a>
-                            <a href="#game-prototyping-and-iterations">Prototyping and Iterations</a>
-                            <a href="#game-heuristic-evaluations-and-improvements">Heuristic Evaluations and Improvements</a>
-                            <a href="#game-final-ui-design">Final UI Design</a>
+                            <a href="#game-user-centric-requirements-gathering">User-Centric Requirements Gathering</a>
+                            <a href="#game-initial-design">Initial Design</a>
+                            <a href="#game-prototyping-and-iterations">Prototyping &amp; Iterations</a>
+                            <a href="#game-heuristic-evaluations-and-improvements">Heuristic Evaluations &amp; Improvements</a>
+                            <a href="#game-final-ui-design">Final Design</a>
                             <a href="#game-references">References</a>
                         </div>
                     </div>
 
+                    <div class="content-card">
+                        <p class="survey-intro">This page documents the user interface design of the No-GUI Game project. The project has two distinct interfaces: the <strong>Game Engine</strong>, used by game creators to build and save branching story games, and the <strong>Game Player</strong>, used to load and play them.</p>
+                        <p class="survey-intro" style="margin-top: 0.75rem; margin-bottom: 0;">Since the game play experience is entirely audio and gesture based, the Game Player GUI is as minimal as possible.</p>
+                    </div>
+
                     <div class="content-card" id="game-user-centric-requirements-gathering">
-                        <div class="section-title">User-centric requirements gathering</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for user-centric requirements gathering.
+                        <div class="section-title">User-Centric Requirements Gathering</div>
+                        <p class="survey-intro">We began our design process by analysing the nature and needs of our users. We identified our two main user groups as the blind and visually impaired, and autistic children.</p>
+
+                        <div class="user-group-heading">User Group 1: Blind and Visually Impaired</div>
+                        <p class="survey-intro">In our research for this user group we came up with a persona: a blind 14–17 year old boy Kyle Bell. We conducted a mock interview and the responses made the problems very clear:</p>
+                        <div class="survey-card">
+                            <p class="survey-question">What parts of the setup process are most frustrating or time-consuming for you?</p>
+                            <p class="survey-answer">"I have to wait until there's someone around who can help, and that's not always the case."</p>
+                            <p class="survey-question">Do you think this affects your social life or how connected you feel to others?</p>
+                            <p class="survey-answer">"I end up missing out — not because I don't want to play, but because it's not accessible."</p>
                         </div>
+                        <div class="findings-title">Derived requirements:</div>
+                        <ul class="findings-list">
+                            <li>The player must be able to initiate a game entirely independently.</li>
+                            <li>Every interaction during play must be communicated through audio.</li>
+                            <li>The setup process must be short and require as few steps as possible.</li>
+                        </ul>
+
+                        <div class="user-group-heading">User Group 2: Autistic Children and their Teachers</div>
+                        <p class="survey-intro">Our second user group is autistic children, particularly in school settings where teachers want interactive scenarios for social skills training. Research into autism education highlighted that many autistic children benefit from predictable, repeatable scenarios where they can practise social situations in a low-pressure, low-stimulus environment [1].</p>
+                        <div class="findings-title">Derived requirements:</div>
+                        <ul class="findings-list">
+                            <li>A non-technical user must be able to create a complete game without writing code.</li>
+                            <li>Generated audio must be consistent and predictable across repeated plays.</li>
+                            <li>The graph structure must be simple enough that a teacher can understand, edit and verify generated games before using them with the children.</li>
+                            <li>The No-GUI games should be relatively low-stimulus.</li>
+                        </ul>
                     </div>
 
                     <div class="content-card" id="game-initial-design">
-                        <div class="section-title">Initial Design Ideas</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for initial design ideas.
+                        <div class="section-title">Initial Design</div>
+                        <p class="survey-intro">We began our design process with hand-drawn sketches. For the game engine, we first came up with how we wanted our game graphs to be represented visually. We thought a branching graph was intuitive and easy to follow and produced this initial sketch:</p>
+                        <figure class="fig-block">
+                            <img src="../assets/images/game-graph-sketch.png" alt="Initial sketch of branching game structure">
+                            <figcaption>Fig 1 — Initial sketch of branching game structure</figcaption>
+                        </figure>
+                        <p class="survey-intro" style="margin-top: 1rem;">We also made some sketches to plan the page layouts for the Game Engine: focusing on how the AI panel should sit alongside the canvas without cluttering it and how all the menus and dropdowns should be placed. For the AI panel, we took inspiration from how Github Copilot is integrated into VS Code — a simple side panel [2].</p>
+                        <div class="fig-row">
+                            <figure class="fig-block">
+                                <img src="../assets/images/canvas-sketch.png" alt="Layout sketch showing canvas and AI side panel">
+                                <figcaption>Fig 2 — Layout sketch showing canvas and AI side panel</figcaption>
+                            </figure>
+                            <figure class="fig-block">
+                                <img src="../assets/images/node-sketch.png" alt="Early sketch of a node widget">
+                                <figcaption>Fig 3 — Early sketch of a node widget</figcaption>
+                            </figure>
                         </div>
                     </div>
 
                     <div class="content-card" id="game-prototyping-and-iterations">
-                        <div class="section-title">Prototyping and Iterations</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for prototyping and iterations.
+                        <div class="section-title">Prototyping &amp; Iterations</div>
+
+                        <div class="iteration-group">
+                            <div class="iteration-group-title">Game Engine — Canvas and Graph Layout</div>
+                            <ul class="iteration-list">
+                                <li><span class="iteration-step-name">Fixed top-down layout:</span> Initially the game graph had a fixed top-down layout where nodes could not be moved. Child nodes were added to the bottom of the graph with a set distance between them. This led to overlap as the tree grew and also meant that the game was limited to a binary tree causing exponential growth.</li>
+                                <li><span class="iteration-step-name">BFS-based automatic layout:</span> The tree layout algorithm was then replaced with a BFS-based automatic layout that places nodes at depths corresponding to their distance from the root, which makes the branching structure immediately readable without any manual arrangement by the creator.</li>
+                                <li><span class="iteration-step-name">Zoom and Scroll:</span> The zoomable and scrollable canvas was added after it became clear that games with more than 6–8 nodes did not fit on screen at the default zoom level.</li>
+                                <li><span class="iteration-step-name">Voice Preview:</span> Later on in development we added the option to generate games using one of 8 audio narrators offered by Kokoro TTS. This was integrated into the UI as a dropdown next to the title bar. We also added a Preview button that plays a pre-recorded audio file narrated by the selected voice which lets the user test out voices before generating the game.</li>
+                            </ul>
+                        </div>
+
+                        <div class="iteration-group">
+                            <div class="iteration-group-title">Node Widget Design</div>
+                            <ul class="iteration-list">
+                                <li>The initial node was simple: three text fields (the scene text and two option labels) and two add-child buttons for left and right options.</li>
+                                <li><span class="iteration-step-name">Win and lose controls:</span> We then added the option to set as win or loss after starting to test out the game play experience.</li>
+                                <li><span class="iteration-step-name">Delete button:</span> A delete button was added to leaf nodes after it became clear that removing incorrect or unwanted nodes was essential to a usable editing workflow. Only leaf nodes can be deleted to prevent accidentally disconnecting subtrees.</li>
+                                <li><span class="iteration-step-name">Link mode:</span> We identified a need for connections that skip directly to an existing node rather than always creating a new child. A Link button was added to each node: pressing it enters linking mode, in which all eligible target nodes on the canvas are highlighted. Clicking a highlighted node creates the connection and exits linking mode. This allows non-binary graph structures where paths converge.</li>
+                            </ul>
+                        </div>
+
+                        <div class="iteration-group">
+                            <div class="iteration-group-title">AI Generation</div>
+                            <ul class="iteration-list">
+                                <li>The first version generated the entire game in one LLM call and only showed the result after generation was complete, which meant the creator waited several minutes with no feedback.</li>
+                                <li><span class="iteration-step-name">Live generation of nodes:</span> The second iteration, the current version, displays the graph layout with placeholder nodes while generation is running, slowly filling in the nodes.</li>
+                            </ul>
+                        </div>
+
+                        <div class="iteration-group">
+                            <div class="iteration-group-title">Game Player</div>
+                            <ul class="iteration-list">
+                                <li><span class="iteration-step-name">No Settings:</span> Initially we did not think about adding a settings page where the user would be able to set gestures, but as we experimented with user testing we realized our users may have limitations on what gestures they can comfortably perform.</li>
+                                <li><span class="iteration-step-name">Gesture Binding:</span> A settings dialog was added that let the user change gesture to action bindings from a dropdown.</li>
+                                <li><span class="iteration-step-name">Keyboard Mode:</span> We added a keyboard mode for sighted users who prefer key presses over gestures. This required adding an input mode toggle and key-to-action bindings section to the settings dialog.</li>
+                                <li><span class="iteration-step-name">Inactivity Timeout:</span> Added an inactivity timeout function to the game player that auto-saves progress and exits after a set period of time passes without a gesture being recognized. This was made customizable to accommodate differing reaction times of users — the waiting period can be set from 0 mins 0 seconds to 59 mins 59 seconds.</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="content-card" id="game-heuristic-evaluations-and-improvements">
-                        <div class="section-title">Heuristic Evaluations and Improvements</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for heuristic evaluations and improvements.
-                        </div>
+                        <div class="section-title">Heuristic Evaluations &amp; Improvements</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Heuristic Principle</th>
+                                    <th>Problem</th>
+                                    <th>Solution</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Visibility of System Status</td>
+                                    <td>The original editor gives no feedback during saving, which could take several minutes due to TTS generation.</td>
+                                    <td>Added modal progress dialog so the creator knows the save is in progress and the UI does not appear frozen.</td>
+                                </tr>
+                                <tr>
+                                    <td>User Control and Freedom</td>
+                                    <td>The AI generation panel had no way to stop generation once started.</td>
+                                    <td>Added Stop button that cancels the LLM pipeline and leaves whatever nodes had already been generated on the canvas for the creator to work with.</td>
+                                </tr>
+                                <tr>
+                                    <td>Error Prevention</td>
+                                    <td>The settings dialog originally allowed the user to assign the same key or gesture to multiple actions, which would silently break input.</td>
+                                    <td>Added duplicate validation on save, with a clear warning message identifying the conflict.</td>
+                                </tr>
+                                <tr>
+                                    <td>Consistency and Standards</td>
+                                    <td>The arrows linking nodes were all one color making it difficult to differentiate between left and right options.</td>
+                                    <td>Used a red line for linking all right options and a blue line for all left.</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="content-card" id="game-final-ui-design">
-                        <div class="section-title">Final UI Design</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for final UI design.
+                        <div class="section-title">Final Design</div>
+                        <p class="survey-intro">In the end our UI design went through many changes as the project grew and received feedback from testers. Our final version of our interfaces are detailed below.</p>
+                        <p class="survey-intro">Both interfaces support dark mode, applied automatically based on the user's operating system appearance settings — no manual toggle is required.</p>
+
+                        <div class="final-subsection-title">Game Player</div>
+                        <p class="survey-intro">The game player interface is deliberately minimal. Its primary user may be visually impaired or have their eyes occupied, so the UI exists only to get the player into the game — everything after that is audio.</p>
+                        <ul class="findings-list">
+                            <li><strong>Player launcher</strong> — a small window with a file path field, a Browse button to select a .noui file, a Run button, and a Settings button. Once a file is selected, the user clicks Run. The game loop starts immediately on a background thread and begins narrating the main menu audio. The UI does not need to be looked at again.</li>
+                            <li><strong>Settings dialog</strong> — accessible before starting a game. Gives the player control over: the recogniser being used (keyboard or video), gesture bindings for video recognition, key bindings for keyboard mode, and the inactivity timeout — the period after which the game auto-saves progress and exits.</li>
+                        </ul>
+                        <div class="placeholder-block" style="margin-top: 1rem;">
+                            <div class="placeholder-title">Fig 4: Final Settings Page</div>
                         </div>
+
+                        <div class="final-subsection-title" style="margin-top: 1.75rem;">Game Engine</div>
+                        <p class="survey-intro">The game creation engine is a PySide6 desktop application built for game creators.</p>
+                        <ul class="findings-list">
+                            <li><strong>Home page</strong> — the application opens to a minimal home screen with two options: Create a New Game and Edit Game. The home page is intentionally sparse, with no unnecessary navigation menus or settings visible.</li>
+                        </ul>
+                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <div class="placeholder-title">Fig 5: Home Page</div>
+                        </div>
+                        <ul class="findings-list">
+                            <li><strong>Game creation page</strong> — the main editor view is divided into two sections. The left-hand side is a zoomable, scrollable node canvas displaying the game's branching story graph. Each node contains the scene text, a left option label, a right option label, and controls to set it as a win or lose node. Blue lines connect left option paths and red lines connect right option paths. The canvas can be zoomed with the scroll wheel and panned by dragging.</li>
+                        </ul>
+                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <div class="placeholder-title">Fig 6: Game Engine Canvas Final Design</div>
+                        </div>
+                        <ul class="findings-list">
+                            <li><strong>Title bar</strong> — contains the game title field, a voice selector dropdown (listing all 8 British Kokoro voices by name and gender), and a Preview button that plays a short audio sample of the selected voice from a pre-generated file.</li>
+                        </ul>
+                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <div class="placeholder-title">Fig 7: Voice selection and preview</div>
+                        </div>
+                        <ul class="findings-list">
+                            <li><strong>AI generation panel</strong> — the right-hand panel is the AI game generator. A text area at the bottom lets the creator describe their game, which is sent as a prompt to the local LLM. The canvas updates in real time as each node is generated, showing placeholder text for nodes not yet complete. A progress bar and status label track the generation state. A Stop button allows the creator to cancel generation at any time. Once generation is complete, the creator can edit any node manually before saving.</li>
+                        </ul>
                     </div>
 
                     <div class="content-card" id="game-references">
                         <div class="section-title">References</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">No-GUI Game</div>
-                            Placeholder content for references.
-                        </div>
+                        <ol class="findings-list">
+                            <li>National Autistic Society, "Preference for order, predictability or routine," <em>Autism.org.uk</em>, 2026. <a href="https://www.autism.org.uk/advice-and-guidance/about-autism/preference-for-order-predictability-or-routine" target="_blank">https://www.autism.org.uk/advice-and-guidance/about-autism/preference-for-order-predictability-or-routine</a> (accessed Mar. 25, 2026).</li>
+                            <li>GitHub, "GitHub Copilot · AI coding built your way," <em>GitHub</em>, 2026. <a href="https://github.com/features/copilot/ai-code-editor" target="_blank">https://github.com/features/copilot/ai-code-editor</a> (accessed Mar. 25, 2026).</li>
+                        </ol>
                     </div>
+
                 </div>
             </main>
         </div>
