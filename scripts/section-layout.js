@@ -54,6 +54,7 @@
             <a href="../implementation/tts.html">TTS Implementation</a>
             <a href="../implementation/llm.html">LLM Implementation</a>
             <a href="../implementation/game-player.html">No-GUI Game Player Implementation</a>
+            <a href="../implementation/ui-implementation.html">No-GUI Game - UI Implementation</a>
         </div>
     </details>
     <a class="nav-item" href="../testing/index.html">Testing</a>
@@ -142,6 +143,7 @@
         { path: 'implementation/tts.html',                          label: 'TTS Implementation' },
         { path: 'implementation/llm.html',                          label: 'LLM Implementation' },
         { path: 'implementation/game-player.html',                  label: 'No-GUI Game Player Implementation' },
+        { path: 'implementation/ui-implementation.html',            label: 'No-GUI Game - UI Implementation' },
         { path: 'testing/index.html',                               label: 'Testing' },
         { path: 'evaluation/index.html',                            label: 'Evaluation' },
         { path: 'evaluation/summary-of-achievements.html',          label: 'Summary of Achievements' },

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UI Implementation</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
+    <body>
+        <div id="shared-top-nav">
+        </div>
+        <div class="page-layout">
+            <div id="shared-sidebar">
+            </div>
+            <main class="content">
+                <div class="content-card">
+                    <h1>No-GUI Game - UI Implementation</h1>
+                    <p>The graphical user interface is built using PySide6, Qt's official Python binding. The UI consists of two main pages: GameCreationPage (Game Engine) and PlayerPage (Game Player).</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Threading Model</h2>
+                    <p>Two operations that are triggered from the GameCreationPage are too slow to run on the main thread.</p>
+                    <ul>
+                        <li>AI Generation of a game (by the local LLM)</li>
+                        <li>Saving of a game (text-to-speech generation for each node)</li>
+                    </ul>
+                    <p>If executed on the main thread, the Qt event loop blocks and the UI freezes. To prevent this, both operations are executed in a background QThread.</p>
+                    <p>Each of these operations is wrapped in a worker class: _GameGenerationWorker and _GameSaveWorker. The worker is moved to a QThread and started as seen below:</p>
+                    <pre><code>thread = QtCore.QThread(self)
+       worker = _GameGenerationWorker(prompt)
+       worker.moveToThread(thread)
+
+
+       thread.started.connect(worker.run)
+       worker.progress.connect(self._on_generation_progress)
+       worker.finished.connect(self._on_generation_finished)
+       worker.cancelled.connect(self._on_generation_cancelled)
+       worker.failed.connect(self._on_generation_failed)
+       worker.done.connect(self._on_generation_done)
+       worker.done.connect(thread.quit)
+       thread.finished.connect(worker.deleteLater)
+       thread.finished.connect(self._on_generation_thread_finished)
+       thread.finished.connect(thread.deleteLater)
+
+
+       self._generation_thread = thread
+       self._generation_worker = worker
+       thread.start()</code></pre>
+                    <p>moveToThread transfers ownership of the worker object to the background thread. From that point, worker.run() executes entirely off the main thread. When it completes or fails, it emits a signal - finished, failed, or done, which Qt delivers back to the main thread where the connected slot updates the UI safely.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Signals for AI Generation</h2>
+                    <p>AI Generation is the most complex process handled by the game engine. It has multiple steps: blueprint generation and then node-by-node story generation, that produce real-time updates to the game graph in the GameCreationPage UI.</p>
+                    <p>This is achieved using Qt signals that send updates to the UI during generation.</p>
+                    <p>_GameCreationWorker defines 5 signals:</p>
+                    <pre><code>   progress = QtCore.Signal(dict)
+   finished = QtCore.Signal(object)
+   cancelled = QtCore.Signal(str)
+   failed = QtCore.Signal(str)
+   done = QtCore.Signal()</code></pre>
+                    <p>The worker passes self._emit_progress() to the game generator:</p>
+                    <pre><code>generator.generate_game(
+               self.prompt,
+               progress_cb=self._emit_progress,
+               cancel_event=self._cancel_event,
+           )</code></pre>
+                    <p>Whenever the pipeline produces intermediate results, it calls: progress_cb(payload). The workers _emit_progress method receives these payloads and emits them as a Qt signal.</p>
+                    <pre><code>@staticmethod
+   def _emit_progress(progress_cb: Callable[[dict[str, Any]], None] | None, **payload: Any) -> None:
+       if progress_cb is not None:
+           progress_cb(payload)</code></pre>
+                    <p>Qt then delivers the signal to the main thread, where the UI updates safely.</p>
+                    <p>This design ensures that:</p>
+                    <ul>
+                        <li>The LLM pipeline remains UI-agnostic</li>
+                        <li>Qt-specific logic is contained within the worker</li>
+                        <li>Background work and UI updates remain cleanly separated</li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
+        <script src="../scripts/section-layout.js">
+        </script>
+    </body>
+</html>
