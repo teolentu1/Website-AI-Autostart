@@ -73,8 +73,7 @@
             <a href="../appendices/no-ui-game-readme.html">No GUI Game README</a>
             <a href="../appendices/gdpr.html">GDPR and Legal Compliance</a>
             <a href="../appendices/privacy-policy.html">Privacy Policy</a>
-            <a href="../appendices/dependencies.html">Dependencies</a>
-            <a href="../appendices/contributions.html">Contributions</a>
+<a href="../appendices/contributions.html">Contributions</a>
             <a href="../appendices/progress-videos.html">Monthly Progress Videos</a>
         </div>
     </details>
@@ -152,7 +151,7 @@
         { path: 'appendices/ai-autostart-readme.html',              label: 'AI-Autostart README' },
         { path: 'appendices/no-ui-game-readme.html',                label: 'No GUI Game README' },
         { path: 'appendices/gdpr.html',                             label: 'GDPR and Legal Compliance' },
-        { path: 'appendices/dependencies.html',                     label: 'Dependencies' },
+        { path: 'appendices/privacy-policy.html',                   label: 'Privacy Policy' },
         { path: 'appendices/contributions.html',                    label: 'Contributions' },
         { path: 'appendices/progress-videos.html',                  label: 'Monthly Progress Videos' },
     ];
