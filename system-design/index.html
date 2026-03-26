@@ -184,7 +184,6 @@
                 <!-- Design Patterns -->
                 <div class="content-card" id="design-patterns">
                     <div class="section-title">Design Patterns</div>
-                    <p>placeholder text</p>
                     <div class="tab-bar">
                         <button class="tab-btn" data-product="autostart" data-section="patterns">AI-Autostart</button>
                         <button class="tab-btn active" data-product="game" data-section="patterns">No-GUI Game</button>
@@ -200,32 +199,18 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="pattern-name">Singleton</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
                                     <td class="pattern-name">Observer</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td class="pattern-name">Strategy</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td class="pattern-name">Factory</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td class="pattern-name">Command</td>
-                                    <td>placeholder</td>
+                                    <td><code>VideoGestureRecogniser</code> is responsible for hand gesture recognition only. It has 2 subscribers, 
+                                        that are continuously updated about a hand gesture recognised, <code>PowerManager</code> and <code>GestureController</code>. 
+                                        <code>PowerManager</code> uses this data to manage power consumption of the <code>VideoGestureRecogniser</code>, while <code>GestureController</code> uses this data to startup/close applications.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         <h3 style="margin-top: 1.75rem;">Design Principles</h3>
                         <ul class="principles-list">
-                            <li><strong>Single Responsibility (SRP)</strong> placeholder</li>
-                            <li><strong>Open/Closed (OCP)</strong> placeholder</li>
-                            <li><strong>Don't Repeat Yourself (DRY)</strong> placeholder</li>
+                            <li><strong>Single Responsibility (SRP)</strong> — each component has one clear purpose, e.g. <code>VideoGestureRecogniser</code>, <code>Talker</code></li>
+                            <li><strong>Don't Repeat Yourself (DRY)</strong> — code reuse is used heavily throughout the codebase</li>
                         </ul>
                     </div>
 
@@ -239,28 +224,33 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="pattern-name">Template Method</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td class="pattern-name">Chain of Responsibility</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
-                                    <td class="pattern-name">State</td>
-                                    <td>placeholder</td>
-                                </tr>
-                                <tr>
                                     <td class="pattern-name">Observer</td>
-                                    <td>placeholder</td>
+                                    <td>This design pattern is also used to dynamically update the UI during the AI generation of the No-GUI game. After any progress 
+                                        has been made, classes from the <code>game_generation_local_llm</code> package update the UI, allowing the user to view the 
+                                        current progress of the game generation in real-time.
+                                    </td>
                                 </tr>
+                                <tr>
+                                    <td class="pattern-name">Strategy</td>
+                                    <td><code>GamePlayer</code> class is responsible for the main loop of the game. It interacts with the user using the 
+                                        <strong>dependency injected</strong> recogniser class. This class can be either <code>VideoGestureRecogniser</code>, or <code>KeyboardInputHandler</code>. Both of these 
+                                        classes have a public facing method <code>get_gesture</code>, simulating an interface in python. This allows the <code>GamePlayer</code> to use the 
+                                        recogniser without having to know whether the input is from the webcam or from the keyboard.</td>
+                                </tr>
+                                <tr>
+                                    <td class="pattern-name">Mediator</td>
+                                    <td>Game generation consists of two steps, generation of the blueprint using <code>BlueprintGenerator</code>, and then generation of the actual 
+                                        story using <code>StoryGenerator</code>. To avoid illogical dependencies, we have chosen to implement a third class <code>GameGenerator</code>, 
+                                        that mediates these two classes, calling one, and then the other. This class then reduces chaotic dependencies, 
+                                        enabling the objects to communicate only through the mediator <code>GameGenerator</code> class.
+                                    </td>                              
+                                    </tr>
                             </tbody>
                         </table>
                         <h3 style="margin-top: 1.75rem;">Design Principles</h3>
                         <ul class="principles-list">
-                            <li><strong>Single Responsibility (SRP)</strong> placeholder</li>
-                            <li><strong>Open/Closed (OCP)</strong> placeholder</li>
-                            <li><strong>Don't Repeat Yourself (DRY)</strong> placeholder</li>
+                            <li><strong>Single Responsibility (SRP)</strong> — each component has one clear purpose, e.g. <code>VideoGestureRecogniser</code>, <code>Talker</code></li>
+                            <li><strong>Don't Repeat Yourself (DRY)</strong> — code reuse is used heavily throughout the codebase</li>
                         </ul>
                     </div>
                 </div>
