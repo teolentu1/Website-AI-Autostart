@@ -6,21 +6,272 @@
         <title>Testing</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .test-section {
+                margin-top: 1.25rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--border);
+            }
+
+            .test-section:first-child {
+                margin-top: 0;
+                padding-top: 0;
+                border-top: none;
+            }
+
+            .test-section h3 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.05rem;
+                color: var(--text-primary);
+            }
+
+            .test-section p {
+                color: var(--text-secondary);
+            }
+
+            .test-case-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 0.75rem;
+                font-size: 0.93rem;
+            }
+
+            .test-case-table th {
+                background: var(--bg-light);
+                color: var(--text-primary);
+                font-weight: 700;
+                padding: 0.75rem 1rem;
+                text-align: left;
+                border-bottom: 2px solid var(--border);
+            }
+
+            .test-case-table td {
+                padding: 0.7rem 1rem;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+                vertical-align: top;
+                line-height: 1.6;
+            }
+
+            .test-case-table tr:last-child td {
+                border-bottom: none;
+            }
+
+            .test-case-table tr:hover td {
+                background: var(--bg-light);
+            }
+
+            .product-label {
+                font-weight: 700;
+                color: var(--text-primary);
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .feedback-block {
+                background: var(--bg-light);
+                border: 1px solid var(--border);
+                border-left: 4px solid var(--primary);
+                border-radius: var(--radius);
+                padding: 0.9rem 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .feedback-block:last-child {
+                margin-bottom: 0;
+            }
+
+            .feedback-product {
+                font-weight: 700;
+                color: var(--primary);
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .feedback-block[data-product="game"] {
+                border-left-color: var(--secondary);
+            }
+
+            .feedback-block[data-product="game"] .feedback-product {
+                color: var(--secondary);
+            }
+
+            .spec-row {
+                display: flex;
+                gap: 0.5rem;
+                align-items: baseline;
+                margin-bottom: 0.3rem;
+                font-size: 0.93rem;
+            }
+
+            .spec-key {
+                font-weight: 600;
+                color: var(--text-primary);
+                white-space: nowrap;
+            }
+
+            .spec-val {
+                color: var(--text-secondary);
+            }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
+
                 <div class="content-card">
                     <h1>Testing</h1>
-                    <p>This page is reserved for the Testing section content.</p>
                 </div>
+
+                <!-- On This Page -->
+                <div class="content-card">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#testing-approach">Testing Approach</a>
+                        <a href="#manual-testing">Manual Testing</a>
+                        <a href="#unit-testing">Unit Testing</a>
+                        <a href="#performance-testing">Performance Testing</a>
+                        <a href="#user-testing">User Testing</a>
+                    </div>
+                </div>
+
+                <!-- Testing Approach -->
+                <div class="content-card" id="testing-approach">
+                    <div class="section-title">Testing Approach</div>
+                    <p class="section-text">For both AI-Autostart and No-GUI Game, we placed a strong emphasis on manual and user testing. Our overall approach covered four areas:</p>
+                    <ul class="findings-list" style="margin-top: 0.5rem;">
+                        <li><strong>Manual exploratory testing</strong> — carried out continuously throughout development</li>
+                        <li><strong>Unit testing</strong> — focused on the No-GUI Game's Storage Manager</li>
+                        <li><strong>Performance testing</strong> — CPU and GPU usage during AI generation in the No-GUI Game Engine</li>
+                        <li><strong>User testing</strong> — conducted with the development team and coursemates</li>
+                    </ul>
+                    <p class="section-text" style="margin-top: 0.75rem;">The No-GUI Game was tested across all four areas. Unit tests were written for <code>storageManager</code> — the component responsible for reading and writing <code>.noui</code> files — as it is the most critical part of the system. Other components (GUI, AI generation, gesture recognition, audio playback) are harder to test automatically and were covered through exploratory and user testing instead.</p>
+                    <p class="section-text">AI-Autostart was tested through manual and user testing only.</p>
+                </div>
+
+                <!-- Manual Testing -->
+                <div class="content-card" id="manual-testing">
+                    <div class="section-title">Manual Testing</div>
+                    <p class="section-text">Manual testing consisted of two main approaches:</p>
+
+                    <div class="test-section">
+                        <h3>Testing During Development</h3>
+                        <p>After the addition of every new feature, we manually tested the full application to catch any regressions or newly introduced bugs. This was informal but frequent throughout the development process.</p>
+                    </div>
+
+                    <div class="test-section">
+                        <h3>Testing by Other Users</h3>
+                        <p>We also had other users interact with the application without our guidance. This uncovered usability issues and unexpected behaviours that we had grown blind to during development.</p>
+                    </div>
+                </div>
+
+                <!-- Unit Testing -->
+                <div class="content-card" id="unit-testing">
+                    <div class="section-title">Unit Testing — No-GUI Game Storage Manager</div>
+                    <p class="section-text">Unit tests were written specifically for <code>storageManager</code>, the component responsible for reading and writing <code>.noui</code> files. As the shared data layer between the engine and player, it required automated coverage to ensure correctness across changes.</p>
+                </div>
+
+                <!-- Performance Testing -->
+                <div class="content-card" id="performance-testing">
+                    <div class="section-title">Performance Testing — No-GUI Game</div>
+                    <p class="section-text">We used performance testing to evaluate CPU and GPU usage of the local LLM in the No-GUI Game Engine during AI generation.</p>
+
+                    <div class="test-section">
+                        <h3>Test Hardware</h3>
+                        <div class="spec-row"><span class="spec-key">OS:</span><span class="spec-val">Windows</span></div>
+                        <div class="spec-row"><span class="spec-key">CPU:</span><span class="spec-val">Intel® Core™ Ultra 7 155H (1.40 GHz)</span></div>
+                        <div class="spec-row"><span class="spec-key">RAM:</span><span class="spec-val">32.0 GB</span></div>
+                        <p style="margin-top: 0.6rem;">Since one of our requirements is that the application runs on any Windows device, we did not feel it was relevant or realistic to test on higher-end hardware.</p>
+                    </div>
+
+                    <div class="test-section">
+                        <h3>Results</h3>
+                        <p>CPU utilisation during generation remained moderate at around 21% average and stayed consistent. When the same process was run using the GPU, usage reached 98% and the full 17.9 GB of shared GPU memory was in use.</p>
+                        <p>Based on these results, our compiled product is configured to run AI generation on the CPU, where it performed better on the test device.</p>
+                        <div class="fig-row" style="margin-top: 1rem;">
+                            <figure class="fig-block">
+                                <img src="../assets/images/cpu.png" alt="CPU usage during local LLM generation">
+                                <figcaption>Fig. 1 — CPU utilisation during AI generation (~21% average)</figcaption>
+                            </figure>
+                            <figure class="fig-block">
+                                <img src="../assets/images/gpu.png" alt="GPU usage during local LLM generation">
+                                <figcaption>Fig. 2 — GPU utilisation during AI generation (~98%, 17.9 GB VRAM)</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Testing -->
+                <div class="content-card" id="user-testing">
+                    <div class="section-title">User Testing</div>
+                    <p class="section-text"><strong>Testers:</strong> 10 participants aged 18–22 (male and female)</p>
+
+                    <div class="test-section">
+                        <h3>Test Cases</h3>
+                        <table class="test-case-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Task</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="product-label">AI-Autostart</td>
+                                    <td>Configure the settings to map a gesture to open a file, then trigger it using their webcam</td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label" rowspan="2">No-GUI Game Player</td>
+                                    <td>Play through a <code>.noui</code> game using webcam mode</td>
+                                </tr>
+                                <tr>
+                                    <td>Play through a <code>.noui</code> game using keyboard mode</td>
+                                </tr>
+                                <tr>
+                                    <td class="product-label" rowspan="2">No-GUI Game Engine</td>
+                                    <td>Manually create a short game and save it</td>
+                                </tr>
+                                <tr>
+                                    <td>AI-generate a game using the AI helper side panel</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="test-section">
+                        <h3>User Feedback</h3>
+
+                        <div class="feedback-block" data-product="autostart">
+                            <div class="feedback-product">AI-Autostart</div>
+                            <ul class="findings-list">
+                                <li>Users enjoyed seamlessly opening <code>.noui</code> games through the application</li>
+                                <li>One user was frustrated that it could not close Word</li>
+                            </ul>
+                        </div>
+
+                        <div class="feedback-block" data-product="game">
+                            <div class="feedback-product">No-GUI Game Player</div>
+                            <ul class="findings-list">
+                                <li>Users found gesture recognition to be reliable and the application easy to use</li>
+                                <li>One user found it frustrating that the Main Menu audio played again after quitting</li>
+                                <li>Users found the game prompts to be descriptive and easy to follow</li>
+                            </ul>
+                        </div>
+
+                        <div class="feedback-block" data-product="game">
+                            <div class="feedback-product">No-GUI Game Engine</div>
+                            <ul class="findings-list">
+                                <li>Users enjoyed the voice preview button</li>
+                                <li>All testers used the AI helper panel and provided positive feedback about the live generation preview</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
-        </script>
+        <script src="../scripts/section-layout.js"></script>
     </body>
 </html>
