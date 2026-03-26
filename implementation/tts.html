@@ -16,10 +16,53 @@
             <main class="content">
                 <div class="content-card">
                     <h1>TTS Implementation</h1>
-                    <p>This page is reserved for the TTS (Text-to-Speech) implementation content.</p>
+                    <p>A text-to-speech model has been used to generate audio for the No-GUI games. The model used in this project is <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank">hexgrad/Kokoro-82M </a><sup><a href="#ref-1">[1]</a></sup>.</p>
+                    <p>The Hexgrad team provides a kokoro package that allows for easy integration of the model into python programs. The package offers multiple language codes, as well as multiple speaker voices in the given language code.</p>
+                    <p>Talker is the public facing class responsible for generation of text-to-speech audio. The Kokoro pipeline is lazily loaded, since we have found that it has been a major performance bottleneck for the startup of the No-GUI engine.</p>
+                    <pre><code>class Talker:
+   def __init__(self):
+       # 'b' - for British English
+       self.pipeline: KPipeline | None = None
+
+
+   def _get_pipeline(self) -> KPipeline:
+       if self.pipeline is None:
+           self.pipeline = KPipeline(lang_code='b', repo_id="hexgrad/Kokoro-82M")
+       return self.pipeline</code></pre>
+                    <p>As can be seen in the _get_pipeline method, the language code is one of the pipeline constructor arguments. Currently, the language code is set to 'b', standing for British English. 
+                        This decision has been made after a discussion with the client. Kokoro offers 8 British English speakers, 4 male and 4 female. 
+                        Their corresponding codes can be found here: <a href="https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md" target="_blank">VOICES.md</a>.
+                        The codes for the British English speakers are used by frontend to request a specific voice to transcribe the text.
+                    </p>
+                    <p>The audio generation itself is performed in the public facing method generate_speech. This method takes in 3 arguments:</p>
+                    <ul>
+                        <li>text - text to transcribe</li>
+                        <li>output_file</li>
+                        <li>voice - the voice of the speaker transcribing</li>
+                    </ul>
+                    <pre><code>def generate_speech(self, text: str, output_file: str, voice: str):
+   generator = self._get_pipeline()(text, voice=voice)
+
+
+   audio_chunks = []
+   for gs, ps, audio in generator:
+       audio_chunks.append(audio)
+
+
+   if audio_chunks:
+       import numpy as np
+       full_audio = np.concatenate(audio_chunks)
+       sf.write(output_file, full_audio, 24000)</code></pre>
+                    <p>The audio is then saved into the output_file as a .wav file, concluding the single responsibility of the Talker class: text-to-speech generation.</p>
                 </div>
+
+                <ol class="references-list">
+                    <li id="ref-1">hexgrad, "VOICES.md · hexgrad/Kokoro-82M at main," Huggingface.co, Jan. 29, 2025. <a href="https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md" target="_blank">https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md</a> (accessed Mar. 26, 2026).</li>
+                </ol>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>
