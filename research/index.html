@@ -129,22 +129,66 @@
                                 <p>Our initial starting point for this project was Intel's Wi-Fi 7 sensing technology that detects when a person sits down in front of a computer using the wireless signal itself, triggering the machine to wake and begin interaction without any explicit user input.</p>
                                 <p>We were inspired by how the interaction was initiated without requiring the user to press a button or look at a screen directly, and asked ourselves how this could be used to make systems more accessible.</p>
                             </div>
+
+                            <div class="research-entry">
+                                <h4>GestureSign <sup>[2]</sup></h4>
+                                <p>GestureSign is a Windows-based gesture recognition software that allows users to control their computer using webcam-detected hand gestures. It supports launching applications, navigating menus, and controlling media through predefined gestures.</p>
+                                <p><strong>Our Key Differences</strong></p>
+                                <ul>
+                                    <li>GestureSign is a direct interaction tool that recognises gestures drawn with a touch, mouse, or trackpad, rather than hand gestures.</li>
+                                    <li>AI-Autostart is designed specifically for automatic application and file launching, unlike GestureSign, which focuses on broad desktop control.</li>
+                                </ul>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>Flutter App <sup>[3]</sup></h4>
+                                <p>Flutter App was a gesture recognition software that allowed users to control applications such as Spotify, VLC, and iTunes using webcam-based hand gestures without additional hardware.</p>
+                                <p><strong>Our Key Differences</strong></p>
+                                <ul>
+                                    <li>Flutter focused mainly on media control, while AI-Autostart supports any Windows application or file.</li>
+                                    <li>AI-Autostart supports custom gesture mappings, not fixed commands.</li>
+                                    <li>AI-Autostart is designed as a background automation tool, not a foreground application.</li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="research-section">
-                            <h2>Technologies</h2>
-                            <p>placeholder</p>
-                        </div>
+                            <h2>Technology Review</h2>
 
-                        <div class="research-section">
-                            <h3>Field Research</h3>
-                            <p>placeholder</p>
+                            <div class="research-entry">
+                                <h4>PySide6</h4>
+                                <p>PySide6 is the primary GUI framework for the system tray app and settings window. For some time we were using pystray for the system tray app, however we switched to PySide6 towards the end because it has cross-platform consistency. In future work, we would like to expand the app to be used on other operating environments, so PySide6 was the better choice for future scalability.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>MediaPipe Gesture Recognizer</h4>
+                                <p>MediaPipe is used for hand landmark-based gesture recognition from live webcam frames. We chose it over training a custom deep-learning pipeline from scratch because we needed stable real-time performance and fast implementation.</p>
+                                <p>Once we decided on MediaPipe, we explored different libraries to decide on the best fit. We compared MediaPipe Hands and MediaPipe Gesture Recognizer through various testing before choosing the gesture recognizer library. This decision was made because we found that it provided more reliable recognition.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>OpenCV</h4>
+                                <p>Part of the MediaPipe pipeline. Used for webcam frame capture and preprocessing before passing frames to MediaPipe.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>OpenVINO (Person Detection)</h4>
+                                <p>OpenVINO is used for optional person detection and region-of-interest cropping before gesture recognition. We ultimately chose it over MediaPipe Pose and other landmark-based methods because it offered a simpler and more reliable integration with our existing pipeline.</p>
+                                <p>MediaPipe Tasks had version conflicts with the Python version required for other parts of our project, and the pose-based methods were awkward to implement consistently alongside the gesture recognizer. OpenVINO's pre-trained person detection model allowed straightforward bounding-box extraction for the main person, making ROI-based processing easier to implement and more robust in practice.</p>
+                            </div>
+
+                            <div class="research-entry">
+                                <h4>AppOpener</h4>
+                                <p>AppOpener handles opening and closing installed Windows applications in response to gesture-triggered commands. We chose it over using OS-native commands because it already manages most of the operational complexity, including locating installed apps and executing them reliably.</p>
+                            </div>
                         </div>
 
                         <div class="research-section">
                             <h2>References</h2>
                             <ol class="references-list">
                                 <li>Intel Technology, "Intel Technology | Wi-Fi Proximity Sensing," Youtube.com, Nov. 15, 2022. <a href="https://www.youtube.com/watch?v=3WFx-8agAq4" target="_blank">https://www.youtube.com/watch?v=3WFx-8agAq4</a> (accessed Mar. 21, 2026).</li>
+                                <li>GestureSign, "GestureSign – Free gesture recognition software for Windows," [Online]. Available: <a href="https://gesturesign.win/#/" target="_blank">https://gesturesign.win/#/</a>. [Accessed: 26-Mar-2026].</li>
+                                <li>Wikipedia, "Flutter (American company)," Wikipedia, The Free Encyclopedia, Mar. 26, 2026. [Online]. Available: <a href="https://en.wikipedia.org/wiki/Flutter_%28American_company%29" target="_blank">https://en.wikipedia.org/wiki/Flutter_(American_company)</a>. [Accessed: 26-Mar-2026].</li>
                             </ol>
                         </div>
 
