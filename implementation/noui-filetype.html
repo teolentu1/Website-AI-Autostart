@@ -16,10 +16,49 @@
             <main class="content">
                 <div class="content-card">
                     <h1>.noui Filetype</h1>
-                    <p>This page is reserved for the .noui filetype implementation content.</p>
+                    <p>The .noui filetype is a custom filetype of this project, that contains all the data required to play a game. It is a unit that can be easily transferred between users, and allows them to play the game, given they have the No-GUI player installed on their machine.</p>
+                    <p>The filetype is a zipped folder, with a custom file extension. This allows the operating system to differentiate the .noui game from other files on the user's system. The more interesting part about this filetype is registration with the operating system.</p>
+                    <p>Even though the file extension differentiates the file, the operating system still does not know how to handle the .noui games correctly. A feature to register a file type has been implemented using the winreg python library.</p>
+                    <p>When a file is opened by double-clicking, Windows goes through Windows Registry, which is among other things, a database of all file associations. The actual registration of the file type is done in module register_file_type.</p>
+                    <p>The shell open command ran by the operating system is registered:</p>
+                    <pre><code># 1. Register the ProgID and its shell open command
+with winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Classes\{prog_id}") as key:
+   winreg.SetValue(key, "", winreg.REG_SZ, description)
+
+
+with winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Classes\{prog_id}\shell\open\command") as key:
+   winreg.SetValue(key, "", winreg.REG_SZ, f'"{exe_path}" "%1"')</code></pre>
+                    <p>Note the last line, defining the positional command line argument, %1 stands for the path to the .noui game. This is the reason why the main method takes in an optional command line argument:</p>
+                    <pre><code>import sys
+from src.game_player.gui import playerPage
+
+
+if __name__ == "__main__":
+   if len(sys.argv) > 1:
+     # when .noui file type opened directly
+       playerPage.run(sys.argv[1])
+   else:
+       # when the engine ran on its own
+       playerPage.run()</code></pre>
+                    <p>Then, the file icon is registered:</p>
+                    <pre><code># 2. Optionally register an icon
+if icon_path:
+   with winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Classes\{prog_id}\DefaultIcon") as key:
+       winreg.SetValue(key, "", winreg.REG_SZ, icon_path)</code></pre>
+                    <p>And the association with the file type is created:</p>
+                    <pre><code># 3. Associate the file extension with the ProgID
+with winreg.CreateKey(winreg.HKEY_CURRENT_USER, rf"Software\Classes\{extension}") as key:
+   winreg.SetValue(key, "", winreg.REG_SZ, prog_id)</code></pre>
+                    <p>After a successful file type registration, the file type should move from an unrecognised icon to the icon set by the command.</p>
+                    <figure class="fig-block">
+                        <img src="../assets/images/file-registration.png" alt="File Registration">
+                        <figcaption>Fig. 1 - File Registration</figcaption>
+                    </figure>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>

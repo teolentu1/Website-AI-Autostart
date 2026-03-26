@@ -16,10 +16,88 @@
             <main class="content">
                 <div class="content-card">
                     <h1>No-GUI Game Graph Representation</h1>
-                    <p>This page is reserved for the No-GUI Game Graph Representation implementation content.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Structure of the Game Graph</h2>
+                    <p>While interacting with the graph of the game, the game is represented as a standard graph. Each node is represented as a <code>Node</code> class. A reference to the whole graph is simply a reference to the <code>root</code> node. The <code>adjacency_list</code> takes <code>EnumLR</code> as its key — an enum representing left and right options — so each node has at most 2 references to other nodes.</p>
+                    <pre><code>class Node:
+   def __init__(self, text: str, left_option: str = "", right_option: str = ""):
+       self.id: int = id(self)
+       self._text = text
+       self.left_option = left_option
+       self.right_option = right_option
+       self.adjacency_list: dict[EnumLR, Node] = {}
+       self.is_win: bool = False
+       self.is_losing: bool = False</code></pre>
+                    <p>This is a natural representation of a graph, but in some instances a graph like this becomes a recursive data structure (when node A points to node B and node B points to node A). This imposes a challenge of serialising the data structure into a standardised format like JSON.</p>
+                    <p>We have therefore implemented a serialised version of a node called <code>SerialNode</code>:</p>
+                    <pre><code>class SerialNode(BaseModel):
+   id: int
+   text: str
+   left_option: str = ""
+   right_option: str = ""
+   adjacency_list: dict[EnumLR, int]
+   is_win: bool = False
+   is_losing: bool = False</code></pre>
+                    <p><code>SerialNode</code> holds the same data as <code>Node</code>, but does not include direct references to other serial nodes — instead it indirectly references other nodes by their corresponding ids.</p>
+                    <p>All nodes are then put into a dictionary where each key is the serial node's id and the value is the actual <code>SerialNode</code>. This data structure is called a <code>SerialGraph</code>:</p>
+                    <pre><code>class SerialGraph(BaseModel):
+   nodes: dict[int, SerialNode]</code></pre>
+                    <p>Both classes implement the <code>BaseModel</code> class from the Pydantic library, inheriting the utility methods <code>model_validate_json</code> (convert JSON to the class), <code>model_dump_json</code> (convert the class to JSON), and <code>model_json_schema</code> (used in LLM structured output generation).</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Converting Between Serial and Standard Graph</h2>
+                    <p>Conversion between the serialised and standard graph assumes:</p>
+                    <blockquote>The game graph is a fully connected graph, and every node is eventually reachable from the root node.</blockquote>
+                    <p>This is an acceptable assumption since gameplay always starts from the root node, and any node that is meaningful in the game must be reachable from it.</p>
+
+                    <h3>Serialisation of Graph</h3>
+                    <p>Serialising an individual node is straightforward — <code>SerialNode</code> holds the same data as <code>Node</code> but stores adjacent node ids rather than direct references. This method is used internally by <code>SerialGraph</code> to serialise the whole graph:</p>
+                    <pre><code>@classmethod
+def serialize_node(cls, node: Node) -> Self:
+   return SerialNode(
+       id=node.get_id(),
+       text=node.getText(),
+       left_option=node.left_option,
+       right_option=node.right_option,
+       adjacency_list={side: adjacent_node.get_id() for
+                       side, adjacent_node in
+                       node.adjacencyList.items()},
+       is_win=node.is_win,
+       is_losing=node.is_losing
+   )</code></pre>
+                    <p><code>SerialGraph</code> includes a class method <code>serialize_graph</code>. Starting from the root node, it uses a depth-first search to traverse the whole game graph, storing each converted node as a <code>SerialNode</code> in the <code>SerialGraph</code>'s node dictionary:</p>
+                    <pre><code>@classmethod
+def serialize_graph(cls, root: Node) -> Self:
+   serial_graph: SerialGraph = SerialGraph(nodes={})
+
+   def dfs(node: Node):
+       if node.get_id() in serial_graph.nodes:
+           return
+       serial_graph.nodes[node.get_id()] = SerialNode.serialize_node(node)
+       for adjacent_node in node.adjacencyList.values():
+           dfs(adjacent_node)
+
+   dfs(root)
+   return serial_graph</code></pre>
+                    <p>The serialised graph is then ready to be saved to a JSON file using Pydantic's <code>model_dump_json</code> method.</p>
+
+                    <h3>Deserialisation of Serial Graph</h3>
+                    <p>Deserialising a serial graph from JSON into a playable standard graph is done in two iterations over the <code>SerialGraph</code>'s nodes dictionary.</p>
+                    <p>In the first iteration, all individual nodes are converted from <code>SerialNode</code> to <code>Node</code> and stored in an id-to-node dictionary alongside the root node. In the second iteration, connections between these nodes are established, producing the final deserialised graph referenced by the root node:</p>
+                    <pre><code>@classmethod
+def deserialize_graph(cls, serial_graph: Self) -> Node:
+   root, nodes = SerialGraph._load_nodes(serial_graph)
+   SerialGraph._establish_connections(serial_graph, nodes)
+
+   return root</code></pre>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>
