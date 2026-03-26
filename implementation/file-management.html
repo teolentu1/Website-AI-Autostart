@@ -16,10 +16,152 @@
             <main class="content">
                 <div class="content-card">
                     <h1>No-GUI Game File Management (storageManager)</h1>
-                    <p>This page is reserved for the No-GUI Game File Management implementation content.</p>
+                    <h2 class="section-title">Game Saving</h2>
+                    <p>The serialization and deserialization of a game graph was explained in the section 'Game graph representation'. This section now looks into the actual process of saving and loading a game into/from a .noui file.</p>
+                    <p>The process of saving and loading is encapsulated in the StorageManager component of the system. This component is further divided into 3 subclasses:</p>
+                    <ul>
+                        <li>GameSaver - responsible for saving the game into .noui filetype</li>
+                        <li>GameLoader - responsible for loading the game from .noui filetype</li>
+                        <li>ProgressManager - for managing the game progress</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">GameSaver</h2>
+                    <p>This class offers one public facing method: save_game. This method saves the given graph into the given file path, and generates audio for the whole game.</p>
+                    <pre><code>def save_game(self, path_to_save: str, game_name: str, root: Node, voice: str):
+   serialized_graph: SerialGraph = SerialGraph.serialize_graph(root)
+   zip_path: str = os.path.join(path_to_save, game_name + config.FILE_EXTENSION)
+
+
+   self._check_zip_path(zip_path)
+
+
+   with tempfile.TemporaryDirectory() as tmp_dir:
+       stage_path: str = os.path.join(tmp_dir, game_name)
+       os.makedirs(os.path.join(stage_path, "audio"))
+
+
+       self.save_graph(stage_path, serialized_graph)
+       self._generate_audio(serialized_graph, stage_path, voice, game_name)
+
+
+       self._zip_folder_to(stage_path, zip_path)</code></pre>
+                    <p>The method creates a temporary directory using the tempdir library. This allows the application to save the files while generating into the temporary directory, and as a last step, zip the folder, and save it as a .noui filetype.</p>
+                    <p>Audio generation is using the Talker class for text-to-speech. In GameSaver, there are 2 methods. The first one is _generate_audio, responsible for generation of main scene and options audio files, for each node of the game graph.</p>
+                    <pre><code>def _generate_audio(self, serial_graph: SerialGraph, game_path: str, voice: str, game_name: str):
+   for node_id, serial_node in serial_graph.nodes.items():
+       # generate the main text audio
+       main_text_audio_file: str = os.path.join(game_path, "audio", Node.get_main_text_audio_filename(node_id))
+       self._talker.generate_speech(serial_node.text, main_text_audio_file, voice)
+
+
+       # generate the options audio
+       options_audio_file: str = serial_node.get_options_text()
+       output_file = os.path.join(game_path, "audio", Node.get_options_audio_filename(node_id))
+       self._talker.generate_speech(options_audio_file, output_file, voice)
+
+
+   self._generate_helper_audios(game_path, voice, game_name)</code></pre>
+                    <p>As the last step, helper audio is generated using the _generate_helper_audios method. This method is generated for each game, because it contains the audio for each non-game interaction, such as the main menu, when the user wins or when the user loses.</p>
+                    <pre><code>def _generate_helper_audios(self, game_path: str, voice: str, game_name: str) -> None:
+   # generate win/lose outcome audio
+   self._talker.generate_speech("You win! Congratulations!", os.path.join(game_path, "audio", "win.wav"), voice)
+   self._talker.generate_speech("Game over!", os.path.join(game_path, "audio", "lose.wav"), voice)
+
+
+   # generate main menu audio
+   self._talker.generate_speech(f"Welcome to {game_name}!",
+                                os.path.join(game_path, "audio", "main_menu_welcome.wav"),
+                                voice
+   )
+
+
+   # main menu options audio
+   self._talker.generate_speech(
+       "To start a new game, choose the right option.",
+       os.path.join(game_path, "audio", "main_menu_new_game.wav"),
+       voice
+   )
+   s etc...</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">GameLoader</h2>
+                    <p>This class exposes one public method load_graph. This method firstly takes in the .noui filetype and unzips it into a temporary folder. It then deserializes the serial graph from graph.json, and is ready to return. Note that this method returns a tuple of three variables: the deserialized graph, path to the temporary folder, and path to the .noui file. This information is required by other components either for playing, or editing the game.</p>
+                    <pre><code>def load_graph(self, game_zip: str) -> tuple[Node, str, str]:
+   game_folder: str = self._prepare_temp_folder(game_zip)
+
+
+   # load the serial graph from the graph.json file
+   graph_path = os.path.join(game_folder, "graph.json")
+   with open(graph_path, 'r') as file:
+       serial_graph: SerialGraph = SerialGraph.model_validate_json(file.read().strip())
+
+
+   # reconstruct the graph structure from the serial graph
+   root: Node = SerialGraph.deserialize_graph(serial_graph)
+
+
+   return root, game_folder, game_zip</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">ProgressTracker</h2>
+                    <p>ProgressTracker is a class used strictly during game play. When loading the game, the game player checks if the progress is present using the method get_progress_node.</p>
+                    <pre><code>def get_progress_node(self, game_folder: str, root_node: Node) -> Node | None:
+   """
+   Gives the progress node if a progress.json file exists and is valid, otherwise returns None.
+   :param game_folder:
+   :param root_node:
+   :return:
+   """
+   progress_path = os.path.join(game_folder, "progress.json")
+
+
+   # if doesn't exist, return None
+   if not os.path.exists(progress_path):
+       return None
+
+
+   try:
+       # if error, return None
+       with open(progress_path, "r") as f:
+           data = json.load(f)
+       saved_id = data.get("node_id")
+       saved_node = self._find_node_by_id(root_node, saved_id)
+   except Exception:
+       return None
+
+
+   if saved_node is None:
+       return None
+
+
+   return saved_node</code></pre>
+                    <p>Method _find_node_by_id is used, that traverses the graph using breadth-first-search, looking for the node referenced in progress.json.</p>
+                    <pre><code>def _find_node_by_id(self, root: Node, target_id: int) -> Node | None:
+   """
+   BFS from root to find the node with the given ID
+   """
+   visited: set[int] = set()
+   queue: list[Node] = [root]
+   while queue:
+       node = queue.pop(0)
+       node_id = node.get_id()
+       if node_id in visited:
+           continue
+       visited.add(node_id)
+       if node_id == target_id:
+           return node
+       queue.extend(node.adjacencyList.values())
+   return None</code></pre>
+                    <p>This class is also used when a player leaves the game mid-game. In that case, this method saves the progress into progress.json file in the temporary folder opened by the GameLoader, and then saves it to the original .noui file location.</p>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>
