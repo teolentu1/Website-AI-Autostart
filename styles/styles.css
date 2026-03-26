@@ -1074,17 +1074,21 @@ sup {
 }
 
 .footer-partner-logos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 1.25rem;
     align-items: center;
 }
 
 .footer-partner-logos img {
-    height: 24px;
+    height: 40px;
     width: auto;
     object-fit: contain;
     opacity: 0.7;
+}
+
+.footer-partner-logos img[alt="MotionInput Games"] {
+    height: 54px;
 }
 
 .footer-partner-logos img:hover {
