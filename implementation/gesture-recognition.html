@@ -16,11 +16,55 @@
             <main class="content">
                 <div class="content-card">
                     <h1>AI-Autostart &amp; No-GUI Game - Hand Gesture Recognition</h1>
-                    <p>This page is reserved for Hand Gesture Recognition implementation content.</p>
+                    <p>Google's library MediaPipe is used for hand gesture recognition. This library is used in both AI-Autostart and the No-GUI player. In both cases the corresponding video gesture recognition classes create MediaPipe's <code>GestureRecognizer</code> with the following options, allowing for real-time input using the OpenCV library to capture webcam input. It is important to notice that method <code>self._result_callback</code> is injected as a parameter — this method is run asynchronously by the <code>GestureRecognizer</code>.</p>
+                    <pre><code>def _create_recognizer(self):
+   options = GestureRecognizerOptions(
+       base_options=BaseOptions(model_asset_path=self.model_path),
+       running_mode=RunningMode.LIVE_STREAM,
+       result_callback=self._result_callback,
+   )
+   return GestureRecognizer.create_from_options(options)</code></pre>
+                    <p>The implementation of <code>_result_callback</code> differs between the two systems.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">No-GUI Player</h2>
+                    <p>In the No-GUI player, the public-facing function is <code>get_gesture</code>. This is a blocking function whose functionality has been inspired by Python's built-in <code>input</code> function, except that instead of returning text typed into the terminal it returns the gesture shown by the user. Its only argument is <code>gestures_to_spot</code> — in most cases the No-GUI player is looking for a subset of all gestures, and this is the list of hand gestures it should be watching for.</p>
+                    <pre><code>def get_gesture(self, gestures_to_spot: list[EnumGesture]) -> EnumGesture:
+   """
+   Start the gesture recognition process and return the first gesture detected that is in the gestures_to_spot list.
+   :param gestures_to_spot:
+   :return:
+   """
+   self._reset(gestures_to_spot)
+   self._start_recognition()
+   return self._get_last_gesture()</code></pre>
+                    <p>Since <code>_result_callback</code> is run asynchronously, the <code>VideoGestureRecogniser</code> state has the attribute <code>_is_running</code>. As soon as <code>_result_callback</code> recognises a gesture from the <code>_gestures_to_spot</code> list, it stops the main loop by setting <code>_is_running</code> to <code>False</code>.</p>
+                    <pre><code>def _result_callback(self, result: GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
+   """
+   Run for each picture analysed by the recognizer. If a gesture to spot is detected, stop the recognition.
+   """
+   if len(result.gestures) < 1:
+       # then no hand detected
+       return
+   # set the last gesture
+   self._last_gesture_category = result.gestures[0][0].category_name
+   self._last_handedness = result.handedness[0][0].category_name
+
+   # victory set as a special case for stopping the loop
+   if self._get_last_gesture() in self._gestures_to_spot:
+       self._stop()</code></pre>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">AI-Autostart</h2>
+                    <p>In AI-Autostart, the <code>VideoGestureRecogniser</code> class works as a single-responsibility class, implementing the Observer pattern. When a gesture is recognised, its subscribers — <code>PowerManager</code> and <code>GestureController</code> — are updated.</p>
                 </div>
             </main>
         </div>
         <script src="../scripts/section-layout.js">
+        </script>
+        <script src="../scripts/code-blocks.js">
         </script>
     </body>
 </html>

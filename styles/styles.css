@@ -1142,3 +1142,87 @@ sup {
         padding: 2rem 1rem;
     }
 }
+
+/* Code Blocks */
+.code-block {
+    position: relative;
+    background: #f8f9fb;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 0.7rem 1.25rem 0.7rem 0;
+    overflow-x: auto;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    background: none;
+    border: none;
+    border-radius: 0;
+}
+
+.code-block code {
+    font-family: 'Cascadia Code', 'JetBrains Mono', 'Fira Code', 'Consolas', 'Menlo', monospace;
+    display: block;
+}
+
+.code-line {
+    display: flex;
+}
+
+.line-num {
+    user-select: none;
+    min-width: 2.8rem;
+    text-align: right;
+    padding-right: 1.25rem;
+    color: #b0bec5;
+    font-size: 0.83rem;
+    flex-shrink: 0;
+    line-height: inherit;
+}
+
+.line-content {
+    white-space: pre;
+    flex: 1;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 0.28rem;
+    cursor: pointer;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    line-height: 1;
+}
+
+.code-block:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    color: var(--primary);
+    border-color: var(--border);
+    background: var(--bg-light);
+}
+
+.copy-btn.copied {
+    color: #22c55e;
+    opacity: 1;
+}
+
+/* Syntax tokens */
+.tok-string  { color: #d6195e; }
+.tok-comment { color: #94a3b8; font-style: italic; }
+.tok-keyword { color: var(--primary); font-weight: 600; }
