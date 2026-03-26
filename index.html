@@ -83,9 +83,9 @@
             <!-- Video Demo Section -->
             <section id="video">
                 <div class="section-title">Project Demo</div>
-                <video controls style="width:100%; border-radius:var(--radius); display:block;">
-                    <source src="assets/videos/syseng_final_demo_video.mp4" type="video/mp4">
-                </video>
+                <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius);">
+                    <iframe src="https://www.youtube.com/embed/s1xScLLRXjU" title="Project Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:var(--radius);"></iframe>
+                </div>
             </section>
             <!-- Team Section -->
             <section id="team">
@@ -231,6 +231,7 @@
         </footer>
         <script>
             document.querySelectorAll('iframe').forEach(iframe => {
+                if (iframe.closest('#video')) return;
                 const wrapper = document.createElement('div');
                 wrapper.className = 'diagram-wrapper';
                 iframe.parentNode.insertBefore(wrapper, iframe);
