@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>AI-Autostart &amp; No-GUI Game - Hand Gesture Recognition</title>
+        <title>AI-Autostart &amp; SoundLab Game - Hand Gesture Recognition</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
     </head>
@@ -15,8 +15,8 @@
             </div>
             <main class="content">
                 <div class="content-card">
-                    <h1>AI-Autostart &amp; No-GUI Game - Hand Gesture Recognition</h1>
-                    <p>Google's library mediapipe is used for hand gesture recognition. This library is used in both AI-Autostart and No-GUI player. In both cases the corresponding video gesture recognition classes create mediapipe's GestureRecognizer with the following options, allowing for real-time input using the opencv library to capture webcam input. It is important to notice that method self._result_callback is injected as a parameter. This method is run asynchronously by the GestureRecogniser.</p>
+                    <h1>AI-Autostart &amp; SoundLab Game - Hand Gesture Recognition</h1>
+                    <p>Google's library mediapipe is used for hand gesture recognition. This library is used in both AI-Autostart and SoundLab Game player. In both cases the corresponding video gesture recognition classes create mediapipe's GestureRecognizer with the following options, allowing for real-time input using the opencv library to capture webcam input. It is important to notice that method self._result_callback is injected as a parameter. This method is run asynchronously by the GestureRecogniser.</p>
                     <pre><code>def _create_recognizer(self):
    options = GestureRecognizerOptions(
        base_options=BaseOptions(model_asset_path=self.model_path),
@@ -28,8 +28,8 @@
                 </div>
 
                 <div class="content-card">
-                    <h2 class="section-title">No-GUI player</h2>
-                    <p>In the No-GUI player, the public facing function is get_gesture. This is a blocking function, and its functionality has been inspired by the input function in python, except that it does not return the text written into the terminal, but the gesture shown by the user. The only argument of this function is gestures_to_spot. In most of the cases, the No-GUI player is looking for a subset of all gestures, and this is the list of the hand gestures it should be looking for.</p>
+                    <h2 class="section-title">SoundLab Game player</h2>
+                    <p>In the SoundLab Game player, the public facing function is get_gesture. This is a blocking function, and its functionality has been inspired by the input function in python, except that it does not return the text written into the terminal, but the gesture shown by the user. The only argument of this function is gestures_to_spot. In most of the cases, the SoundLab Game player is looking for a subset of all gestures, and this is the list of the hand gestures it should be looking for.</p>
                     <pre><code>def get_gesture(self, gestures_to_spot: list[EnumGesture]) -> EnumGesture:
    """
    Start the gesture recognition process and return the first gesture detected that is in the gestures_to_spot list.
@@ -55,7 +55,7 @@
    # victory set as a special case for stopping the loop
    if self._get_last_gesture() in self._gestures_to_spot:
        self._stop()</code></pre>
-                    <p>During the game play of the No-GUI game, user makes choices by making different hand gestures. For the hand gesture recognition, the system uses Google's Mediapipe python library.</p>
+                    <p>During the game play of the SoundLab Game, user makes choices by making different hand gestures. For the hand gesture recognition, the system uses Google's Mediapipe python library.</p>
                     <p>It is used in the VideoGestureRecogniser class. The gesture recognition class is created using these parameters:</p>
                 </div>
 

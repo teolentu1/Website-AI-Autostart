@@ -16,7 +16,7 @@
             <main class="content">
                 <div class="content-card">
                     <h1>.noui Filetype</h1>
-                    <p>The .noui filetype is a custom filetype of this project, that contains all the data required to play a game. It is a unit that can be easily transferred between users, and allows them to play the game, given they have the No-GUI player installed on their machine.</p>
+                    <p>The .noui filetype is a custom filetype of this project, that contains all the data required to play a game. It is a unit that can be easily transferred between users, and allows them to play the game, given they have the SoundLab Game player installed on their machine.</p>
                     <p>The filetype is a zipped folder, with a custom file extension. This allows the operating system to differentiate the .noui game from other files on the user's system. The more interesting part about this filetype is registration with the operating system.</p>
                     <p>Even though the file extension differentiates the file, the operating system still does not know how to handle the .noui games correctly. A feature to register a file type has been implemented using the winreg python library.</p>
                     <p>When a file is opened by double-clicking, Windows goes through Windows Registry, which is among other things, a database of all file associations. The actual registration of the file type is done in module register_file_type.</p>

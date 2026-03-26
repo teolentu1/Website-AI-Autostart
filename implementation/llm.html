@@ -16,7 +16,7 @@
             <main class="content">
                 <div class="content-card">
                     <h1>LLM Implementation</h1>
-                    <p>A local large-language-model was used in this model to generate No-GUI games.</p>
+                    <p>A local large-language-model was used in this model to generate SoundLab Games.</p>
                     <p>The main public class used by frontend is GameGenerator, and its public facing method generate_game. This is a mediator class that mediates the interaction between 2 backend private classes that are responsible for the actual generation of the game.</p>
                     <p>Method generate_game mediates classes:</p>
                     <ul>
@@ -92,7 +92,7 @@ serial_node.is_losing = is_losing
 if is_win or is_losing:
    serial_node.left_option = ""
    serial_node.right_option = ""</code></pre>
-                    <p>After a successful generation of the scene and options texts for each node, the function generate_game returns the fully generated SerialGraph of the No-GUI game back to the GameGenerator that is ready to return this newly generated graph to the frontend of the application.</p>
+                    <p>After a successful generation of the scene and options texts for each node, the function generate_game returns the fully generated SerialGraph of the SoundLab Game back to the GameGenerator that is ready to return this newly generated graph to the frontend of the application.</p>
                 </div>
 
                 <div class="content-card">

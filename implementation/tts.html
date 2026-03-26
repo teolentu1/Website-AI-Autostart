@@ -16,9 +16,9 @@
             <main class="content">
                 <div class="content-card">
                     <h1>TTS Implementation</h1>
-                    <p>A text-to-speech model has been used to generate audio for the No-GUI games. The model used in this project is <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank">hexgrad/Kokoro-82M </a><sup><a href="#ref-1">[1]</a></sup>.</p>
+                    <p>A text-to-speech model has been used to generate audio for the SoundLab Games. The model used in this project is <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank">hexgrad/Kokoro-82M </a><sup><a href="#ref-1">[1]</a></sup>.</p>
                     <p>The Hexgrad team provides a kokoro package that allows for easy integration of the model into python programs. The package offers multiple language codes, as well as multiple speaker voices in the given language code.</p>
-                    <p>Talker is the public facing class responsible for generation of text-to-speech audio. The Kokoro pipeline is lazily loaded, since we have found that it has been a major performance bottleneck for the startup of the No-GUI engine.</p>
+                    <p>Talker is the public facing class responsible for generation of text-to-speech audio. The Kokoro pipeline is lazily loaded, since we have found that it has been a major performance bottleneck for the startup of the SoundLab Game engine.</p>
                     <pre><code>class Talker:
    def __init__(self):
        # 'b' - for British English

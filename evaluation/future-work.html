@@ -24,7 +24,7 @@
                     <h3>1. Cross-platform support (both products)</h3>
                     <p>Both AI-Autostart and No-UI Game are currently built and tested on Windows. A natural next step is to extend support to macOS.</p>
 
-                    <h3>2. Language support — No-GUI Game</h3>
+                    <h3>2. Language support — SoundLab Game</h3>
                     <p>The game engine currently generates and narrates games in British English only. Adding support for additional languages (Spanish, Chinese etc.) would significantly broaden the accessibility of the platform.</p>
                     <p>As explained in the Text-to-speech implementation section, <code>hexgrad/kokoro</code> is used for speech generation — specifically an object of class <code>KPipeline</code>. The constructor of this class takes in a language code for the language it should generate speech in. In future work, this could be expanded by giving the method <code>_get_pipeline</code> a parameter <code>lang_code</code>, that would allow the frontend to choose what language code to use it with.</p>
                     <pre><code>def _get_pipeline(self) -> KPipeline:
@@ -35,7 +35,7 @@
                     <p>Regarding the frontend changes, currently in method <code>title_row</code>, there is a list <code>VOICES</code> containing all the names of the British English voices Kokoro offers. This list might become a dictionary, mapping language code to the list of voices. A dropdown similar to the one for choice of a voice would be implemented, allowing the user to choose a language — the voices dropdown would then show the voices available.</p>
                     <p>The last thing needed would be the preview audios. There is no standardised method, but the main sample code from Talker gives a good example of how to use and generate speech using the <code>Talker</code> class.</p>
 
-                    <h3>3. On-Screen Text Display — No-GUI Game</h3>
+                    <h3>3. On-Screen Text Display — SoundLab Game</h3>
                     <p>Currently the game player is entirely audio-based with no text shown on screen. A planned extension is to make the narration text optionally visible on screen, with a toggle in the settings page to switch it on or off. When enabled, the current scene text and options would be displayed in the player window as they are narrated, improving the experience of sighted users.</p>
 
                     <h3>4. ReadingStar Integration</h3>
@@ -48,7 +48,7 @@
                     <h4>1. AI-Autostart — camera toggle on file action rows does not work</h4>
                     <p>In the File Opening settings tab, each row has a <em>Uses Camera</em> toggle intended to keep camera handoff behaviour enabled after a file is launched, but it currently has no effect. As a result, AI-Autostart cannot be used to open applications that require the camera.</p>
 
-                    <h4>2. No-GUI Game Player — audio does not stop when GUI is turned off</h4>
+                    <h4>2. SoundLab Game Player — audio does not stop when GUI is turned off</h4>
                     <p>When the GUI is manually turned off during playback, the audio does not stop.</p>
                 </div>
 
