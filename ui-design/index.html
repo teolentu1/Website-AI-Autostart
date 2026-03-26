@@ -598,30 +598,34 @@
                             <li><strong>Player launcher</strong> — a small window with a file path field, a Browse button to select a .noui file, a Run button, and a Settings button. Once a file is selected, the user clicks Run. The game loop starts immediately on a background thread and begins narrating the main menu audio. The UI does not need to be looked at again.</li>
                             <li><strong>Settings dialog</strong> — accessible before starting a game. Gives the player control over: the recogniser being used (keyboard or video), gesture bindings for video recognition, key bindings for keyboard mode, and the inactivity timeout — the period after which the game auto-saves progress and exits.</li>
                         </ul>
-                        <div class="placeholder-block" style="margin-top: 1rem;">
-                            <div class="placeholder-title">Fig 4: Final Settings Page</div>
-                        </div>
+                        <figure class="fig-block" style="margin-top: 1rem;">
+                            <img src="../assets/images/settings-final.png" alt="Final Game Player settings dialog">
+                            <figcaption>Fig 4 — Final Game Player settings dialog</figcaption>
+                        </figure>
 
                         <div class="final-subsection-title" style="margin-top: 1.75rem;">Game Engine</div>
                         <p class="survey-intro">The game creation engine is a PySide6 desktop application built for game creators.</p>
                         <ul class="findings-list">
                             <li><strong>Home page</strong> — the application opens to a minimal home screen with two options: Create a New Game and Edit Game. The home page is intentionally sparse, with no unnecessary navigation menus or settings visible.</li>
                         </ul>
-                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
-                            <div class="placeholder-title">Fig 5: Home Page</div>
-                        </div>
+                        <figure class="fig-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <img src="../assets/images/home-final.png" alt="Game Engine home page">
+                            <figcaption>Fig 5 — Game Engine home page</figcaption>
+                        </figure>
                         <ul class="findings-list">
                             <li><strong>Game creation page</strong> — the main editor view is divided into two sections. The left-hand side is a zoomable, scrollable node canvas displaying the game's branching story graph. Each node contains the scene text, a left option label, a right option label, and controls to set it as a win or lose node. Blue lines connect left option paths and red lines connect right option paths. The canvas can be zoomed with the scroll wheel and panned by dragging.</li>
                         </ul>
-                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
-                            <div class="placeholder-title">Fig 6: Game Engine Canvas Final Design</div>
-                        </div>
+                        <figure class="fig-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <img src="../assets/images/canvas-final.png" alt="Game Engine canvas showing branching story graph">
+                            <figcaption>Fig 6 — Game Engine canvas showing branching story graph</figcaption>
+                        </figure>
                         <ul class="findings-list">
                             <li><strong>Title bar</strong> — contains the game title field, a voice selector dropdown (listing all 8 British Kokoro voices by name and gender), and a Preview button that plays a short audio sample of the selected voice from a pre-generated file.</li>
                         </ul>
-                        <div class="placeholder-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
-                            <div class="placeholder-title">Fig 7: Voice selection and preview</div>
-                        </div>
+                        <figure class="fig-block" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+                            <img src="../assets/images/voice-select-final.png" alt="Voice selection dropdown and preview button in the title bar">
+                            <figcaption>Fig 7 — Voice selection dropdown and preview button</figcaption>
+                        </figure>
                         <ul class="findings-list">
                             <li><strong>AI generation panel</strong> — the right-hand panel is the AI game generator. A text area at the bottom lets the creator describe their game, which is sent as a prompt to the local LLM. The canvas updates in real time as each node is generated, showing placeholder text for nodes not yet complete. A progress bar and status label track the generation state. A Stop button allows the creator to cancel generation at any time. Once generation is complete, the creator can edit any node manually before saving.</li>
                         </ul>
