@@ -3,9 +3,70 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Summary of Achievements</title>
+        <title>Critical Evaluation of the Project</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .eval-layout {
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 1.5rem;
+                align-items: start;
+            }
+
+            .eval-tabs {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                position: sticky;
+                top: 1.5rem;
+            }
+
+            .eval-tab-btn {
+                background: none;
+                border: none;
+                border-radius: var(--radius);
+                padding: 0.65rem 1rem;
+                text-align: left;
+                font-size: 0.93rem;
+                font-weight: 500;
+                color: var(--text-secondary);
+                cursor: pointer;
+                transition: var(--transition-fast);
+                font-family: inherit;
+            }
+
+            .eval-tab-btn:hover {
+                background: var(--bg-light);
+                color: var(--text-primary);
+            }
+
+            .eval-tab-btn.active {
+                background: var(--primary);
+                color: #fff;
+                font-weight: 600;
+            }
+
+            .eval-panel {
+                display: none;
+            }
+
+            .eval-panel.active {
+                display: block;
+            }
+
+            @media (max-width: 700px) {
+                .eval-layout {
+                    grid-template-columns: 1fr;
+                }
+
+                .eval-tabs {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    position: static;
+                }
+            }
+        </style>
     </head>
     <body>
         <div id="shared-top-nav">
@@ -16,11 +77,88 @@
             <main class="content">
                 <div class="content-card">
                     <h1>Critical Evaluation of the Project</h1>
-                    <p>This page is reserved for Summary of Achievements content.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="eval-layout">
+                        <nav class="eval-tabs">
+                            <button class="eval-tab-btn active" data-tab="uiux">UI/UX</button>
+                            <button class="eval-tab-btn" data-tab="functionality">Functionality</button>
+                            <button class="eval-tab-btn" data-tab="stability">Stability</button>
+                            <button class="eval-tab-btn" data-tab="efficiency">Efficiency</button>
+                            <button class="eval-tab-btn" data-tab="compatibility">Compatibility</button>
+                            <button class="eval-tab-btn" data-tab="maintainability">Maintainability</button>
+                            <button class="eval-tab-btn" data-tab="management">Project Management</button>
+                        </nav>
+
+                        <div class="eval-content">
+                            <div class="eval-panel active" id="tab-uiux">
+                                <div class="section-title">UI/UX</div>
+                                <p class="section-text">The user interface and user experience of both AI-Autostart and Soundlab Games is minimalistic and intuitive.</p>
+                                <p class="section-text">In SoundLab Games, the Game Editor provides a clean canvas for node-based creation, while the Game Player presents only essential controls required to load and run a game. In AI-Autostart, all processes and pages are clearly labeled for ease-of-use without extra clutter.</p>
+                                <p class="section-text">Long-running operations such as AI generation and saving are handled in the background to maintain responsiveness. The interface provides clear visual feedback during these processes, improving usability despite computationally intensive tasks.</p>
+                                <p class="section-text">Overall, we believe the UI/UX design is <strong>excellent</strong> and highly suitable for our goal and audiences.</p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-functionality">
+                                <div class="section-title">Functionality</div>
+                                <p class="section-text">Based on our summary of achievements, all compulsory features for both projects have been implemented. There are a few non-critical 
+                                    functionalities remaining and a couple minor bugs, however based on our unit tests and extensive user testing, our products are <strong>fully usable</strong>.
+                                </p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-stability">
+                                <div class="section-title">Stability</div>
+                                <p class="section-text">The app performed well under unit testing and user testing.</p>
+                                <p class="section-text">AI-Autostart demonstrated stable and accurate gesture recognition and consistent application launching during extended usage sessions. SoundLab Game Editor also maintained stable performance during game creation and saving.</p>
+                                <p class="section-text">Overall, both applications maintained <strong>consistent performance</strong> without unexpected behaviours, demonstrating full usability in real-time environments.</p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-efficiency">
+                                <div class="section-title">Efficiency</div>
+                                <p class="section-text">Both systems were designed with efficiency in mind in order to run smoothly on Intel hardware.</p>
+                                <p class="section-text">AI-Autostart performs gesture recognition consistently in an efficient manner that doesn't use up a lot of resources. The system tray app is lightweight and background processing ensures that recognition and system updates do not interfere with user interaction.</p>
+                                <p class="section-text">SoundLab Games efficiently generates and loads audio files and game structures, allowing smooth gameplay without any delays. AI generation and audio synthesis are computationally intensive by nature. Despite that our performance testing shows that CPU usage remains high during local LLM inference and the UI remains responsive due to background threading. Therefore we can say that the system performs within expected bounds.</p>
+                                <p class="section-text">Overall, the systems demonstrate <strong>good</strong> computational efficiency for their intended use.</p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-compatibility">
+                                <div class="section-title">Compatibility</div>
+                                <p class="section-text">Our application runs on any Windows 11 device on Intel Hardware. Both AI-Autostart and SoundLab Games are compiled into executable applications, allowing them to run independently without requiring additional software installations or complex configuration.</p>
+                                <p class="section-text">AI-Autostart is also compatible with a range of older hardware with less resources due to its lightweight nature. This makes it perfect for integrating the system for self-service kiosk use.</p>
+                                <p class="section-text">SoundLab Games' local LLM does not require dedicated GPUs and can operate using CPU-based inference.</p>
+                                <p class="section-text">Our systems are <strong>easy to deploy, install, and use</strong> on standard Windows machines, particularly in real-life environments.</p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-maintainability">
+                                <div class="section-title">Maintainability</div>
+                                <p class="section-text">Throughout the project development, we aimed to produce clean and well-structured code. Each class is responsible for one distinct action, following encapsulation principles, making our codebase readable and providing easier debugging and testing.</p>
+                                <p class="section-text">The separation of AI-Autostart and SoundLab Games into independent systems also enhances maintainability and reduces system complexity. Additionally, clear folder structures, consistent naming conventions, and version control through GitHub ensure that future developers can easily understand and extend the system.</p>
+                                <p class="section-text">To summarise, the system is <strong>well-structured and maintainable</strong> in the long term, allowing for future improvements and scalability.</p>
+                            </div>
+
+                            <div class="eval-panel" id="tab-management">
+                                <div class="section-title">Project Management</div>
+                                <p class="section-text">We utilised a variety of tools to effectively manage this project. Our team communicated through WhatsApp and GitHub, and held regular in-person meetings in addition to the lab hours. For research, presentations and shared resources we used a shared Google Drive in order to keep everything organized. All code collaboration was handled through two dedicated GitHub repositories with issues, pull requests and commit history.</p>
+                                <p class="section-text">Ultimately, the team demonstrated a well-organised and efficient workflow throughout the project, reflecting <strong>strong</strong> project management practices.</p>
+                                <p class="section-text">One team member was inactive for a significant portion of the project, and therefore the evaluation of teamwork and project management reflects the contributions and coordination of the actively participating members.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
         <script src="../scripts/section-layout.js">
+        </script>
+        <script>
+            document.querySelectorAll('.eval-tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.eval-tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.eval-panel').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+                });
+            });
         </script>
     </body>
 </html>
