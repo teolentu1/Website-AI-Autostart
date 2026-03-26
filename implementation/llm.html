@@ -16,10 +16,95 @@
             <main class="content">
                 <div class="content-card">
                     <h1>LLM Implementation</h1>
-                    <p>This page is reserved for the LLM implementation content.</p>
+                    <p>A local large-language-model was used in this model to generate No-GUI games.</p>
+                    <p>The main public class used by frontend is GameGenerator, and its public facing method generate_game. This is a mediator class that mediates the interaction between 2 backend private classes that are responsible for the actual generation of the game.</p>
+                    <p>Method generate_game mediates classes:</p>
+                    <ul>
+                        <li>BlueprintGenerator responsible for game graph blueprint generation</li>
+                        <li>StoryGenerator responsible for filling in the nodes of the blueprint with the actual story</li>
+                    </ul>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Blueprint generation</h2>
+                    <p>After a user requests a game generated, GameGenerator class calls BlueprintGenerator first, to generate a blueprint of the graph of the game. Library Openvino GenAI is used to run inference on our model (can be found here <a href="https://huggingface.co/OpenVINO/Phi-4-mini-instruct-int4-ov" target="_blank">OpenVINO/Phi-4-mini</a>).<sup><a href="#ref-1">[1]</a></sup></p>
+                    <p>This class then generates its configuration:</p>
+                    <pre><code>def _build_config(self):
+   self.config: GenerationConfig = GenerationConfig()
+   self.config.do_sample = True
+   self.config.temperature = 0.7
+   self.config.structured_output_config = StructuredOutputConfig(
+       json_schema=json.dumps(GraphBlueprint.model_json_schema())
+   )</code></pre>
+                    <p>The configuration also configures structured output of the LLM. This means that the LLM output is standardised and reliably produces an object of class GraphBlueprint:</p>
+                    <pre><code>class GraphBlueprint(BaseModel):
+   adjacency: dict[int, dict[EnumLR, int]]
+   win_nodes: list[int]
+   lose_nodes: list[int]</code></pre>
+                    <p>After configuration, chat history is built:</p>
+                    <pre><code>def _build_history(self, user_prompt: str):
+   self.history: ChatHistory = ChatHistory()
+   self.history.append({"role": "system", "content": BLUEPRINT_MESSAGE})
+   self.history.append({"role": "user", "content": user_prompt})</code></pre>
+                    <p>The BLUEPRINT_MESSAGE is inserted as a system prompt. This message can be found in graph_blueprint/prompts.py. The user prompt is inserted as well, and after that the method is ready to build the GraphBlueprint.</p>
+                    <pre><code>decoded_results = self.llm.generate(self.history, self.config)
+generated_blueprint: GraphBlueprint = GraphBlueprint.model_validate_json(decoded_results.texts[0])</code></pre>
+                    <p>We have found that sometimes the LLM creates an adjacency_list that contains dangling references. This happens when a node's edge points to a non-existent node ID. While this LLM-error has occurred only once during the implementation and user testing, a method sanitise_references to validate a generated GraphBlueprint has been developed.</p>
+                    <pre><code>generated_blueprint.sanitize_references()</code></pre>
+                    <p>After a successful GraphBlueprint generation and sanitisation, the blueprint is ready and returned back to the mediator class GameGenerator.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Story generation</h2>
+                    <p>Now that BlueprintGenerator has prepared the graph of the game. GameGenerator can pass this blueprint into StoryGenerator's public facing method generate_game. This will generate text for the scene and options for each node one-by-one.</p>
+                    <p>It firstly starts with the configuration. A very similar configuration is used, with an increased temperature to 0.8, for a more non-deterministic, 'creative' story generation, with a structured output for the SerialNode class - representing one node in the graph.</p>
+                    <pre><code>def _build_node_config(self) -> GenerationConfig:
+   config: GenerationConfig = GenerationConfig()
+   config.do_sample = True
+   config.temperature = 0.8
+   config.structured_output_config = StructuredOutputConfig(
+       json_schema=json.dumps(SerialNode.model_json_schema())
+   )
+   return config</code></pre>
+                    <p>Then the generation loop starts, looping through the adjacency list of the GraphBlueprint:</p>
+                    <pre><code># game generation loop - generate text for each node one-by-one
+for index, (node_id, adjacency) in enumerate(game_blueprint.adjacency.items(), start=1):
+   # *getting variables from the adjacency list
+   # generate history for each node
+   history: ChatHistory = self._build_node_history(
+       node_id=node_id,
+       adjacency=adjacency,
+       is_win=is_win,
+       is_losing=is_losing,
+       theme=user_prompt,
+       generated_nodes=generated_nodes,
+   )
+
+
+   decoded_results = self.llm.generate(history, config)
+   serial_node: SerialNode = SerialNode.model_validate_json(decoded_results.texts[0])</code></pre>
+                    <p>After the SerialNode is generated, there is one final sanitation of the data, so that the generated node follows the blueprint structure exactly.</p>
+                    <pre><code># Enforce blueprint adjacency and terminal/win/lose flags
+serial_node.id = node_id
+serial_node.adjacency_list = adjacency
+serial_node.is_win = is_win
+serial_node.is_losing = is_losing
+if is_win or is_losing:
+   serial_node.left_option = ""
+   serial_node.right_option = ""</code></pre>
+                    <p>After a successful generation of the scene and options texts for each node, the function generate_game returns the fully generated SerialGraph of the No-GUI game back to the GameGenerator that is ready to return this newly generated graph to the frontend of the application.</p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">References</h2>
+                    <ol class="references-list">
+                        <li id="ref-1">OpenVINO, "OpenVINO/Phi-4-mini-instruct-int4-ov · Hugging Face," Huggingface.co, Mar. 19, 2026. <a href="https://huggingface.co/OpenVINO/Phi-4-mini-instruct-int4-ov" target="_blank">https://huggingface.co/OpenVINO/Phi-4-mini-instruct-int4-ov</a> (accessed Mar. 26, 2026).</li>
+                    </ol>
                 </div>
             </main>
         </div>
+        <script src="../scripts/code-blocks.js">
+        </script>
         <script src="../scripts/section-layout.js">
         </script>
     </body>
