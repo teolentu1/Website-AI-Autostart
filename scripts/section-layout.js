@@ -46,13 +46,14 @@
     <details class="nav-group">
         <summary><a class="group-link" href="../implementation/index.html">Implementation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
-            <a href="../implementation/gesture-recognition.html">Gesture Recognition</a>
-            <a href="../implementation/person-recognition.html">Person Recognition</a>
-            <a href="../implementation/game-graph-design.html">Game Graph Design</a>
-            <a href="../implementation/audio-generation.html">Audio Generation</a>
-            <a href="../implementation/ai-generation.html">AI Generation</a>
-            <a href="../implementation/user-interface.html">User Interface</a>
-            <a href="../implementation/application-packaging.html">Application Packaging</a>
+            <a href="../implementation/controller.html">AI-Autostart - Controller</a>
+            <a href="../implementation/gesture-recognition.html">Hand Gesture Recognition</a>
+            <a href="../implementation/game-graph.html">No-GUI Game Graph Representation</a>
+            <a href="../implementation/noui-filetype.html">.noui Filetype</a>
+            <a href="../implementation/file-management.html">No-GUI Game File Management</a>
+            <a href="../implementation/tts.html">TTS Implementation</a>
+            <a href="../implementation/llm.html">LLM Implementation</a>
+            <a href="../implementation/game-player.html">No-GUI Game Player Implementation</a>
         </div>
     </details>
     <a class="nav-item" href="../testing/index.html">Testing</a>
@@ -133,13 +134,14 @@
         { path: 'ui-design/index.html',                             label: 'UI Design' },
         { path: 'system-design/index.html',                         label: 'System Design' },
         { path: 'implementation/index.html',                        label: 'Implementation' },
-        { path: 'implementation/gesture-recognition.html',          label: 'Gesture Recognition' },
-        { path: 'implementation/person-recognition.html',           label: 'Person Recognition' },
-        { path: 'implementation/game-graph-design.html',            label: 'Game Graph Design' },
-        { path: 'implementation/audio-generation.html',             label: 'Audio Generation' },
-        { path: 'implementation/ai-generation.html',                label: 'AI Generation' },
-        { path: 'implementation/user-interface.html',               label: 'User Interface' },
-        { path: 'implementation/application-packaging.html',        label: 'Application Packaging' },
+        { path: 'implementation/controller.html',                   label: 'AI-Autostart - Controller' },
+        { path: 'implementation/gesture-recognition.html',          label: 'Hand Gesture Recognition' },
+        { path: 'implementation/game-graph.html',                   label: 'No-GUI Game Graph Representation' },
+        { path: 'implementation/noui-filetype.html',                label: '.noui Filetype' },
+        { path: 'implementation/file-management.html',              label: 'No-GUI Game File Management' },
+        { path: 'implementation/tts.html',                          label: 'TTS Implementation' },
+        { path: 'implementation/llm.html',                          label: 'LLM Implementation' },
+        { path: 'implementation/game-player.html',                  label: 'No-GUI Game Player Implementation' },
         { path: 'testing/index.html',                               label: 'Testing' },
         { path: 'evaluation/index.html',                            label: 'Evaluation' },
         { path: 'evaluation/summary-of-achievements.html',          label: 'Summary of Achievements' },
