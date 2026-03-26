@@ -47,6 +47,7 @@
         <summary><a class="group-link" href="../implementation/index.html">Implementation</a><button class="dropdown-arrow" type="button" aria-label="Toggle dropdown">&#9656;</button></summary>
         <div class="sub-links">
             <a href="../implementation/controller.html">AI-Autostart - Controller</a>
+            <a href="../implementation/person-recognizer.html">AI-Autostart - Person Recognizer</a>
             <a href="../implementation/gesture-recognition.html">Hand Gesture Recognition</a>
             <a href="../implementation/game-graph.html">SoundLab Game Graph Representation</a>
             <a href="../implementation/noui-filetype.html">.noui Filetype</a>
@@ -136,6 +137,7 @@
         { path: 'system-design/index.html',                         label: 'System Design' },
         { path: 'implementation/index.html',                        label: 'Implementation' },
         { path: 'implementation/controller.html',                   label: 'AI-Autostart - Controller' },
+        { path: 'implementation/person-recognizer.html',            label: 'AI-Autostart - Person Recognizer' },
         { path: 'implementation/gesture-recognition.html',          label: 'Hand Gesture Recognition' },
         { path: 'implementation/game-graph.html',                   label: 'SoundLab Game Graph Representation' },
         { path: 'implementation/noui-filetype.html',                label: '.noui Filetype' },
