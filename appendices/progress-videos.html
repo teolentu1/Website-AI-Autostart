@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monthly Progress Videos</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .video-section {
+                margin-bottom: 2.5rem;
+            }
+            .video-section h2 {
+                margin-bottom: 1rem;
+            }
+            .video-wrapper {
+                width: 100%;
+                max-width: 800px;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #000;
+            }
+            .video-wrapper video {
+                width: 100%;
+                display: block;
+            }
+            .video-placeholder {
+                width: 100%;
+                max-width: 800px;
+                padding: 2rem;
+                border-radius: 8px;
+                border: 2px dashed var(--border-color, #ccc);
+                text-align: center;
+                color: var(--text-muted, #888);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="shared-top-nav">
+        </div>
+        <div class="page-layout">
+            <div id="shared-sidebar">
+            </div>
+            <main class="content">
+                <div class="content-card">
+                    <h1>Monthly Progress Videos</h1>
+                    <p>Short recordings capturing the state of the project at the end of each month.</p>
+
+                    <div class="video-section">
+                        <h2 class="section-title">December</h2>
+                        <div class="video-wrapper">
+                            <video controls>
+                                <source src="../assets/videos/december.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="video-section">
+                        <h2 class="section-title">January</h2>
+                        <div class="video-wrapper">
+                            <video controls>
+                                <source src="../assets/videos/january.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="video-section">
+                        <h2 class="section-title">February</h2>
+                        <div class="video-wrapper">
+                            <video controls>
+                                <source src="../assets/videos/february.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="video-section">
+                        <h2 class="section-title">March</h2>
+                        <div class="video-placeholder">
+                            <p>Video coming soon.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="../scripts/section-layout.js">
+        </script>
+    </body>
+</html>
