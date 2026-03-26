@@ -72,6 +72,8 @@
         <div class="sub-links">
             <a href="../appendices/AA-user-manual.html">AI-Autostart User Manual</a>
             <a href="../appendices/nogui-user-manual.html">SoundLab Games User Manual</a>
+            <a href="../appendices/AA-deployment-manual.html">AI-Autostart Deployment Manual</a>
+            <a href="../appendices/soundlab-deployment-manual.html">SoundLab Games Deployment Manual</a>
             <a href="../appendices/ai-autostart-readme.html">AI-Autostart README</a>
             <a href="../appendices/no-ui-game-readme.html">SoundLab Games README</a>
             <a href="../appendices/gdpr.html">GDPR and Legal Compliance</a>
@@ -154,6 +156,8 @@
         { path: 'appendices/index.html',                            label: 'Appendices' },
         { path: 'appendices/AA-user-manual.html',                   label: 'AI-Autostart User Manual' },
         { path: 'appendices/nogui-user-manual.html',                label: 'SoundLab Games User Manual' },
+        { path: 'appendices/AA-deployment-manual.html',             label: 'AI-Autostart Deployment Manual' },
+        { path: 'appendices/soundlab-deployment-manual.html',       label: 'SoundLab Games Deployment Manual' },
         { path: 'appendices/ai-autostart-readme.html',              label: 'AI-Autostart README' },
         { path: 'appendices/no-ui-game-readme.html',                label: 'SoundLab Games README' },
         { path: 'appendices/gdpr.html',                             label: 'GDPR and Legal Compliance' },
