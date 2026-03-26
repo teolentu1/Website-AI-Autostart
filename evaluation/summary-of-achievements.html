@@ -3,24 +3,342 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Summary of Achievements</title>
+        <title>Critical Evaluation of Project</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../styles/styles.css">
+        <style>
+            .evaluation-section-heading {
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin: 1.5rem 0 1rem 0;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .evaluation-section-heading:first-child {
+                margin-top: 0;
+            }
+
+            .requirement-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                color: var(--text-secondary);
+                font-size: 0.93rem;
+                line-height: 1.75;
+            }
+
+            .requirement-list li {
+                margin-bottom: 0.35rem;
+            }
+
+            .requirement-list label {
+                display: flex;
+                align-items: flex-start;
+                gap: 0.55rem;
+                cursor: default;
+            }
+
+            .requirement-list input[type="checkbox"] {
+                margin-top: 0.32rem;
+                accent-color: #2e9f45;
+            }
+
+            .completion-row {
+                margin-top: 0.8rem;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+            }
+
+            .completion-text {
+                font-size: 0.92rem;
+                font-weight: 600;
+                color: var(--text-primary);
+                white-space: nowrap;
+            }
+
+            .completion-track {
+                width: 100%;
+                height: 0.95rem;
+                background: rgba(0, 0, 0, 0.08);
+                border-radius: 999px;
+                overflow: hidden;
+            }
+
+            .completion-fill {
+                width: 0;
+                height: 100%;
+                border-radius: 999px;
+                transition: width 0.25s ease;
+            }
+
+            .moscow-must  { background: #f0faf0; border-left: 4px solid #4caf50; }
+            .moscow-should{ background: #eef4ff; border-left: 4px solid #5b8dee; }
+            .moscow-could { background: #fffbea; border-left: 4px solid #f4b942; }
+
+            .moscow-must .completion-fill { background: #4caf50; }
+            .moscow-should .completion-fill { background: #5b8dee; }
+            .moscow-could .completion-fill { background: #f4b942; }
+        </style>
     </head>
     <body>
-        <div id="shared-top-nav">
-        </div>
+        <div id="shared-top-nav"></div>
         <div class="page-layout">
-            <div id="shared-sidebar">
-            </div>
+            <div id="shared-sidebar"></div>
             <main class="content">
                 <div class="content-card">
                     <h1>Summary of Achievements</h1>
-                    <p>This page is reserved for Summary of Achievements content.</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="section-title">On This Page</div>
+                    <div class="quick-links">
+                        <a href="#functional">Functional Requirements</a>
+                        <a href="#non-functional">Non-Functional Requirements</a>
+                    </div>
+                </div>
+
+                <div class="content-card" id="functional">
+                    <div class="tab-bar" style="margin-bottom: 1.75rem;">
+                        <button class="tab-btn" data-product="autostart">AI-Autostart</button>
+                        <button class="tab-btn active" data-product="game">SoundLab Game</button>
+                    </div>
+
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="evaluation-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app should be running in background as a system tray application.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should monitor surroundings using the web cam while in use.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should recognise hand gestures done by the interacting user when in frame of the webcam.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should allow users to map hand gestures to applications of their choice.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should open applications on the user's Windows computer.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app should have a gesture reference page, showing the user what gestures it can recognise.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should allow users to remove entries of gesture mappings.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should open files (like .mp4) on the user's Windows computer.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app could work with the custom .noui file type to open SoundLab Games.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app could have an option requires webcam for applications that need access to webcam.</label></li>
+                                <li><label><input type="checkbox" disabled> The app could hand off camera access to other applications if they are marked so.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app could use a body model to isolate interacting users from the background.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app could go to low power mode, upon user inactivity.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app could provide a settings page to turn off/on the body model, and to define length of inactivity to turn on low power mode.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="evaluation-section-heading">Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The game engine should have a Create new game button, for creating a new SoundLab Game.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game engine should provide a graph-like GUI for the game creation.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The GUI for the game graph should provide widgets for each node of the graph.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The GUI node widgets of the graph should each have a textbox for the main text, for the left option, and for the right option.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The GUI should allow a user to create new nodes for left and right options respectively.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The GUI should provide a textbox for the name of the game.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The GUI should have a save button that allows the user to save the game to a selected location.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game engine should generate text-to-speech audio from the text provided by the user in the node widgets.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player should allow users to hear the audio of the game.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player should recognise hand gestures done by the user and use this as gameplay decisions.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game generated by the game engine should be in the .noui filetype.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The .noui filetype should contain all the audio and graph structure, so that the game player can run the game.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The game engine should have a button Edit game, for editing an already existing game.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game engine GUI should allow a user to link already existing node widgets as left/right options of other nodes.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player should have a settings page, where the user can configure which hand gestures are used for which interaction.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The gameplay should start with a main menu audio, saying the name of the game aloud.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The Welcome menu of the gameplayer should have an option to start a new game, or load the previous game.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The game engine could offer a variety of text-to-speech voices the user can choose from.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game engine could use a LocalLLM to generate new graphs of games from story summaries.</label></li>
+                                <li><label><input type="checkbox" disabled> The game engine could use a LocalLLM to edit already existing games.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player could have an option to use keyboard bindings instead of hand gestures to navigate the menu.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player could quit after user inactivity.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The game player settings page could allow the user to set the inactivity timeout.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card" id="non-functional">
+                    <div class="tab-panel" data-product="autostart">
+                        <h2 class="evaluation-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app must function on Windows 11.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app must provide a touch-free interaction.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app must be compiled to an executable file or directory.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app must run on Intel hardware.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app must run all machine learning recognition offline.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app should be robust against random background gestures.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should respond to gestures within a reasonable time.</label></li>
+                                <li><label><input type="checkbox" checked disabled> Gesture-to-application mappings should be stored locally and persist between sessions without data loss.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The app should be installable by a non-technical user without requiring manual configuration of dependencies.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The app could run over long periods of time.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel active" data-product="game">
+                        <h2 class="evaluation-section-heading">Non-Functional Requirements</h2>
+
+                        <div class="moscow-box moscow-must">
+                            <div class="moscow-box-header">🟢 Must Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The SoundLab Game engine should allow users to create SoundLab Games.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The SoundLab Game player should allow the user to play SoundLab Games.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The SoundLab Game player and engine should be compiled to an executable file or directory.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The SoundLab Game player and engine should be 2 self-contained separate applications.</label></li>
+                                <li><label><input type="checkbox" checked disabled> The applications must run on Windows 11.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-should">
+                            <div class="moscow-box-header">🔵 Should Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> Low latency of gesture recognition while playing a SoundLab Game.</label></li>
+                                <li><label><input type="checkbox" checked disabled> SoundLab Games should be easily distributable to users.</label></li>
+                                <li><label><input type="checkbox" checked disabled> A SoundLab Game should be playable on any computer that has a SoundLab Game player installed.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="moscow-box moscow-could">
+                            <div class="moscow-box-header">🟡 Could Have</div>
+                            <ul class="requirement-list">
+                                <li><label><input type="checkbox" checked disabled> The SoundLab Game player could start up within a reasonable time (e.g. under 5 seconds) on average consumer hardware.</label></li>
+                                <li><label><input type="checkbox" disabled> The .noui file format could be versioned, so that older game files remain compatible with newer versions of the player.</label></li>
+                            </ul>
+                            <div class="completion-row">
+                                <span class="completion-text">Completion: 0%</span>
+                                <div class="completion-track"><div class="completion-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
-        <script src="../scripts/section-layout.js">
+        <script src="../scripts/section-layout.js"></script>
+        <script>
+            document.querySelectorAll('.tab-bar').forEach(bar => {
+                bar.addEventListener('click', e => {
+                    const btn = e.target.closest('.tab-btn');
+                    if (!btn) return;
+
+                    const product = btn.dataset.product;
+
+                    document.querySelectorAll('.tab-bar').forEach(b => {
+                        b.querySelectorAll('.tab-btn').forEach(tb => {
+                            tb.classList.toggle('active', tb.dataset.product === product);
+                        });
+                    });
+
+                    document.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.toggle('active', panel.dataset.product === product);
+                    });
+                });
+            });
+
+            function updateCompletionForBox(box) {
+                const checks = box.querySelectorAll('input[type="checkbox"]');
+                const checked = box.querySelectorAll('input[type="checkbox"]:checked');
+                const total = checks.length;
+                const done = checked.length;
+                const percent = total ? Math.round((done / total) * 100) : 0;
+                const text = box.querySelector('.completion-text');
+                const fill = box.querySelector('.completion-fill');
+
+                if (text) text.textContent = `Completion: ${percent}%`;
+                if (fill) fill.style.width = `${percent}%`;
+            }
+
+            document.querySelectorAll('.moscow-box').forEach(updateCompletionForBox);
         </script>
     </body>
 </html>
