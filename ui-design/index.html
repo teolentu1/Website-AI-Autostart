@@ -203,101 +203,81 @@
                         <div class="section-title">On This Page</div>
                         <div class="quick-links">
                             <a href="#autostart-user-centric-requirements-gathering">User-centric requirements gathering</a>
-                            <a href="#autostart-initial-design-ideas">Initial Design Ideas</a>
-                            <a href="#autostart-user-experience">User Experience</a>
-                            <a href="#autostart-prototyping-and-iterations">Prototyping and Iterations</a>
-                            <a href="#autostart-heuristic-evaluations-and-improvements">Heuristic Evaluations and Improvements</a>
-                            <a href="#autostart-final-ui-design">Final UI Design</a>
-                            <a href="#autostart-references">References</a>
+                            <a href="#autostart-initial-design-ideas">Initial Design</a>
+                            <a href="#autostart-prototyping-and-iterations">Prototyping &amp; Iterations</a>
+                            <a href="#autostart-ui-features">UI Features &amp; User Experience</a>
                         </div>
                     </div>
 
                     <div class="content-card" id="autostart-user-centric-requirements-gathering">
-                        <div class="section-title">User-centric requirements gathering</div>
-                        <p class="survey-intro">
-                            Our design process began with a user-centric approach by conducting an online survey with wheelchair users. We wanted to gain information about what difficulties users with accessibility needs face when approaching digital systems. The survey focused on their experiences with kiosk interfaces in high traffic environments.
-                        </p>
+                        <div class="section-title">User-Centric Requirements Gathering</div>
+                        <p class="survey-intro">Our design process began with user-centric research to understand the challenges faced by wheelchair users and visually impaired individuals when interacting with kiosks. Key insights included:</p>
+                        <ul class="findings-list">
+                            <li>Difficulty reaching or locating elements on kiosk screens, often requiring assistance.</li>
+                            <li>Accessibility buttons are hard to find, causing delays and frustration.</li>
+                            <li>Manual activation of accessibility features can make users feel singled out in public spaces.</li>
+                        </ul>
+                        <p class="survey-closing">This feedback highlighted the importance of automatic, visible, and inclusive interaction mechanisms, and strongly influenced the direction of our design.</p>
 
-                        <div class="survey-label"><br>Example response</div>
-                        <div class="survey-card">
+                        <div class="iteration-group-title" style="margin-top: 1.25rem;">Evolution of Touch-Free Interaction</div>
+                        <p class="survey-intro">Our initial design concepts included:</p>
+                        <ul class="findings-list">
+                            <li><strong>Larger Accessibility Button:</strong> Increased visibility of accessibility features, simple to implement but still required manual activation.</li>
+                            <li><strong>Detection and Pop-up button:</strong> User is detected automatically, then a popup would then appear asking whether the user would like to switch to accessibility mode.</li>
+                            <li><strong>Automatic Detection Using Wi-Fi or Webcam:</strong> A seamless solution that automatically triggers accessibility features, reducing social discomfort and manual effort.</li>
+                        </ul>
+                        <p class="survey-closing">Feedback strongly favoured automatic activation, as it provides a more user-centered and emotionally comfortable experience.</p>
 
-                            <p class="survey-question">What difficulties have you experienced when using kiosks?</p>
-                            <p class="survey-answer">Before accessibility buttons, it was really hard to reach things on the screen, so I always had to seek help. Most kiosks still don’t have them, but even when they do, it’s a hassle. Either I have to waste time looking for the button, or ask for assistance, who aren’t always the nicest.</p>
-
-                            <p class="survey-question">Have you ever noticed an accessibility button that makes the interface more reachable?</p>
-                            <p class="survey-answer">I usually notice them after a few visits to the same place. They’re never that visible, and I only realize they exist once I’ve already struggled a few times.</p>
-
-                            <p class="survey-question">How does needing to press an accessibility button make you feel?</p>
-                            <ul class="survey-options">
-                                <li>☐ I don't mind it</li>
-                                <li>☐ It's inconvenient but manageable</li>
-                                <li>☑ It makes me feel singled out</li>
-                            </ul>
-
-                            <p class="survey-question">If kiosks could automatically adjust when you approached, how would that change your experience?</p>
-                            <p class="survey-answer">That would make a huge difference. It would feel like the system actually sees and respects me without me having to do anything special.</p>
+                        <div class="fig-row" style="margin-top: 1rem;">
+                            <figure class="fig-block">
+                                <img src="../assets/images/kiosk-progression.png" alt="Progression of kiosk interaction design concepts">
+                                <figcaption>Fig 1 — Progression of touch-free interaction concepts</figcaption>
+                            </figure>
+                            <figure class="fig-block">
+                                <img src="../assets/images/kiosk.png" alt="Kiosk accessibility interface">
+                                <figcaption>Fig 2 — Kiosk accessibility interface</figcaption>
+                            </figure>
                         </div>
 
-                        <div class="findings-title">Wheelchair users reported:</div>
-                        <ul class="findings-list">
-                            <li>Difficulty reaching elements on kiosk screens, often requiring assistance.</li>
-                            <li>Accessibility buttons are usually hard to find and require time and effort to locate, leading to frustration and delays.</li>
-                            <li>Many users only notice accessibility features after multiple visits, as they are not clearly visible in the interface.</li>
-                            <li>The need to manually activate accessibility features can make users feel singled out and uncomfortable in public spaces.</li>
-                        </ul>
-
-                        <p class="survey-closing">
-                            This feedback highlighted the importance of visibility, simplicity, and inclusive design, leading us to explore different solutions for improving accessibility in interactions with digital interfaces.
-                        </p>
+                        <p class="survey-closing" style="margin-top: 1rem;">From these insights, we concluded that a touch-free interaction model would provide the most inclusive and seamless experience. This led to the development of AI-Autostart, a system that can see and understand the user using a webcam, recognising hand gestures and mapping them to specific actions such as opening applications, files, or games.</p>
                     </div>
 
                     <div class="content-card" id="autostart-initial-design-ideas">
-                        <div class="section-title">Initial Design Ideas</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for initial design ideas.
-                        </div>
-                    </div>
-
-                    <div class="content-card" id="autostart-user-experience">
-                        <div class="section-title">User Experience</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for user experience.
-                        </div>
+                        <div class="section-title">Initial Design</div>
+                        <p class="survey-intro">When developing the AI-Autostart system, early designs focused on clarity, simplicity, and ease of use:</p>
+                        <ul class="findings-list">
+                            <li>A system tray application allows the app to run in the background without obstructing the user's workflow.</li>
+                            <li>A settings page provides control over gesture mappings and system behaviour, designed to be straightforward and easy to navigate.</li>
+                            <li>A table displays mappings between gestures and actions.</li>
+                        </ul>
+                        <figure class="fig-block" style="margin-top: 1rem;">
+                            <img src="../assets/images/aa-initial-design.png" alt="Initial AI-Autostart UI design">
+                            <figcaption>Fig 3 — Initial AI-Autostart UI design</figcaption>
+                        </figure>
                     </div>
 
                     <div class="content-card" id="autostart-prototyping-and-iterations">
-                        <div class="section-title">Prototyping and Iterations</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for prototyping and iterations.
-                        </div>
+                        <div class="section-title">Prototyping &amp; Iterations</div>
+                        <p class="survey-intro">As seen above, we only had one table for all of the actions at the beginning. As we started introducing functionality for opening Apps, games and files, the UI became cluttered.</p>
+                        <p class="survey-intro">To improve clarity, the tables were split into separate pages with tab navigation, simplifying access and maintaining a clean interface.</p>
+                        <figure class="fig-block" style="margin-top: 1rem;">
+                            <img src="../assets/images/aa-wireframe.png" alt="AI-Autostart wireframe with tab navigation">
+                            <figcaption>Fig 4 — Wireframe with split tab navigation</figcaption>
+                        </figure>
                     </div>
 
-                    <div class="content-card" id="autostart-heuristic-evaluations-and-improvements">
-                        <div class="section-title">Heuristic Evaluations and Improvements</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for heuristic evaluations and improvements.
-                        </div>
-                    </div>
-
-                    <div class="content-card" id="autostart-final-ui-design">
-                        <div class="section-title">Final UI Design</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for final UI design.
-                        </div>
-                    </div>
-
-                    <div class="content-card" id="autostart-references">
-                        <div class="section-title">References</div>
-                        <div class="placeholder-block">
-                            <div class="placeholder-title">AI-Autostart</div>
-                            Placeholder content for references.
-                        </div>
-                    </div>
+                    <div class="content-card" id="autostart-ui-features">
+                        <div class="section-title">UI Features and User Experience</div>
+                        <p class="survey-intro">AI-Autostart's interface is designed to be responsive, user-friendly, and accessible, allowing users to interact with digital systems effortlessly through hand gestures. Key features and enhancements include:</p>
+                        <ul class="findings-list">
+                            <li><strong>Gesture Feedback:</strong> After each gesture or button press, feedback text confirms that the system has recognised the action, helping users understand system responses.</li>
+                            <li><strong>Dynamic App List Refresh:</strong> The settings page automatically updates available applications, reducing manual effort. Users can also refresh manually for visibility and control.</li>
+                            <li><strong>Live Settings Update:</strong> Changes to gesture mappings or settings are applied immediately, without needing to restart the recogniser, removing friction from the interaction.</li>
+                            <li><strong>Gesture Reference Section:</strong> A dedicated page displays all recognised gestures and their corresponding actions, supporting learnability and confidence.</li>
+                            <li><strong>Split Tab Navigation:</strong> Separate tables for applications, games, and files are navigable via tabs, reducing clutter and making it easier for users to find and manage actions.</li>
+                        </ul>
+                        <p class="survey-closing" style="margin-top: 0.75rem;">These features, developed and refined through user testing, collectively enhance the hands-free, accessible, and intuitive experience. Users benefit from streamlined interactions, clear feedback, and simplified navigation, ensuring that AI-Autostart meets the needs of visually impaired users while adhering to core HCI principles.</p>
+                    </div>   
                 </div>
 
                 <div class="tab-panel active" data-product="game">
