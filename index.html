@@ -60,8 +60,8 @@
             <!-- Pitch Video Section -->
             <section id="pitch-video">
                 <div class="section-title">Pitch Video</div>
-                <div class="video-placeholder">
-                    <p>📹 Pitch video coming soon</p>
+                <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius);">
+                    <iframe src="https://www.youtube.com/embed/NEw0M-BEtwI?si=Z7wjudeBnP17kgIf" title="Pitch Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:var(--radius);"></iframe>
                 </div>
             </section>
             <!-- Abstract Section -->
@@ -231,7 +231,7 @@
         </footer>
         <script>
             document.querySelectorAll('iframe').forEach(iframe => {
-                if (iframe.closest('#video')) return;
+                if (iframe.closest('#video') || iframe.closest('#pitch-video')) return;
                 const wrapper = document.createElement('div');
                 wrapper.className = 'diagram-wrapper';
                 iframe.parentNode.insertBefore(wrapper, iframe);
